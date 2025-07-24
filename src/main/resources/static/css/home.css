@@ -1,0 +1,32 @@
+.containerPrincipalHome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    background-color: #f8f9fa;
+    border: #333 solid 1px;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    background-color: #ffffff;
+    border: #333 solid 1px;
+    padding: 20px;
+}
+
+.bienvenida{
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+.logoCastores img{
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+}

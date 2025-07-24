@@ -1,0 +1,10 @@
+-Login
+-Inventario Administrador
+---Tabla productos
+-----*agregar cant init 0
+-----*entrada de productos sin disminuir
+-----*dar baja se puede activar de nuevo
+-----*ver historico de movimientos, con filtros
+-Inventario Almacenista
+---Tabla productos ACTIVOS
+-----*salida de material, sacarlo
