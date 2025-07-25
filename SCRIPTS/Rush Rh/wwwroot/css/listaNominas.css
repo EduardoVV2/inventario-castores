@@ -1,0 +1,61 @@
+h4{
+    font-size: calc(1.2vw + 1vh);
+    color: #012d56
+}
+
+.titulo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(1.5vw + 1.5vh); /* Título más flexible */
+    padding: 10px;
+    margin-bottom: 2%;
+}
+
+.titulo h1 {
+    margin: 0;
+    font-weight: bold;
+    font-size: calc(1.5vw + 1.5vh); /* Título más grande en pantallas grandes */
+    color: #012d56;
+}
+
+.boton_superior select{
+    padding: calc(.3vw + .2vh) calc(.8vw + .8vh) calc(.3vw + .2vh);
+    background-color: transparent;
+    border: transparent;
+    font-size: calc(2vw + 1.7vh);
+    font-weight: bolder;
+    box-sizing: border-box;
+    color: #135f88;
+}
+
+.seccionTabla{
+    overflow: auto;
+}
+
+.seccionTabla table {
+    width: 100%;
+    margin: 0 auto; /* Centra la tabla en la página */
+    font-size: calc(.6vw + .5vh);
+}
+
+.seccionTabla table th, .seccionTabla table td {
+    text-align: center; /* Centra horizontalmente */
+    vertical-align: middle; /* Centra verticalmente */
+    padding: 10px;
+    min-width: 110px;
+}
+ 
+.seccionTabla th {
+    background-color: #49b9ed;
+    font-weight: bolder;
+    color: white;
+}
+
+.seccionTabla td {
+    background-color: #d8edff;
+    font-weight: bolder;
+    color: #012d56;
+    border-bottom: 2px solid #4c7388;
+}

@@ -1,0 +1,275 @@
+@page
+@model Rush_Rh.Pages.Home
+@{
+    Layout = "_LayoutSimple";
+    ViewData["Title"] = "Home";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+}
+@{
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+    <div class="offcanvas-body">
+        <div class="opcionesMenu">
+            <a href="/Home"><span class="material-symbols-outlined">home</span>Home</a>
+            @if (@HttpContext.Session.GetInt32("idPuesto") == 3 || @HttpContext.Session.GetInt32("idPuesto") == 5)
+            {
+                <a href="/ListaUsuarios"><span class="material-symbols-outlined">admin_panel_settings</span>Sistema RR.HH</a>
+
+            }
+            <a href="/PausasActivas"><span class="material-symbols-outlined">edit_calendar</span>Pausas activas</a>
+            <a href="/BuzonSugerencias"><span class="material-symbols-outlined">local_post_office</span>Buzón de sugerencias</a>
+            <a href="/Organigrama"><span class="material-symbols-outlined">graph_2</span>Organigrama</a>
+        </div>
+    </div>
+    </div>
+
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop1" aria-labelledby="offcanvasTopLabel">
+    <div class="offcanvas-body">
+        <div class="opcionesMenu">
+            <div class="contenedorIconoPerfilMenuHamburguesa">
+                <img src="~/assets/icon-usuario-cabecera.svg" alt="Icono Usuario">
+            </div>
+            <a href="/PerfilUsuario"><span class="material-symbols-outlined">person</span>Perfil</a>
+            <a href="#" onclick="confirmarLogout()"><span class="material-symbols-outlined">logout</span>Cerrar Sesión</a>
+        </div>
+    </div>
+    </div>
+
+    <div class="contenedor">
+        <header class="cabecera">
+            <div class="logo_rush-cabecera">
+                <a href="/Home"><img src="~/assets/icon-logo_rush-cabecera.png" alt="Logo Rush"></a>
+            </div>
+            <div class="logo-rush-derecha">
+                <div class="menu-cabecera">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><img src="~/assets/icon-menu-cabecera.png" alt="Menu de opciones"></a>
+                </div>
+                <div class="usuario-cabecera">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop1" aria-controls="offcanvasTop"><img src="~/assets/icon-usuario-cabecera.svg" alt="Icono Usuario"></a>
+                </div>
+            </div>
+        </header>
+        <div class="principal">
+            <section class="homeseccion1">
+                <article class="homeseccion1__homeBienvenida">
+                    <h1>¡Bienvenido!</h1>
+                    <h1>@Model.datosUsuario.Nombre @Model.datosUsuario.ApellidoPaterno</h1>
+                </article>
+                <article class="homeseccion1__homeRecordatorios">
+                    <div class="homeseccion1__homeRecordatorios__titulo"> 
+                        <h5 class="m-0">Recordatorios</h5>
+                        @if (@HttpContext.Session.GetInt32("idPuesto") == 3 || @HttpContext.Session.GetInt32("idPuesto") == 5){
+                            <a href="/Avisos" class="bg-success p-2">Administrar Avisos</a>
+                        }
+                        <a href="/MisAvisos" class="p-2">Ver detalles de los Avisos</a>
+                    </div>
+                    <div class="homeseccion1__homeRecordatorios__recordatorios">
+                        @foreach (var recordatorio in Model.recordatorios)
+                        {
+                            <div class="d-flex justify-content-between">
+                                <p>@recordatorio.Titulo</p>
+                                @if (recordatorio.FechaEvento.Date == DateTime.Today.Date)
+                                {
+                                    <p class="text-danger">Hoy</p>
+                                }
+                                else if (recordatorio.FechaEvento.Date == DateTime.Today.Date.AddDays(1))
+                                {
+                                    <p>Mañana</p>
+                                }
+                                else
+                                {
+                                    <p>@recordatorio.FechaEvento.ToString("dddd, dd MMMM yyyy")</p>
+                                }
+                            </div>
+                            <hr>
+                        }
+                    </div>
+                </article>
+            </section>
+
+            <section class="homeseccion2">
+                @* <div class="homeseccion2__contenedorArticle">
+                    <article class="homeseccion2__homeCard">
+                        <div class="homeseccion2__homeCard__contenedorImagenCards">
+                            <img src="~/assets/estamos_trabajando.svg" alt="Imagen card">
+                            <img src="~/assets/Icon_Graduado.svg" class="homeseccion2__homeCard__contenedorImagenCards__icono" alt="Icono imagen">
+                        </div>
+                        <div class="homeseccion2__homeCard__textoCards">
+                            <h4>Bienvenid@s al servicio social y prácticas profesionales.</h4>
+                            <button>Conoce más</button>
+                        </div>
+                    </article>
+                    <article class="homeseccion2__homeCard">
+                        <div class="homeseccion2__homeCard__contenedorImagenCards">
+                            <img src="~/assets/estamos_trabajando.svg" alt="Imagen card">
+                            <img src="~/assets/Icon_Calendario.svg" class="homeseccion2__homeCard__contenedorImagenCards__icono" alt="Icono imagen">
+
+                        </div>
+                        <div class="homeseccion2__homeCard__textoCards">
+                            <h4>Bienvenid@s al servicio social y prácticas profesionales.</h4>
+                            <button>Conoce más</button>
+                        </div>
+                    </article>
+                    <article class="homeseccion2__homeCard">
+                        <div class="homeseccion2__homeCard__contenedorImagenCards">
+                            <img src="~/assets/estamos_trabajando.svg" alt="Imagen card">
+                            <img src="~/assets/Icon_ASK.svg" class="homeseccion2__homeCard__contenedorImagenCards__icono" alt="Icono imagen">
+
+                        </div>
+                        <div class="homeseccion2__homeCard__textoCards">
+                            <h4>Bienvenid@s al servicio social y prácticas profesionales.</h4>
+                            <button>Conoce más</button>
+                        </div>
+                    </article>
+                </div> *@
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                        <img class="d-block" src="~/assets/LogoLetrasRushSinFondo.png" alt="First slide">
+                        </div>
+                        
+                        @foreach (var imagen in Model.imagenesCarrusel)
+                        {
+                            <div class="carousel-item">
+                                <img class="d-block" src="@imagen.URL" alt="Imagen personalizada">
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="homeseccion2__flechas">
+                    @if (@HttpContext.Session.GetInt32("idPuesto") == 3 || @HttpContext.Session.GetInt32("idPuesto") == 5)
+                    {
+                        <button class="button" data-bs-toggle="modal" data-bs-target="#modalAdministrarImagenes">Administrar Imágenes</button>
+                    }       
+                    <a href="#carouselExampleControls"  role="button" data-slide="prev" class="homeseccion2__flechas__flechaIzquierda"><span class="material-symbols-outlined" >arrow_back_ios</span></a>
+                    <a href="#carouselExampleControls" role="button" data-slide="next" class="homeseccion2__flechas__flechaDerecha"><span class="material-symbols-outlined"> arrow_forward_ios </span></a>
+                </div>
+            </section>
+        </div>
+    </div>
+    @if (@HttpContext.Session.GetInt32("idPuesto") == 3 || @HttpContext.Session.GetInt32("idPuesto") == 5)
+    {
+        <!-- Modal Administrar imagenes-->
+        <div class="modal fade centered" id="modalAdministrarImagenes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalAdministrarImagenesLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered mdlAdministrarImg">
+                <div class="modal-content">
+                    <div class="contenedor-boton">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body bodyAdministrarImagenes">
+                        <h2>Administrar imagenes del carrusel</h2>
+                        <div class="dropdown w-100">
+                            <button class="button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                + Agregar
+                            </button>
+                            <div class="dropdown-menu input_subirImagen">
+                                <form method="post" asp-page-handler="AgregarImagen" enctype="multipart/form-data">
+                                    <div class="inputContainer">
+                                        <label for="file-upload" class="custom-file-upload">
+                                            <div id="drop-zone">
+                                                Arrastra o selecciona un archivo
+                                            </div>
+                                            <input id="file-upload" type="file" name="doc.Documento" accept="image/*" required>
+                                            <button class="button" type="submit">Aceptar</button>
+                                        </label>
+                                    </div>
+                                    @* <li><button class="button" type="submit">Aceptar</button></li> *@
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tabla_imagenes">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th width="80%">Imagen</th>
+                                        <th width="20%">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var imagen in Model.imagenesCarrusel)
+                                    {
+                                        <tr>
+                                            <td><img class="d-block" src="@imagen.URL" alt="Imagen"></td>
+                                            <td>
+                                                <form method="post" asp-page-handler="EliminarImagen">
+                                                    <input type="hidden" name="id" value="@imagen.Id">
+                                                    <button class="button btn-borrarImagen" type="submit"><span class="material-symbols-outlined">delete</span></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    }
+    
+
+    @* Cumpleaños *@
+    @if (@HttpContext.Session.GetInt32("Cumple") == 1)
+    {
+        <!-- Modal de cumpleaños -->
+        <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width: 100%; max-width: 90000px !important;">
+                <div class="modal-content" style="padding: 10px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Feliz Cumpleaños!</h5>
+                        <form method="post" asp-page-handler="CumpleVisto">
+                            <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </form>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="cumple" style="width: 100%; height: 75vh;" title="YouTube video" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+@section Scripts{
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const message = '@Html.Raw(TempData["Message"])';
+            const messageType = '@TempData["MessageType"]';
+
+            if (message) {
+                Swal.fire({
+                    title: messageType === "success" ? "¡Éxito!" : "¡Aviso!",
+                    text: message,
+                    icon: messageType,
+                    confirmButtonText: "Aceptar"
+                });
+            }            
+        });
+        @* Función para mostrar alerta de confirmacion para iniciar sesión *@
+        function confirmarLogout() {
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "Se cerrará tu sesión actual.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Sí, cerrar sesión",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/Logout"; // Redirige a la acción de logout
+                }
+            });
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            var video = document.getElementById("cumple");
+            video.src = "https://www.youtube.com/embed/5QNXO5MGBEA?autoplay=1&rel=0&showinfo=0";
+            var myModal = new bootstrap.Modal(document.getElementById('miModal'));
+            myModal.show();  // Muestra el modal automáticamente, si es el cumpleaños del usuario
+        });
+    </script>
+}

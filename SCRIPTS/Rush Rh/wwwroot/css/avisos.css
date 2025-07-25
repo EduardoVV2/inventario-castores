@@ -1,0 +1,582 @@
+
+h1{
+    color: #012d56;
+}
+h4{
+    font-size: calc(1.2vw + 1vh);
+    color: #012d56
+}
+
+
+.contenedor-table{
+    overflow: auto;
+}
+
+.titulo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(1.5vw + 1.5vh); /* Título más flexible */
+    padding: 10px;
+}
+
+.titulo h1 { 
+    margin: 0;
+    font-weight: bold;
+    font-size: calc(1.5vw + 1.5vh); /* Título más grande en pantallas grandes */
+}
+
+.titulo .buscadorContainer {
+    display: flex;
+    align-items: center;
+    max-width: 400px; /* Limitar el tamaño máximo del buscador */
+    width: 100%;
+}
+
+.titulo .buscadorContainer button {
+    height: 100%;
+    background-color: #135f88;
+    color: white;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.titulo .buscadorContainer button:hover {
+    background-color: #012d56;
+}
+
+.titulo .buscadorContainer button span {
+    font-size: 1.3rem; /* Aumentamos el tamaño del ícono */
+}
+
+.titulo .buscador {
+    flex: 1;
+    max-height: 40px;
+    padding: 0.5rem .9rem;
+    font-size: 1rem;
+    border-radius: 0 5px 5px 0;
+    border: 3px solid #135f88;
+    background-color: #d8edff;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.titulo .buscador:hover {
+    border-color: #012d56;
+}
+
+.titulo .buscador:focus {
+    outline: none;
+}
+
+
+
+
+
+.subtitulos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: calc(1.2vw + 1vh);
+    margin-top: calc(1.8vw + 1.8vh);
+}
+
+.button{
+    padding: calc(.3vw + .2vh) calc(.8vw + .8vh) calc(.3vw + .2vh);
+    border-radius: calc(.7vw + .7vh);
+    font-size: calc(.6vw + .7vh);
+    box-sizing: border-box;
+    align-items: flex-start;
+    background-color: #135f88;
+    color: #ffffff;
+    transition: background-color, transform .3s;
+}
+
+.button:hover {
+    background-color: rgb(14, 72, 105);
+    transform: scale(1.05);
+  }
+
+.seccionFiltros{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: calc(1.2vw + 1vh);
+    margin-top: calc(1.2vw + 1vh);
+    width: 100%;
+}
+
+.seccionFiltros__filtroFechas{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    gap: 1vw;
+    justify-content: space-between;
+    align-items: center;
+    color: #012d56;
+    font-weight: bolder;
+}
+
+.seccionFiltros__filtroFechas h4{
+    width: 100%;
+}
+
+.seccionFiltros__filtroFechas .inputDate{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 1vw);
+}
+
+.seccionFiltros__filtroFechas .inputDate label{
+    font-size: calc(.7vw + .6vh);
+}
+
+.seccionFiltros__filtroFechas .inputDate input{
+    width: 100%;
+    color: #012d56;
+    font-weight: 500;
+    height: 25%;
+    padding: calc(.3vw + .3vh);
+    font-size: calc(.7vw + .6vh);
+}
+
+.seccionFiltros__filtroFechas .boton_filtrar{
+    width: 100%;
+    height: 25%;
+    padding: calc(.3vw + .3vh);
+
+}
+
+.seccionFiltros__filtroFechas select{
+    color: #012d56;
+    font-weight: 500;
+    width: 100%;
+    height: 25%;
+    padding: calc(.3vw + .3vh);
+    font-size: calc(.7vw + .6vh);
+}
+
+
+.seccionFiltros__filtroFechas .mostrar{
+    align-self: flex-end;
+}
+
+
+.seccionFiltros__filtroFechas label{
+    font-size: calc(.7vw + .6vh);
+}
+
+
+.seccionFiltros__otrosFiltros{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 50%;
+    gap: 1vw;
+}
+
+
+.seccionFiltros__otrosFiltros .inputCheckbox{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    color: #012d56;
+    font-weight: bolder;
+}
+
+.seccionFiltros__otrosFiltros .inputCheckbox label{
+    width: 30%;
+    font-size: calc(.7vw + .6vh);
+}
+
+.seccionFiltros__otrosFiltros .inputCheckbox input, .acciones_td input{
+    width: 10%;
+    height: 10%;
+}
+
+.avisos_mes{
+    color: #012d56;
+    font-weight: bolder;
+    font-size: calc(.7vw + .6vh);
+}
+
+.seccionTabla{
+    overflow: auto;
+}
+
+.seccionTabla table {
+    width: 100%;
+    margin: 0 auto; /* Centra la tabla en la página */
+    font-size: calc(.6vw + .5vh);
+}
+
+.seccionTabla table th, .seccionTabla table td {
+    text-align: center; /* Centra horizontalmente */
+    vertical-align: middle; /* Centra verticalmente */
+    padding: 10px;
+    min-width: 110px;
+}
+
+.seccionTabla th {
+    background-color: #49b9ed;
+    font-weight: bolder;
+    color: white;
+}
+
+.seccionTabla td {
+    background-color: #d8edff;
+    font-weight: bolder;
+    color: #012d56;
+    border-bottom: 2px solid #4c7388;
+}
+
+.descargarArchivo_td{
+    display: flex;
+    justify-content: center;
+    min-width: 50px;
+    width: 100%;
+}
+
+.avisos_inactivos td{
+    background-color: #ffd8d8 !important;
+}
+
+.seccionTabla td a{
+    text-decoration: none;
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    padding: 5px;
+    border-radius: 15px;
+    width: 80%;
+    transition: background-color, transform .3s;
+}
+
+.seccionTabla td a span{
+    color: white !important;
+}
+
+.seccionTabla td a:hover{
+    background-color: rgb(201, 1, 1);
+    transform: scale(1.05);
+}
+
+.archivo_nulo{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    padding: 5px;
+    border-radius: 15px;
+    width: 80%;
+    transition: background-color, transform .3s;
+    font-size: calc(.6vw + .5vh) !important;
+}
+
+.seccionTabla td span{
+    margin-right: 7px;
+    font-size: calc(1vw + .8vh);
+}
+
+.acciones_td{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5vw;
+}
+
+.acciones_td button{
+    background-color: #135f88;
+    color: white;
+    padding: 5px;
+    border-radius: 15px;
+    width: 50%;
+    font-size: calc(.6vw + .7vh);
+    transition: background-color, transform .3s;
+    margin-left: 1vw;
+}
+
+.acciones_td button:hover{
+    background-color: rgb(14, 72, 105);
+    transform: scale(1.05);
+}
+
+.aviso_enviado{
+    color: #135f88;
+    padding: 5px;
+    border-radius: 15px;
+    width: 50%;
+    font-size: calc(.6vw + .7vh);
+    transition: background-color, transform .3s;
+    margin-left: 1vw;
+}
+
+.acciones_td input{
+    width: 50%;
+}
+
+
+.enviarContainer{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1vw;
+    margin-top: 2vh;
+    padding-right: 2vw;
+    overflow: hidden;
+}
+
+.enviarContainer button {
+    background-color: #135f88;
+    color: white;
+    padding: 5px;
+    border-radius: 15px;
+    transition: background-color, transform .3s;
+    margin-left: 1vw;
+    width: 10%;
+    min-width: 100px;
+    font-size: calc(.6vw + .7vh);
+}
+
+.enviarContainer button div span{
+    font-size: calc(1vw + 1vh);
+    color: white !important;
+}
+
+.enviarContainer button:hover {
+    background-color: rgb(14, 72, 105);
+    transform: scale(1.05);
+}
+
+.enviarContainer button div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5vw;
+}
+
+
+
+/*-----------------------------------------------Estolos para el modal*/
+
+
+.modal-content{
+    width: 100%;
+    height: 100%;
+    border-radius: 55px;
+    padding: 7%;
+    box-sizing: border-box;
+}
+  
+.modal-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+    gap: 1vw;
+}
+
+
+.modalCrearAviso {
+    max-width: 60%; /* Define un ancho personalizado (ajustable) */
+    width: auto; /* Permite que el ancho sea ajustable */
+    min-width: 300px;
+}
+/**/
+.modal-dialog {
+    margin: 1.75rem auto;
+}
+/**/
+
+.contenedor-boton{
+    display: flex;
+    justify-content: end;
+    gap: 1vw;
+}
+
+.contenedor-boton button{
+    font-size: calc(.8vw + .8vh);
+}
+
+.modal-body .inputContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+.modal-body .enviarPor{
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.modal-body .enviarPor #enviarPorContainer{
+    width: 100%;
+}
+
+
+/*oCULTANDO LOS SELECT*/
+#usuarioContainer, #puestoContainer, #generoContainer, #departamentoContainer{
+    display: none;
+    width: calc(50% - .5vw);
+}
+
+
+.modal-body .inputContainer label{
+    font-size: calc(1vw + .5vh);
+    color: #012d56;
+    font-weight: bold;
+}
+
+
+.modal-body .inputContainer input{
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #135f88;
+    background-color: #d8edff;
+    transition: all .1s;
+}
+
+.modal-body .inputContainer input:-webkit-autofill{
+    box-shadow: 0 0 0px 1000px #a2ddff inset;
+}
+
+
+.modal-body .inputContainer select{
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #135f88;
+    background-color: #d8edff;
+    transition: all .1s;
+}
+
+.modal-body .inputContainer input:hover{
+    border: 1px solid #012d56;
+}
+
+
+.modal-body .inputContainer input:focus{
+    outline: 1.5px solid #011f3b;
+}
+
+
+.modal-body .inputContainer select:hover{
+    border: 1px solid #012d56;
+}
+
+/* Ocultar el input file original */
+.modal-body .inputContainer input[type="file"] {
+    display: none;
+}
+
+/* Estilo para el botón personalizado */
+.custom-file-upload {
+    display: inline-block;
+    text-align: center;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #d8edff;
+    color: #012d56;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    position: relative;
+}
+
+/* Estilo del área de arrastrar y soltar */
+#drop-zone {
+    border: 2px dashed #bfe0fd;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #f5faff;
+    color: #012d56;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+    padding: 7% 0;
+}
+
+/* Cambia el color al arrastrar archivos */
+#drop-zone.dragover {
+    background-color: #e6f3ff;
+}
+
+/* Estilo para el botón personalizado al pasar el ratón */
+.custom-file-upload:hover {
+    background-color: #bfe0fd;
+}
+
+
+@media (min-width: 945px) and (max-width: 1200px){
+    .modal-body .inputContainer label{
+        font-size: inherit;
+    }
+
+}
+
+@media screen and (max-width: 945px) {
+
+    .modal-body .inputContainer label{
+        font-size: inherit;
+    }
+
+    .seccionFiltros{
+        margin-bottom: 10px;
+        margin-top: 10px;
+        padding: 0;
+    }
+    
+
+    .titulo {
+        width: 100%;
+        align-items:start;
+        flex-direction: column;
+    }
+
+    .titulo h1 {
+        margin-bottom: calc(1vw + 1vh);
+    }   
+    
+    .titulo .buscadorContainer {
+        width: 40%;
+        height: 50%;
+        align-self: flex-end;
+    }
+
+
+    .titulo .buscadorContainer button {
+        padding: 0.33rem .6rem;
+    }
+    
+    
+    .titulo .buscadorContainer button span {
+        font-size: 1.1rem; /* Aumentamos el tamaño del ícono */
+    }
+    
+    .titulo .buscador {
+        height: 20%;
+        padding: 0.09rem .7rem;
+        font-size: .8rem;
+    } 
+}
+
+
+
+

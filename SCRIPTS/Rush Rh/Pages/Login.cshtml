@@ -1,0 +1,45 @@
+﻿@page "/prueba"
+@{
+    Layout = "_LayoutSimple";
+    ViewData["Title"] = "Home page";
+}
+@model Rush_Rh.Pages.LoginModel 
+@{
+                        <form method="post" asp-page-handler="DoLogin">
+                            <span>Nick</span>
+                                <input type="text" id="Nick" name="Nick" asp-for="info.Nick"/>
+                            <span>Contraseñas</span>
+                                <input type="text" id="Password" name="Password" asp-for="info.Password" />
+                            <button type="submit">Ingresar</button>
+                        </form>
+    @if(ViewData["mensaje"] != null)
+    {
+        @ViewData["mensaje"];
+    }
+}
+
+@section Scripts{
+    <script>
+        function login(){
+            var x = {
+                Nombre:"Angel",
+                Apellido: "San"
+            }
+            $.ajax({
+                type: "POST",
+                url: '/Login?handler=DoLogin',
+                data: JSON.stringify(x),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            }).done(function (data) {
+                console.log("funciona")
+            })
+            return false;
+        }
+       
+
+    </script>
+}

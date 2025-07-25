@@ -1,0 +1,272 @@
+@page
+@model Rush_Rh.Pages.IncidentesUsuariosRH
+@{
+    Layout = "_LayoutUsuarioRH";
+    ViewData["Title"] = "IncidentesUsuariosRH";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/incidentesUsuariosRH.css">
+}
+@{
+    <div class="contenido">
+        <div class="titulo">
+            <h1>Sistema RRHH / Lista de Incidentes:</h1>
+            <div class="buscadorContainer">
+                <input type="text" class="buscador" id="filtroInput" placeholder="Buscar">
+            </div>
+        </div>
+        <div class="filtros">
+            <form method="post"  asp-page-handler="FiltrarIncidentes">
+
+                <div class="filtro">
+                    <label for="filtroTipoIncidente">Tipo de Incidente:</label>
+                    <select name="filtroTipoIncidente" id="filtroTipoIncidente">
+                        <option value="0" selected>Todos</option>
+                        @foreach (var tipoIncidencia in Model.tiposIncidencias)
+                        {
+                            <option value="@tipoIncidencia.Id">@tipoIncidencia.Nombre</option>
+                        }
+                    </select>
+                </div>
+                <div class="filtro">
+                    <label for="filtroEstado">Estado:</label>
+                    <select name="filtroEstado" id="filtroEstado">
+                        <option value="0">Todos</option>
+                        @foreach (var estado in Model.estatusIncidencias)
+                        {
+                            <option value="@estado.Id">@estado.Nombre</option>
+                        }
+                    </select>
+                </div>
+                <div class="filtro">
+                    <label for="filtroFecha">Desde:</label>
+                    <input type="date" name="fechaInicio">
+                </div>
+                <div class="filtro">
+                    <label for="filtroFecha">Hasta:</label>
+                    <input type="date" name="fechaTermino">
+                </div>
+                <div class="filtro">
+                    <label for="filtroUsuario">Usuario:</label>
+                    <select name="filtroUsuario" id="filtroUsuario">
+                        <option value="0">Todos</option>
+                        @foreach (var usuario in Model.usuarios)
+                        {
+                            <option value="@usuario.Id">@usuario.Nombre</option>
+                        }
+                    </select>
+                </div>
+                <div class="filtro">
+                    <button type="submit" class="btnFiltrar">FiltrarIncidentes</button>
+                </div>
+            </form>
+        </div>
+        <div class="seccionTabla">
+            @if (HttpContext.Request.Method == "GET"){
+                <p class="recordatorio">Nota: Incidentes únicamente del mes en curso y pendientes, use los filtros para buscar un incidente en especial</p>
+            }
+            <form method="post" asp-page-handler="AceptarRechazarIncidencia">
+                <table class="tablaIncidentes" id="tabla">
+                    <thead>
+                        <tr>
+                            <th width="10%">Usuario</th>
+                            <th width="9%">Fecha</th>
+                            <th width="10%">Horario</th>
+                            <th width="8%">Tipo de Incidente</th>
+                            <th width="15%">Descripción</th>
+                            <th width="10%">Estado</th>
+                            <th width="9%"></th>
+                            <th width="9%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var incidente in Model.incidentes)
+                        {
+                            var hora = 0;
+                            <tr>
+                                <td align="center">@incidente.NombreUsuario @incidente.ApellidoPaternoUsuario @incidente.ApellidoMaternoUsuario</td>
+                                <td align="center">@incidente.FechaIncidencia.ToString("d")</td>
+                                <td align="center">
+                                    @if (incidente.HoraSalida != "")
+                                    {
+                                        hora = 1;
+                                        <p>Salida: @(DateTime.Parse(incidente.HoraSalida).ToString("hh:mm tt"))</p>
+                                    }
+                                    @if (incidente.HoraEntrada != "")
+                                    {
+                                        hora = 1;
+                                        <p>Entrada: @(DateTime.Parse(incidente.HoraEntrada).ToString("hh:mm tt"))</p>
+                                    }
+                                    @if (hora==0)
+                                    {
+                                        <p>- - -</p>
+                                    }
+                                </td>
+                                <td align="center">
+                                    @foreach (var tipoIncidencia in Model.tiposIncidencias)
+                                    {
+                                        if (tipoIncidencia.Id == incidente.IdTipoIncidencia)
+                                        {
+                                            @tipoIncidencia.Nombre
+                                        }
+                                    }
+                                </td>
+                                <td align="center">@incidente.Descripcion</td>
+                                <td align="center">@incidente.Estatus</td>
+                                <td align="center">
+                                    @if (incidente.IdDocumento != 0)
+                                    {
+                                        <a href="@incidente.URLDocumento" target="_blank"><span class="material-symbols-outlined">download</span> Archivo</a>
+                                    }else{
+                                        <span class="archivo_nulo">No hay archivo</span>
+                                    }
+                                </td>
+                                <td align="center">
+                                    @if ((incidente.Estatus != "Aprobado" && incidente.Estatus != "Rechazado" && incidente.Estatus != "En revision gerencial") || (HttpContext.Session.GetInt32("idPuesto") == 5 && incidente.Estatus == "En revision gerencial"))
+                                    {
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#aceptar" value="@incidente.Id" name="aceptada">Aceptar</button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#rechazar" value="@incidente.Id" name="rechazada" class="rechazar">Rechazar</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#coment" value="@incidente.Id" name="comentario">Ver Comentarios</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Rechazar-->
+    <div class="modal fade centered" id="rechazar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modalIncidentes">
+            <div class="modal-content ">
+                <div class="contenedor-boton">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" asp-page-handler="AceptarRechazarIncidencia">
+                    <input type="hidden" name="rechazada" id="idIncidente">
+                    <div class="modal-body">
+                        <h1>¿Seguro que deseas RECHAZAR el incidente?</h1>
+                        <div class="infoIncidente">
+                            <div>
+                                <label for="Usuario">Usuario:</label>
+                                <input type="text" name="Usuario" id="usuarioModal" disabled>
+                            </div>
+                            <div>
+                                <label for="Horario">Tipo incidente:</label>
+                                <input type="text" name="Horario" id="tipoIncidenciaModal" disabled>
+                            </div>
+                            <div>
+                                <label for="Descripcion">Descripción:</label>
+                                <textarea type="text" name="Descripción" id="descripcionModal" rows="1" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="inputUsuario">
+                            <label for="usuario">Agregar comentarios del por qué rechazas (opcional): </label>
+                            <textarea name="comentarios" id=""></textarea>
+                        </div>
+                        <button class="acceder button bg-danger" type="submit">Rechazar incidente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Aceptar-->
+    <div class="modal fade centered" id="aceptar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modalIncidentes">
+            <div class="modal-content ">
+                <div class="contenedor-boton">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" asp-page-handler="AceptarRechazarIncidencia">
+                    <input type="hidden" name="aceptada" id="aIdIncidente">
+                    <div class="modal-body">
+                        <h1>¿Seguro que deseas ACEPTAR el incidente?</h1>
+                        <div class="infoIncidente">
+                            <div>
+                                <label for="Usuario">Usuario:</label>
+                                <input type="text" name="Usuario" id="aUsuarioModal" disabled>
+                            </div>
+                            <div>
+                                <label for="Horario">Tipo incidente:</label>
+                                <input type="text" name="Horario" id="aTipoIncidenciaModal" disabled>
+                            </div>
+                            <div>
+                                <label for="Descripcion">Descripción:</label>
+                                <textarea type="text" name="Descripción" id="aDescripcionModal" rows="1" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="inputUsuario">
+                            <label for="usuario">Agregar comentarios del por qué aceptas (opcional): </label>
+                            <textarea name="comentarios" id=""></textarea>
+                        </div>
+                        <button class="acceder button bg-success" type="submit">Aceptar incidente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Mostrar Comentarios-->
+    <div class="modal fade centered" id="coment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modalIncidentes">
+            <div class="modal-content ">
+                <div class="contenedor-boton">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h1>Detalles de la Incidencia</h1>
+                    <div class="infoIncidente">
+                        <div>
+                            <label for="Usuario">Usuario:</label>
+                            <input type="text" name="Usuario" id="cUsuarioModal" disabled>
+                        </div>
+                        <div>
+                            <label for="Horario">Tipo incidente:</label>
+                            <input type="text" name="Horario" id="cTipoIncidenciaModal" disabled>
+                        </div>
+                        <div>
+                            <label for="Descripcion">Descripción:</label>
+                            <textarea type="text" name="Descripción" id="cDescripcionModal" rows="1" disabled></textarea>
+                        </div>
+                        <div>
+                            <label for="Estado">Estado:</label>
+                            <input type="text" name="Estado" id="cEstado" disabled>
+                        </div>
+                    </div>
+                    <div class="inputUsuario">
+                        <h4>Comentarios:</h4>
+                        <p id="contenidoComentario" class="recordatorio">Sin comentarios de la incidencia</p>
+                    </div>
+                    <button class="acceder button bg-danger" data-bs-dismiss="modal" aria-label="Close" type="button">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts{
+    <script src="~/js/incidentesUsuariosRH.js"></script>
+    <script>
+        const incidentes = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.incidentes));
+        document.addEventListener("DOMContentLoaded", function() {
+            const message = '@Html.Raw(TempData["Message"])';
+            const messageType = '@TempData["MessageType"]';
+
+            if (message) {
+                Swal.fire({
+                    title: messageType === "success" ? "¡Éxito!" : "¡Aviso!",
+                    text: message,
+                    icon: messageType,
+                    confirmButtonText: "Aceptar"
+                });
+            }            
+        });
+    </script>
+}

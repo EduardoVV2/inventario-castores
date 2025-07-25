@@ -1,0 +1,354 @@
+                        /*seccion titulo y buscador*/
+
+.SeccionTituloNomina {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(1.5vw + 1.5vh); /* Título más flexible */
+    padding: 10px;
+}
+
+.SeccionTituloNomina h1 {
+    margin: 0;
+    font-size: calc(1.5vw + 1.5vh); /* Título más grande en pantallas grandes */
+}
+
+                                /*Buscador*/
+
+.SeccionTituloNomina .buscadorContainer {
+    display: flex;
+    align-items: center;
+    max-width: 400px; /* Limitar el tamaño máximo del buscador */
+    width: calc(20vw + 10vh);
+}
+
+.SeccionTituloNomina .buscadorContainer button {
+    height: 100%;
+    background-color: #135f88;
+    color: white;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.SeccionTituloNomina .buscadorContainer button:hover {
+    background-color: #012d56;
+}
+
+.SeccionTituloNomina .buscadorContainer button span {
+    font-size: 1.3rem; /* Aumentamos el tamaño del ícono */
+}
+
+.SeccionTituloNomina .buscador {
+    flex: 1;
+    max-height: 40px;
+    padding: 0.5rem .9rem;
+    font-size: calc(.7vw + .7vh);
+    font-size: 14px;
+    border-radius: 0 5px 5px 0;
+    border: 3px solid #135f88;
+    background-color: #d8edff;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.SeccionTituloNomina .buscador:hover {
+    border-color: #012d56;
+}
+
+.SeccionTituloNomina .buscador:focus {
+    outline: none;
+}
+
+
+                                /*tabla de nominas de usuarios*/
+
+.SeccionTablaNominas{
+    overflow: auto;
+}
+
+.SeccionTablaNominas table {
+    width: 100%;
+    margin: 0 auto; /* Centra la tabla en la página */
+    font-size: clamp(14px, calc(0.7vw + 0.7vh), 18px);
+}
+
+.SeccionTablaNominas table th, .SeccionTablaNominas table td {
+    text-align: center; /* Centra horizontalmente */
+    vertical-align: middle; /* Centra verticalmente */
+    padding: 10px;
+    min-width: 110px;
+}
+
+.SeccionTablaNominas th {
+    background-color: #49b9ed;
+    font-weight: bolder;
+    color: white;
+}
+
+.SeccionTablaNominas td {
+    background-color: #d8edff;
+    font-weight: bolder;
+    color: #012d56;
+    border-bottom: 2px solid #4c7388;
+}
+
+.SeccionTablaNominas .botonNominas{
+    margin-left: auto;
+    background-color: #002d56;
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    width: calc(6vw + 4.5vh); 
+    font-size: .8em; /* Cambia el tamaño de la letra aquí */
+    font-weight: bold; /* Hace el texto en negritas */
+    text-align: center; /* Asegura que el texto esté centrado */
+    transition: background-color 0.3s, color 0.3s, width 0.3s, height 0.3s, font-size 0.3s; /* Animación suave */
+    box-sizing: border-box;
+    border-bottom: 2px solid #4c7388;
+}
+
+                                /* Modal para subir nominas*/
+
+.modalSubirNominas .selectModal label{
+    color: #002d56 !important;
+}
+
+.modalSubirNominas .selectModal option{
+    background-color: #d8edff;
+    border: none;
+}
+
+.modalSubirNominas .selectModal select{
+    background-color: #d8edff;
+    border: none;  
+}
+
+.modalSubirNominas .contenedorBotonSubirNomina{
+    display: flex; /* Activa flexbox */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido (opcional) */
+    padding: 10px; /* Opcional: Agrega algo de espacio alrededor */
+}
+
+.modalSubirNominas .contenedorBotonSubirNomina .botonSubirNomina{
+    background-color: #002d56; /* Personaliza el color de fondo */
+    color: white; /* Color del texto */
+    border-radius: 20px;
+    border: none;
+    width: calc(5vw + 5vh); 
+    height: calc(1.3vw + 2vh);
+    font-size: 1em;
+    font-weight: bold; /* Hace el texto en negritas */
+    text-align: center; /* Asegura que el texto esté centrado */
+    transition: background-color 0.3s, color 0.3s, width 0.3s, height 0.3s, font-size 0.3s; /* Animación suave */
+    box-sizing: border-box;
+    border-bottom: 2px solid #4c7388;
+}
+
+.modalSubirNominas .contenedorBotonSubirNomina .botonSubirNomina:hover{
+    background-color: #001a3a;
+}
+
+
+                                /* Modal para ver nominas */
+
+#ModalVerNominas .modal-dialog {
+    max-width: 800px; /* Ajusta el ancho máximo del modal (80% del ancho de la pantalla) */
+    width: 100%; /* Permite que el ancho se ajuste dinámicamente */
+    max-height: 90vh; /* Altura máxima del modal relativa al viewport */
+}
+
+/* Establece el tamaño fijo y el área de desplazamiento para el contenido */
+#ModalVerNominas .modal-content {
+    height: 450px; /* Fija la altura del modal */
+    overflow: hidden; /* Oculta cualquier contenido que sobrepase el límite del modal */
+    display: flex;
+    flex-direction: column;
+    padding: 40px; /* Reduce el espacio interno del contenido */
+}
+
+/* Define el área desplazable para la tabla */
+#ModalVerNominas .tablaModalNominas {
+    flex-grow: 1; /* Permite que este div ocupe el espacio disponible */
+    overflow-y: auto; /* Activa el scroll vertical */
+    padding: 10px; /* Espaciado interno */
+    max-height: calc(100% - 60px); /* Ajusta el tamaño máximo sin sobrepasar el contenido del modal */
+}
+
+.modalNominas .tablaModalNominas table{
+    border-collapse: collapse;
+    width: 100%; /* La tabla ocupa todo el ancho del contenedor */
+    text-align: center; /* Centra el texto en las celdas */
+}
+
+.modalNominas .tablaModalNominas .btn-no-color{
+    background-color: transparent; /* Sin fondo */
+    border: none; /* Sin bordes */
+}
+
+.modalNominas .tablaModalNominas .btn-no-color:focus {
+    outline: none; /* Quita el contorno al enfocarse */
+}
+
+.modalNominas .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.modalNominas .pagination button {
+    padding: 3px 10px;
+    background-color: #49b9ed; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modalNominas .pagination button:hover:not(:disabled) {
+    background-color: #007bff;
+}
+
+.modalNominas .pagination button:disabled {
+    background-color: #001a3a;
+    cursor: not-allowed;
+}
+
+@media (min-width:481)and(max-width: 1250px)
+{
+    /*Modal ver nominas*/
+    #ModalVerNominas .modal-dialog {
+        width: 600px
+    }
+
+    #ModalVerNominas .modal-content{
+        height: 440px;
+    }
+
+    .modalNominas .tablaModalNominas{
+        font-size: 15px;
+    }
+
+    .modalNominas .tituloTablaNominas h1{
+        font-size: 17px !important;
+    }
+
+    .modalNominas .pagination button{
+        padding: 2px 8px;
+        font-size: 15px;
+    }
+
+    /*modal subir nominas*/
+    .modalSubirNominas .TituloModalSubirNominas h1{
+        font-size: 17px !important;
+    }
+
+    .modalSubirNominas .selectModal{
+        font-size: 15px;
+    }
+
+    #ModalNominas .modal-dialog{
+        width: 470px
+    }
+
+    #ModalNominas .modal-content{
+        height: 500px;
+    }
+
+    .modalSubirNominas .contenedorBotonSubirNomina .botonSubirNomina{
+        width: 80px; 
+        height: 30px;
+        font-size: 15px;
+    }
+}
+
+@media(max-width: 480px) 
+{
+    /*buscador*/
+    .SeccionTituloNomina .buscador {
+        font-size: 12px;
+    }
+
+    /*tabla*/
+    .SeccionTablaNominas table{
+        font-size: 12px;
+    }
+
+    .SeccionTablaNominas .botonNominas{
+        width: 75px;
+        font-size: 11px;
+        margin: 0;
+    }
+
+    .SeccionTablaNominas th td div {
+        margin: 0; /* Elimina margen del contenedor */
+        padding: 0; /* Elimina relleno del contenedor */
+    }
+
+    /*modal ver nominas*/
+    #ModalVerNominas .modal-dialog {
+        width: 350px
+    }
+
+    #ModalVerNominas .modal-content{
+        height: 430px;
+    }
+
+    .modalNominas .tablaModalNominas{
+        font-size: 13px;
+    }
+
+    .modalNominas .tituloTablaNominas h1{
+        font-size: 15px !important;
+    }
+
+    .modalNominas .pagination button{
+        padding: 2px 8px;
+        font-size: 13px;
+    }
+
+    /*modal subir nominas*/
+    .modalSubirNominas .TituloModalSubirNominas h1{
+        font-size: 15px !important;
+        margin-bottom: none;
+    }
+
+    .modalSubirNominas .selectModal{
+        font-size: 13px;
+    }
+
+    #ModalNominas .modal-dialog{
+        width: 350px
+    }
+
+    #ModalNominas .modal-content{
+        height: 400px;
+    }
+
+    .modalSubirNominas .contenedorBotonSubirNomina .botonSubirNomina{
+        width: 70px; 
+        height: 25px;
+        font-size: 14px;
+    }
+
+    .modalSubirNominas .selectModal label {
+        margin-bottom: 2px; /* Reduce el espacio entre el label y el select */
+    }
+
+    .modalSubirNominas .selectModal select, input{
+        height: 40px;
+    }
+
+}
+
+

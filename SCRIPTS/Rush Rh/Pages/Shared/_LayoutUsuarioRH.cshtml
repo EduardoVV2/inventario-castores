@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Rush_Rh</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/plantillaBase.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Rush_Rh.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/avisos.css">
+    <link rel="stylesheet" href="~/css/registro.css">
+    <link rel="stylesheet" href="~/css/listaUsuarios.css">
+    <link rel="stylesheet" href="~/css/sitePausasActivas.css">
+    <link rel="stylesheet" href="~/css/informacionComplementaria.css">
+    <link rel="stylesheet" href="~/css/permisos.css">
+    <link rel="stylesheet" href="~/css/organigrama.css">
+    <link rel="stylesheet" href="~/css/planeacionActividades.css">
+    <link rel="stylesheet" href="~/css/detallesActividad.css">
+    <link rel="stylesheet" href="~/css/nominas.css">
+    <link rel="stylesheet" href="~/css/calendarioPermisos.css">
+    <link rel="stylesheet" href="~/css/buzonSugerencias.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <!-- estilos organigrama  -->
+    <link rel="stylesheet" href="~/css/Treant.css" />
+
+    
+
+    <!-- estilos del editor de texto  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sceditor@3/minified/themes/default.min.css" />
+
+</head>
+
+<body>
+    <!-- Contenedor del fondo oscuro -->
+    <div id="sweetalert-overlay" class="overlay-sweetalert"></div>
+    <div class="base_LayoutPrincipal" id="base_LayoutPrincipal">
+        <nav class="barra-navegacion-lateral bg-success bg-opacity-75 rh">
+            <div>
+                <a href="/ListaUsuarios">
+                    <img src="~/assets/icon-ver_usuarios-lateral.svg" alt="Perfiles de Usuarios">
+                    <span>Perfiles de Usuarios</span>
+                </a>
+            </div>
+            <div>
+                <a href="/Registro">
+                    <img src="~/assets/icon-agregar_usuario-lateral-RH.svg" alt="Agregar Usuario">
+                    <span>Agregar Usuario</span>
+                </a>
+            </div>
+            <div>
+                <a href="/Avisos">
+                    <img src="~/assets/icon-avisos-lateral.svg" alt="Avisos Generales">
+                    <span>Avisos Generales</span>
+                </a>
+            </div>
+            <div>
+                <a href="/IncidentesUsuariosRH">
+                    <img src="~/assets/icon-datos_personales-lateral.svg" alt="Incidencias de Usuarios">
+                    <span>Incidencias de Usuarios</span>
+                </a>
+            </div>
+            <div>
+                <a href="/PlaneacionActividades">
+                    <img src="~/assets/icon-cursos_realizados-lateral.svg" alt="Cursos Realizados">
+                    <span>Programación de Cursos</span>
+                </a>
+            </div>
+            <div>
+                <a href="/PermisoLicencias?accion=confirmacionLicencia">
+                    <img src="~/assets/icon-vacaciones_licencias-lateral.svg" alt="Vacaciones y Licencias">
+                    <span>Vacaciones / Licencias</span>
+                </a>
+            </div>
+        </nav>
+        <!-- Menú en botón flotante para pantallas pequeñas -->
+        <div class="btn-group dropend boton-flotante">
+            <button id="boton-flotante" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="~/assets/icon-menu-cabecera.png" alt="Menu de opciones">
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/ListaUsuarios">Perfiles de Usuarios</a></li>
+                <li><a class="dropdown-item" href="/Registro">Agregar Usuario</a></li>
+                <li><a class="dropdown-item" href="/Avisos">Avisos Generales</a></li>
+                <li><a class="dropdown-item" href="/IncidentesUsuariosRH">Incidencias de Usuarios</a></li>
+                <li><a class="dropdown-item" href="/PlaneacionActividades">Programación de Cursos</a></li>
+                <li><a class="dropdown-item" href="/PermisoLicencias">Vacaciones / Licencias</a></li>
+            </ul>
+        </div>
+
+        <header class="cabecera">
+            <!-- Menu Hamburguesa -->
+            <div class="offcanvas offcanvas-top menuHamburgesa" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-body">
+                    <div class="opcionesMenu">
+                        <a href="/Home"><span class="material-symbols-outlined">home</span>Home</a>
+                        <a href="/ListaUsuarios"><span class="material-symbols-outlined">admin_panel_settings</span>Sistema RR.HH</a>
+                        <a href="/PausasActivas"><span class="material-symbols-outlined">edit_calendar</span>Pausas activas</a>
+                        <a href="/BuzonSugerencias"><span class="material-symbols-outlined">local_post_office</span>Buzón de sugerencias</a>
+                        <a href="/Organigrama"><span class="material-symbols-outlined">graph_2</span>Organigrama</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Menu Icono Perfil -->
+            <div class="offcanvas offcanvas-top menuIconoPerfil" tabindex="-1" id="offcanvasTop1" aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-body">
+                    <div class="opcionesMenu">
+                        <div class="contenedorIconoPerfilMenuHamburguesa">
+                            <img src="~/assets/icon-usuario-cabecera.svg" alt="Icono Usuario">
+                        </div>
+                        <a href="/PerfilUsuario"><span class="material-symbols-outlined">person</span>Perfil</a>
+                        <a href="#" onclick="confirmarLogout()"><span class="material-symbols-outlined">logout</span>Cerrar Sesión</a>
+                    </div>
+                </div>
+            </div>
+            <div class="logo_rush-cabecera">
+                <a href="/Home"><img src="~/assets/icon-logo_rush-cabecera.png" alt="Logo Rush"></a>
+            </div>
+            <div class="titulo_admin">
+                <p class="m-0">RR.HH admin</p>
+            </div>
+            <div class="logo-rush-derecha">
+                <div class="menu-cabecera">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><img
+                            src="~/assets/icon-menu-cabecera.png" alt="Menu de opciones"></a>
+                </div>
+                <div class="usuario-cabecera">
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop1" aria-controls="offcanvasTop"><img src="~/assets/icon-usuario-cabecera.svg" alt="Icono Usuario"></a>
+                </div>
+            </div>
+        </header>
+        <div class="contenedor-cuerpo-pagina">
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Editor de texto -->
+    <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/sceditor.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sceditor@3/minified/formats/xhtml.js"></script>
+
+    <!-- Alerta -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Alerta para cerrar sesión -->
+    <script>
+        function confirmarLogout() {
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "Se cerrará tu sesión actual.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Sí, cerrar sesión",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/Logout"; // Redirige a la acción de logout
+                }
+            });
+        }
+
+        // Botón flotante
+        const boton = document.getElementById("boton-flotante");
+        let offsetX, offsetY, isDragging = false;
+
+        boton.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            offsetX = e.clientX - boton.getBoundingClientRect().left;
+            offsetY = e.clientY - boton.getBoundingClientRect().top;
+            boton.style.transition = "none"; // sin animaciones durante arrastre
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (isDragging) {
+                boton.style.left = `${e.clientX - offsetX}px`;
+                boton.style.top = `${e.clientY - offsetY}px`;
+                boton.style.right = "auto";
+                boton.style.bottom = "auto";
+                boton.style.position = "fixed";
+            }
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
+        });
+    </script>
+
+    <!-- Descargar xlsx -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- Organigrama -->
+    <script src="~/js/Treant.js"></script>
+    <script src="~/js/raphael.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+
+    <!-- Sortable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+
+    <!-- Descargar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("Styles", required: false)
+</body>
+
+</html>

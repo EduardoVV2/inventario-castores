@@ -1,0 +1,360 @@
+@page
+@model Rush_Rh.Pages.CalendarioPermisos
+@{
+    Layout = "_LayoutUsuarioRH";
+    ViewData["Title"] = "CalendarioPermisos";
+    var registros = Model.permisos;
+    var Mes = Model.month;
+    var Año = Model.year;
+    var TipoPermiso = Model.tipoPermiso;
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/calendarioPermisos.css" />
+}
+
+@{
+    <div class="contenedor">
+        <div class="cabeceraCalendarioPermisos">
+            <a href="/PermisoLicencias?accion=confirmacionLicencia" class="icono-volver">
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
+            </a>
+
+            <div class="cabeceraCalendarioPermisos__Fecha">
+                <div class="cabeceraCalendarioPermisos__Fecha__contenido">
+                    <a data-bs-toggle="collapse" href="#collapseCalendarioPermisos" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <span class="material-symbols-outlined">
+                            arrow_drop_down
+                        </span>
+                    </a>
+
+                    <h1>Tipo Permiso y fecha dinamicos</h1>
+                </div>
+
+                <div class="collapse selectFormularioCalendario" id="collapseCalendarioPermisos">
+                    <div class="card card-body formulario-contenedor">
+                        <form method="get" asp-page="CalendarioPermisos" id="formCalendario" >
+                            <!-- Tipo -->
+                            <div class="espaciado-formularioCalendarioPermisos">
+                                <label for="tipo">Tipo:</label>
+                                <select class="form-select" name="tipo">
+                                    <option value="licencias" selected="@(TipoPermiso == "Licencias" ? "selected" : null)">Licencias</option>
+                                    <option value="vacaciones" selected="@(TipoPermiso == "Vacaciones" ? "selected" : null)">Vacaciones</option>
+                                    <option value="permisos" selected="@(TipoPermiso == "Permisos" ? "selected" : null)">Todo</option>
+                                </select>
+                            </div>
+
+                            <!-- Mes -->
+                            <div class="espaciado-formularioCalendarioPermisos">
+                                <label for="mes">Mes:</label>
+                                <select id="selectMes" name="mes" class="form-select">
+                                    <option value="1" selected="@(Mes == 1 ? "selected" : null)">Enero</option>
+                                    <option value="2" selected="@(Mes == 2 ? "selected" : null)">Febrero</option>
+                                    <option value="3" selected="@(Mes == 3 ? "selected" : null)">Marzo</option>
+                                    <option value="4" selected="@(Mes == 4 ? "selected" : null)">Abril</option>
+                                    <option value="5" selected="@(Mes == 5 ? "selected" : null)">Mayo</option>
+                                    <option value="6" selected="@(Mes == 6 ? "selected" : null)">Junio</option>
+                                    <option value="7" selected="@(Mes == 7 ? "selected" : null)">Julio</option>
+                                    <option value="8" selected="@(Mes == 8 ? "selected" : null)">Agosto</option>
+                                    <option value="9" selected="@(Mes == 9 ? "selected" : null)">Septiembre</option>
+                                    <option value="10" selected="@(Mes == 10 ? "selected" : null)">Octubre</option>
+                                    <option value="11" selected="@(Mes == 11 ? "selected" : null)">Noviembre</option>
+                                    <option value="12" selected="@(Mes == 12 ? "selected" : null)">Diciembre</option>
+                                </select>
+                            </div>
+
+                            <!-- Año -->
+                            <div class="espaciado-formularioCalendarioPermisos">
+                                <label for="año">Año:</label>
+                                <select id="selectAnio" name="año" class="form-select">
+                                    <!-- Opciones generadas dinámicamente -->
+                                </select>
+                            </div>
+
+                            <!-- Botón -->
+                            <div class="contenedorBotonBuscar">
+                                <button class="botonBuscarCalendarioPermisos" type="submit" id="btnBuscar" onclick="handleBuscar()">Buscar</button>
+                            </div>   
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="seccionCalendario">
+            <table class="seccionCalendario__tabla">
+                <thead>
+                    <tr>
+                        <th>Domingo</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="SeccionGiaColoresCalendario">
+            <img src="~/assets/Gia-Colores-Calendario.jpg" alt="Gia de colores calendario">
+        </div>
+        <!-- Modal -->
+        <div class="modalCalendarioPermisos">
+            <div class="modal fade" id="ModalCalendario" aria-hidden="true" aria-labelledby="ModalCalendario" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header TituloModalCalendario">
+                            <h1 class="modal-title fs-5" id="ModalCalendario">Titulo Modal dinamico</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="rowFormularioModal">
+                                    <div class="rowFormularioModal_1">
+                                        <div>
+                                            <label for="usuarios">Usuario:</label>
+                                            <input type="text" id="usuario_Calendario" value="" disabled>
+                                        </div>
+                                        
+                                        <div>
+                                            <label for="jefe">Jefe Directo:</label>
+                                            <input type="text" id="jefe_Calendario" value="" disabled>
+                                        </div>
+
+                                        <div id="SeccionParaLicencia">
+                                            <label for="licencias">Tipo Licencia:</label>
+                                            <input type="text" id="tipo_licencia" value="" disabled>
+                                        </div>
+
+                                        <div id="SeccionParaVacacion">
+                                            <label for="dias">Días Usados</label>
+                                            <input type="text" id="dias_Usados" value="" disabled>
+                                        </div>
+
+                                      
+                                    </div>
+
+                                    <div class="rowFormularioModal_2">
+                                        <div>
+                                            <label for="fechaSolicitud">Solicitud:</label>
+                                            <input type="date" id="fechaSolicitud_Calendario" disabled>
+                                        </div>
+                                        
+                                        <div>
+                                            <label for="fechaInicio">Fecha Inicio:</label>
+                                            <input type="date" id="fechaInicio_Calendario" disabled>
+                                        </div>
+                                        
+                                        <div>
+                                            <label for="fechaFin">Fecha Fin:</label>
+                                            <input type="date" id="fechaFin_Calendario" disabled>
+                                        </div>
+                                        
+                                        <div>
+                                            <label for="fechaReincorporacion">Reincorporacion:</label>
+                                            <input type="date" id="fechaReincorporacion_Calendario" disabled>
+                                        </div> 
+                                    </div>
+
+                                    <div class="rowFormularioModal_3">
+                                        <div>
+                                            <label for="comentarios">Comentarios:</label>
+                                            <textarea id="comentarios_Calendario" disabled></textarea>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>                           
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts{
+
+    <script>
+        // Verificar si hay un mensaje en TempData y mostrarlo
+        @if (TempData["AlertMessage"] != null)
+        {
+            <text>
+            Swal.fire({
+                title: '@TempData["AlertType"]' === 'success' ? 'Éxito' : 'Error',
+                text: '@TempData["AlertMessage"]',
+                icon: '@TempData["AlertType"]',
+                confirmButtonText: 'Aceptar'
+            });
+            </text>
+        }
+    </script>
+
+    <script>
+        // Inicializar los select de año y mes
+        function initSelectors() {
+     
+            const currentYear = new Date().getFullYear();
+
+            // Rellenar los años (del actual a 10 años atrás y adelante)
+            for (let year = currentYear - 10; year <= currentYear + 10; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                if (year === Año) option.selected = true; // Año actual seleccionado
+                selectAnio.appendChild(option);
+            }
+
+            // Establecer el mes actual (de 1 a 12)
+            //selectMes.value = new Date().getMonth() + 1;
+        }
+        
+        // Pasar los registros de C# a JavaScript como un array de objetos
+        var registros = @Html.Raw(Json.Serialize(registros));
+        var Año = @Año;
+        var Mes = @Mes;
+        var TipoPermiso = "@TipoPermiso";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initSelectors(); // Llenar los select de año 
+
+            fillCalendar(Año, Mes - 1, registros);
+
+            // Selecciona todos los elementos con la clase abrirModalCalendario
+            let nombres = document.querySelectorAll(".abrirModalCalendario");
+
+            nombres.forEach(nombre => {
+                nombre.addEventListener("click", function () {
+                    // Muestra el modal utilizando Bootstrap
+                    let modal = new bootstrap.Modal(document.getElementById("ModalCalendario"));
+                    modal.show();
+                });
+            });
+
+            // Selecciona todas las celdas de la tabla
+            document.querySelectorAll("tbody td").forEach(td => {
+                // Busca los nombres dentro del <td>
+                let registros = td.querySelectorAll(".abrirModalCalendario");
+
+                // Si hay al menos un registro, agrega la clase
+                if (registros.length > 0) {
+                    td.classList.add("celdaCalendario-con-registro");
+                }
+            });
+        });
+
+        // Diccionario de nombres de los meses
+        const monthNames = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        // Función para actualizar la cabecera
+        function updateCalendarHeader(year, month, permiso) {
+            const header = document.querySelector('.cabeceraCalendarioPermisos h1');
+            header.textContent = `${permiso} ${monthNames[month]} ${year}`;
+        }   
+
+        function fillCalendar(year, month, registros) {
+            const tableBody = document.querySelector('.seccionCalendario__tabla tbody');
+            tableBody.innerHTML = ''; // Limpiar el contenido previo
+
+            //const tipoPermisos = "Licencias";
+            updateCalendarHeader(year, month, TipoPermiso);
+
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDay = new Date(year, month, 1).getDay(); // 0 = Domingo, 6 = Sábado
+
+            let currentDay = 1;
+            for (let row = 0; row < 6; row++) { 
+                const tr = document.createElement('tr');
+                
+                for (let col = 0; col < 7; col++) { 
+                    const td = document.createElement('td');
+                    
+                    if ((row === 0 && col < firstDay) || currentDay > daysInMonth) {
+                        tr.appendChild(td);
+                        continue;
+                    }
+
+                    const fechaDiv = document.createElement('div');
+                    fechaDiv.className = 'fecha';
+                    
+                    const daySpan = document.createElement('samp');
+                    daySpan.textContent = currentDay;
+                    fechaDiv.appendChild(daySpan);
+                    td.appendChild(fechaDiv);
+
+                    const contenedorNombres = document.createElement('div');
+                    contenedorNombres.className = 'contenedorNombres';
+                    
+                    // Convertir `FechaInicio` de cada registro en una fecha válida y compararla con `dayDate`
+                    const dayDate = new Date(year, month, currentDay);
+
+                    // Filtrar registros que coincidan con el rango de fechas
+                    const registrosDelDia = registros.filter(reg => {
+                        const fechaInicio = new Date(reg.fechaInicio);
+                        const fechaFin = new Date(reg.fechaFin);
+                        
+                        // Verificar si el día actual está dentro del rango de fechas
+                        return dayDate >= fechaInicio && dayDate <= fechaFin;
+                    });
+
+                    // Imprimir Nick en la casilla correspondiente
+                    registrosDelDia.forEach(registro => {
+                        const nombreDiv = document.createElement('div');
+                        const nombreSpan = document.createElement('span');
+
+                        // Verifica que TipoSolicitud tenga un valor válido antes de asignar la clase
+                        const claseSolicitud = registro.tipoSolicitud === 'Licencia' ? 'nombresLicencias' : 'nombresVacaciones';
+                        
+                        nombreSpan.className = `ModalCalendario ${claseSolicitud}`;
+                        nombreSpan.textContent = registro.nick;
+                        
+                        
+                        // Agrega el evento click para abrir el modal correspondiente
+                        nombreSpan.addEventListener('click', () => {
+                            if (registro.tipoSolicitud === 'Licencia') {
+                                abrirModalLicencias(registro);
+                            } else if (registro.tipoSolicitud === 'Vacacion') {
+                                abrirModalVacaciones(registro);
+                            }
+                        });
+
+                        nombreDiv.appendChild(nombreSpan);
+                        contenedorNombres.appendChild(nombreDiv);
+
+                        // Agrega la clase a la celda si no la tiene ya
+                        if (!contenedorNombres.classList.contains('celdaCalendario-con-registro')) {
+                            contenedorNombres.classList.add('celdaCalendario-con-registro');
+                        }
+                    });
+                    
+                    td.appendChild(contenedorNombres);
+                    tr.appendChild(td);
+                    currentDay++;
+                }
+                tableBody.appendChild(tr);
+                if (currentDay > daysInMonth) break;
+            }
+        }
+
+        // Cargar calendario al iniciar
+        const today = new Date();
+        fillCalendar(today.getFullYear(), today.getMonth(), registros);
+
+    </script>
+}
+
+<script src="~/js/calendarioPermisos.js"></script>

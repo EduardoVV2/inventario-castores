@@ -1,0 +1,255 @@
+@page
+@model Rush_Rh.Pages.CursosDiplomados
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "CursosDiplomados";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/cursosDiplomados.css">
+}
+@{
+
+
+
+@*
+    <div class="contenido">
+        <div class="titulo" id="sectionUp">
+            <h1>Sistema RRHH / Diplomados y cursos realizados:</h1>
+        </div>
+        <div class="formulario_cursos">
+            <form action="#" method="post">
+                <div class="columna">
+                    <div class="w-50">
+                        <label for="NombreDelCertificado">Nombre del Certificado / Curso:</label>
+                        <input type="text" name="NombreDelCertificado" id="" required>
+                    </div>
+                    <div class="w-50 d-flex flex-row">
+                        <div class="w-50">
+                            <label for="FechaExpedicion">Fecha de Expedición:</label>
+                            <input type="date" name="" id="" required>
+                        </div>
+                        <div class="w-50">
+                            <label for="FechaFinalizacion">Fecha de Finalización:</label>
+                            <input type="date" name="" id="" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="columna">
+                    <div class="w-50">
+                        <label for="">Nombre u/o lugar de emisión:</label>
+                        <input type="text" name="" id="" required>
+                    </div>
+                    <div class="w-50">
+                        <label for="">ID de la credencial:</label>
+                        <input type="text" name="" id="" required>
+                    </div>
+                </div>
+                <div class="columna">
+                    <div class="w-100">
+                        <label for="">URL de la credencial:</label>
+                        <input type="text" name="" id="">
+                    </div>
+                    <button type="submit" class="hidden"></button>
+                </div>
+                <div class="columna inputContainer">
+                    <label for="file-upload" class="custom-file-upload w-100 h-25">
+                        <div id="drop-zoneCursos">
+                            Arrastra o selecciona un archivo
+                        </div>
+                        <input id="file-upload" type="file" name="">
+                    </label>
+                </div>
+                <div class="barra-horizontal"></div>
+                <div class="columna recordatorio-columna flex-row">
+                    <div>
+                        <p class="recordatorio">
+                            Recuerda:
+                        </p>
+                        <p class="recordatorio">
+                            En caso de que no cuentes con una URL del certificado, bastará con una foto al documento que te expedieron  en la institución donde cursaste el programa.
+                        </p>
+                    </div>
+                    <div class="flechas_scroll">
+                        <button type="button" onclick="scrollToSectionDown()"><span class="material-symbols-outlined">keyboard_double_arrow_down</span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="seccion2">
+            <div class="titulo" id="sectionDown">
+                <h1>Sistema RRHH / Diplomados y cursos realizados:</h1>
+                <div class="flechas_scroll">
+                    <button onclick="scrollToSectionUp()"><span class="material-symbols-outlined">keyboard_double_arrow_up</span></button>
+                </div>
+            </div>
+            <div class="cursos_registrados">
+                <div class="cursos_lista">
+                    <div class="curso">
+                        <div class="atributos_curso">
+                            <p class="recordatorio">Nombre del Curso</p>
+                            <p class="recordatorio">Nombre del Lugar de Emisión</p>
+                            <p class="recordatorio">Fecha de Expedición</p>
+                        </div>
+                        <div class="imagen_curso">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                        </div>
+                    </div>
+                    <div class="curso">
+                        <div class="atributos_curso">
+                            <p class="recordatorio">Nombre del Curso</p>
+                            <p class="recordatorio">Nombre del Lugar de Emisión</p>
+                            <p class="recordatorio">Fecha de Expedición</p>
+                        </div>
+                        <div class="imagen_curso">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                        </div>
+                    </div>
+                    <div class="curso">
+                        <div class="atributos_curso">
+                            <p class="recordatorio">Nombre del Curso</p>
+                            <p class="recordatorio">Nombre del Lugar de Emisión</p>
+                            <p class="recordatorio">Fecha de Expedición</p>
+                        </div>
+                        <div class="imagen_curso">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                        </div>
+                    </div>
+                    <div class="curso">
+                        <div class="atributos_curso">
+                            <p class="recordatorio">Nombre del Curso</p>
+                            <p class="recordatorio">Nombre del Lugar de Emisión</p>
+                            <p class="recordatorio">Fecha de Expedición</p>
+                        </div>
+                        <div class="imagen_curso">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                        </div>
+                    </div>
+                    <div class="curso">
+                        <div class="atributos_curso">
+                            <p class="recordatorio">Nombre del Curso</p>
+                            <p class="recordatorio">Nombre del Lugar de Emisión</p>
+                            <p class="recordatorio">Fecha de Expedición</p>
+                        </div>
+                        <div class="imagen_curso">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="barra-vertical"></div>
+                <div class="recordatorio-vertical">
+                    <p class="recordatorio">
+                        Recuerda:
+                    </p>
+                    <p class="recordatorio">
+                        En caso de que no cuentes con una URL del certificado, bastará con una foto al documento que te expedieron  en la institución donde cursaste el programa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    *@
+
+    <div class="contenido">
+        <div class="titulo" id="sectionUp">
+            <h1>Sistema RRHH / Cursos realizados:</h1>
+        </div>
+        <br>
+        <h4>Actividades asignadas pendientes</h4>
+        <div class="contenido-cursos">
+            <div class="tablaCursos">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre de la Actividad</th>
+                            <th>Fecha y hora de Inicio</th>
+                            <th>Fecha y hora de Fin</th>
+                            <th>DC3</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var actividad in Model.cursosDiplomados)
+                        {
+                            <tr>
+                                <td>
+                                    @actividad.NombreActividad
+                                </td>
+                                <td>
+                                    @actividad.FechaHoraInicio.ToString("dd/MM/yyyy HH:mm")
+                                </td>
+                                <td>
+                                    @actividad.FechaHoraFin.ToString("dd/MM/yyyy HH:mm")
+                                </td>
+                                <td>
+                                    @if (actividad.DC3 == true)
+                                    {
+                                        <p>
+                                            Pida su DC3 en el área de Recursos Humanos
+                                        </p>
+                                        //Pida su DC3 en el área de Recursos Humanos
+                                    }
+                                    else{
+                                        <p>
+                                            No se expide un DC3
+                                        </p>
+                                        //"No se expide un DC3"
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="barra-vertical"></div>
+            <div class="recordatorio-columna">
+                <div class="filtro-actividades">
+                    <form method="post" asp-page-handler="BuscarActividades">
+                        <p class="recordatorio pt-4">Buscar actividades por fechas: </p>
+                        <div class="filtro">
+                            <div>
+                                <label for="fechaInicio">Desde:</label>
+                                <input type="date" id="fechaInicio" name="fechaInicio" required>
+                            </div>
+                            <div>
+                                <label for="fechaTermino">Hasta:</label>
+                                <input type="date" id="fechaTermino" name="fechaFin" required>
+                            </div>
+                            <div>
+                                <label for="DC3">Genera DC3</label>
+                                <select name="DC3" id="GeneraDC3">
+                                    <option value="2" selected>Todos</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Si</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="button boton_buscar_actividades" type="submit"><span class="material-symbols-outlined">search</span>Buscar actividades</button>
+                    </form>
+                </div>
+                <p class="recordatorio">
+                    Recuerda: <br> <br>
+                    Son todas las actividades asignadas pendientes que tienes por realizar. <br>
+                </p>
+            </div>
+        </div>
+    </div>
+
+}
+@section Scripts {
+    <script src="~/js/cursosDiplomados.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const message = '@Html.Raw(TempData["Message"])';
+            const messageType = '@TempData["MessageType"]';
+
+            if (message) {
+                Swal.fire({
+                    title: messageType === "success" ? "¡Éxito!" : "¡Aviso!",
+                    text: message,
+                    icon: messageType,
+                    confirmButtonText: "Aceptar"
+                });
+            }            
+        });
+    </script>
+}

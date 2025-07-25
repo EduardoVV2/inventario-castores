@@ -1,5 +1,11 @@
 CREATE DATABASE IF NOT EXISTS inventario_castores;
 
+-- Crear un usuario "usuario_castores" con contraseña "admincastores" y darle todos los privilegios
+CREATE USER 'usuario_castores'@'localhost' IDENTIFIED BY 'admincastores';
+
+GRANT ALL PRIVILEGES ON inventario_castores.* TO 'usuario_castores'@'localhost';
+FLUSH PRIVILEGES;
+
 USE inventario_castores;
 
 CREATE TABLE rolesUsuarios (
@@ -36,4 +42,8 @@ CREATE TABLE movimientos (
     FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
 );
 
-INSERT INTO rolesUsuarios (nombre) VALUES "Administrador", "Almacenista";
+-- Agregar los roles
+INSERT INTO rolesUsuarios (nombre) VALUES ("Administrador"), ("Almacenista");
+
+-- Agregar dos usuarios para pruebas
+INSERT INTO usuarios (nombre, correo, contrasena, idRol) VALUES ("Juan Manuel Perez", "juanperez@castores.com", "grupo%Castores1", 1), ("Mariana Rodriguez", "marianita@castores.com", "grupo%Castores1", 2);

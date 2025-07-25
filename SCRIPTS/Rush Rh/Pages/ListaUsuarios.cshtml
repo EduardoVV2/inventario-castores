@@ -1,0 +1,283 @@
+@page "/listaUsuarios"
+@{
+    ViewData["Title"] = "ListaUsuarios";
+    Layout = "_LayoutUsuarioRH";
+}
+@model Rush_Rh.Pages.ListaUsuarios
+@section Styles {
+    <link rel="stylesheet" href="~/css/listaUsuarios.css">
+}
+@{
+    <div class="contenido">
+        <div class="listaUsuarios">
+ 
+        <div class="containerTituloYBusqueda">
+            <h1>Sistema RRHH / Usuarios: </h1>
+            <div class="search-container">
+                <span class="search-icon"><i class="fa-solid fa-magnifying-glass fa-flip-horizontal fa-xl" style="color: #ffffff;"></i></span> <!-- Icono de lupa -->
+                <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Ingresa usuario de búsqueda">
+            </div>
+        </div>
+
+        <div class="contenedorBotonAsistencias">
+            <!-- Button trigger modal -->
+            <button type="button" class="botones botonVerde" data-bs-toggle="modal" data-bs-target="#modalRegistroAsistencias">
+                Registro de asistencias 
+            </button>
+        </div>
+        
+        <div class="button-container">    
+                <form method="post" asp-page-handler="GetUsuarios">
+                    <input type="hidden" name="estatus" value="null" asp-route-id ="2"/>
+                    <button  type="submit" class="botones botonTodos" value="Todos">Todos </button>
+                </form>  
+                    
+                <form method="post" asp-page-handler="GetUsuarios">
+                    <input type="hidden" name="estatus" value="1" asp-route-id ="1"/>
+                    <button  type="submit" class="botones "value="Activos" >Solo activos </button>
+                    
+                </form>
+
+                <form method="post" asp-page-handler="GetUsuarios">
+                    <input type="hidden" name="estatus" value="2" asp-route-id ="2"/>
+                    <button  type="submit" class="botones" value="Inctivos">Solo de baja </button>
+                </form>  
+
+                <form method="post" asp-page-handler="GetUsuarios">
+                    <input type="hidden" name="estatus" value="4" asp-route-id ="2"/>
+                    <button  type="submit" class="botones" value="Inctivos">Baja temporal</button>
+                </form>  
+
+                <form method="post" asp-page-handler="GetUsuarios">
+                    <input type="hidden" name="estatus" value="3" asp-route-id ="2"/>
+                    <button  type="submit" class="botones" value="Inctivos">Incapacidad </button>
+                </form> 
+
+
+
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalRegistroAsistencias"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalAsistenciasLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalAsistenciasLabel">Registro de Asistencias </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="documento" class="form-label label-inputDocumentoAsistenciaChecador">Por favor, selecciona un archivo CSV para leer la información del checador. <button class="btn buttonGeneral botonVerdePequeño" data-bs-toggle="modal" data-bs-target="#modalHistorialAsistencias">Historial</button></label>
+                            <input type="file" class="form-control" name="documento" id="documentoAsistenciasChecador" accept=".csv,text/csv">
+                        </div>
+                        <div class="contenedorSpinnerAsistencias" id="contenedorSpinnerAsistencias"> 
+                            <div class="spinner-grow text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-secondary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-success" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-danger" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-warning" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-info" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-light" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-dark" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div class="contenedorTablaAsistencias"></div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn buttonGeneral botonRojo " id="btnlimpiarDatos" disabled>Limpiar Datos</button>
+                        <form  method="post" asp-page-handler="ConfirmarAsistencias" id="formGuardarAsistencias" class="w-100">
+                            <button type="submit" class="btn buttonGeneral " id="btnconfirmarInformacion" disabled >Confirmar información</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MOdañ Historial asistencias -->
+        <div class="modal fade" id="modalHistorialAsistencias" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalHistorialAsistenciasLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalHistorialAsistenciasLabel">Historial de Pases de Lista</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table tablaAsistencias">
+                            <thead>
+                                <tr class="align-middle">
+                                    <th>Fecha de Ejecución</th>
+                                    <th>Registros</th>
+                                    <th>Período Cubierto</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.historial)
+                                {
+                                    <tr class="align-middle"> 
+                                        
+                                        <td>@item.FechaEjecucion.ToString("dd/MM/yyyy HH:mm")</td>
+                                        <td>@item.TotalRegistros</td>
+                                        <td>@item.FechaInicio.ToString("dd/MM/yyyy") - @item.FechaFin.ToString("dd/MM/yyyy")</td>
+                                        <td class="contenedorAcciones">
+                                            <button class="btn buttonGeneral botonVerdePequeño" data-bs-toggle="modal" data-bs-target="#modalPaseLista" onclick="obtenerDatosPaseLista(@item.IdPaseLista)">Detalles</button>
+                                            <form asp-page-handler="EliminarPaseLista" method="post" id="formEliminarPaseLista">
+                                                <input type="hidden" name="idPaseLista" value="@item.IdPaseLista" />
+                                                <button type="button" class="btn botonEliminarPaseLista" title="Eliminar Pase Lista" id="botonEliminarPaseLista" onclick="confirmacionEliminarPaseLista(@item.IdPaseLista)"><span class="material-symbols-outlined remove-span">delete</span></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- MOdal pase lista -->
+        <div class="modal fade" id="modalPaseLista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalPaseListaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalDetallesAsistenciasLabel">Pase Lista</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="contenedorTablaPaseLista"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MOdañ detalles asistencias -->
+        <div class="modal fade" id="modalDetallesAsistencias" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDetallesAsistenciasLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalDetallesAsistenciasLabel">Detalles de asistencias </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="contenedorTablaDetalles"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+            
+        <div>
+            <table id="usuariosTable" border="1">
+            <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>CURP</th>
+                        <th>Estatus</th>
+                        <th>Correo Electrónico</th>
+                        <th>Nick</th>
+                        <th>Información</th>             
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var usuario in Model.usuariosGenerales)
+                        {
+                            <tr>
+                                <td>@usuario.Nombre</td>                               
+                                <td>@usuario.CURP</td>
+                                <td>@usuario.Estatus</td>
+                                <td>@usuario.CorreoElectronico</td> 
+                                <td>@usuario.Nick</td>
+                                <td>
+                                    <a href="/PerfilUsuario?id=@usuario.Id">
+                                        <button class="botonid">Ver datos</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        }                
+                </tbody> 
+            </table>
+        </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/js/listaUsuarios.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const message = '@Html.Raw(TempData["Message"])';
+            const messageType = '@TempData["MessageType"]';
+            const messageTitle = '@Html.Raw(TempData["MessageTitle"])';
+
+            if (message) {
+                Swal.fire({
+                    title: messageTitle,
+                    text: message,
+                    icon: messageType,
+                    confirmButtonText: "Aceptar"
+                });
+            }
+        });
+    </script>
+}
+
+<script>
+    function searchTable() {
+        let input = document.getElementById('searchInput'); 
+        let filter = removeAccents(input.value.toLowerCase()); 
+        let table = document.getElementById('usuariosTable'); 
+        let rows = table.getElementsByTagName('tr'); 
+
+        
+        for (let i = 1; i < rows.length; i++) {
+            let cells = rows[i].getElementsByTagName('td'); 
+            let nameCell = cells[0]; 
+            let match = false;
+
+            if (nameCell) {
+                
+                let cellContent = removeAccents(nameCell.textContent.toLowerCase());
+                if (cellContent.indexOf(filter) > -1) {
+                    match = true;
+                }
+            }
+
+            
+            if (match) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+
+    // Función para eliminar acentos
+    function removeAccents(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+</script>

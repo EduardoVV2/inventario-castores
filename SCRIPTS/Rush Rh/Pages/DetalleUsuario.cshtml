@@ -1,0 +1,310 @@
+@page
+@model Rush_Rh.Pages.DetalleUsuario
+@{
+    ViewData["Title"] = "Información del usuario";
+}
+
+<h1>Información completa del usuario</h1>
+<br>
+
+@if (Model.Usuario == null)
+{
+    <p>No se encontraron detalles para el usuario.</p>
+}
+else
+{
+    <h2>Usuario</h2>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <td>@Model.Usuario.Nombre</td>
+        </tr>
+        <tr>
+            <th>Apellido Materno</th>
+            <td>@Model.Usuario.ApellidoMaterno</td>
+        </tr>
+        <tr>
+            <th>Apellido Paterno</th>
+            <td>@Model.Usuario.ApellidoPaterno</td>
+        </tr>
+        <tr>
+            <th>Fecha de nacimiento</th>
+            <td>@Model.Usuario.FechaNacimiento?.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <th>RFC</th>
+            <td>@Model.Usuario.RFC</td>
+        </tr>
+        <tr>
+            <th>CURP</th>
+            <td>@Model.Usuario.CURP</td>
+        </tr>
+        <tr>
+            <th>Nick</th>
+            <td>@Model.Usuario.Nick</td>
+        </tr>
+        <tr>
+            <th>Género</th>
+            <td>@Model.Usuario.NombreGenero</td>
+        </tr>
+        <tr>
+            <th>Sexo</th>
+            <td>@Model.Usuario.NombreSexo</td>
+        </tr>
+        <tr>
+            <th>Estado civil</th>
+            <td>@Model.Usuario.NombreEstado</td>
+        </tr>
+        <tr>
+            <th>Estatus del usuario</th>
+            <td>@Model.Usuario.NombreEstatus</td>
+        </tr>
+    </table>
+
+    <h2>Datos medicos</h2>
+    <table>
+        <tr>
+            <th>Alergia</th>
+            <td>@(Model.Usuario.Alergia ? "Sí" : "No")</td>
+        </tr>
+        <tr>
+            <th>Descripcioón de la alergia</th>
+            <td>@Model.Usuario.DetalleAlergia?.ToString()</td>
+        </tr>
+        <tr>
+            <th>¿Consume medicamentos?</th>
+            <td>@(Model.Usuario.ConsumeMedicamentos ? "Sí" : "No")</td>
+        </tr>
+        <tr>
+            <th>Medicamentos que consume (Si aplica)</th>
+            <td>@Model.Usuario.DetalleMedicamentos?.ToString()</td>
+        </tr>
+        <tr>
+            <th>¿Tiene enfermedad cronica?</th>
+            <td>@(Model.Usuario.EnfermedadCronica ? "Sí" : "No")</td>
+        </tr>
+        <tr>
+            <th>Descripción de la enfermedad</th>
+            <td>@Model.Usuario.DetalleEnfermedad?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Frecuencia que visita al medico (año)</th>
+            <td>@Model.Usuario.FrecuenciaMedica?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Tipo sanguíneo</th>
+            <td>@Model.Usuario.NombreTipo?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Nombre de algun contacto de emergencia</th>
+            <td>@Model.Usuario.NombreContactoEmergencia?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Telefono del contacto</th>
+            <td>@Model.Usuario.CelularContactoEmergencia?.ToString()</td>
+        </tr>
+    </table>
+
+    <h2>Datos socioeconomicos</h2>
+    <table>
+        <tr>
+            <th>Hijos</th>
+            <td>@Model.Usuario.Hijos</td>
+        </tr>
+        <tr>
+            <th>¿Tiene vivienda propia?</th>
+            <td>@(Model.Usuario.ViviendaPropia ? "Sí" : "No")</td>
+        </tr>
+        <tr>
+            <th>¿Tiene vehículo propio?</th>
+            <td>@(Model.Usuario.VehiculoPropio ? "Sí" : "No")</td>
+        </tr>
+        <tr>
+            <th>¿Renta casa?</th>
+            <td>@(Model.Usuario.RentaCasa ? "Sí" : "No")</td>
+        </tr>
+        <tr>
+            <th>¿Tiene deudas?</th>
+            <td>@(Model.Usuario.Deudas ? "Sí" : "No")</td>
+        </tr>
+        <tr>
+            <th>¿Tiene mascotas?</th>
+            <td>@(Model.Usuario.Mascotas ? "Sí" : "No")</td>
+        </tr>
+         <tr>
+            <th>Ingresos Mensuales</th>
+            <td>@Model.Usuario.IngresosMensuales?.ToString("")</td>
+        </tr>
+        <tr>
+            <th>Gasto Mensual</th>
+            <td>@Model.Usuario.GastoMensual?.ToString("")</td>
+        </tr>
+        <tr>
+            <th>Frecuencia de actividades recreativas (semana)</th>
+            <td>@Model.Usuario.FrecuenciaActividadesRecreativas?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Personas que viven en su casa</th>
+            <td>@Model.Usuario.PersonasVivenCasa?.ToString("")</td>
+        </tr>
+        <tr>
+            <th>Personas que dependen del empĺeado</th>
+            <td>@Model.Usuario.PersonasDependientes?.ToString("")</td>
+        
+    </table>
+    <h2>Datos personales</h2>
+    <table>
+         <h5>Domicilio:</h5>
+    @if (Model.Domicilio != null)
+    {
+            <tr>
+                <th>País</th>
+                <td>@Model.Domicilio.Pais</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>@Model.Domicilio.Estado</td>
+            </tr>
+            <tr>
+                <th>Municipio</th>
+                <td>@Model.Domicilio.Municipio</td>
+            </tr>
+            <tr>
+                <th>Colonia</th>
+                <td>@Model.Domicilio.Colonia</td>
+            </tr>
+            <tr>
+                <th>Calle</th>
+                <td>@Model.Domicilio.Calle</td>
+            </tr>
+            <tr>
+                <th>Número</th>
+                <td>@Model.Domicilio.Numero</td>
+            </tr>
+    }
+    else
+    {
+        <p>No se especificó el domicilio del usuario.</p>
+    }
+        <tr>
+            <th>NSS</th>
+            <td>@Model.Usuario.NSS?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Celular</th>
+            <td>@Model.Usuario.Celular?.ToString()</td>
+        </tr>
+        <tr>
+            <th>CorreoElectronico</th>
+            <td>@Model.Usuario.CorreoElectronico?.ToString()</td>
+        </tr>
+    </table>
+    <h2>Datos de estudios</h2>
+    <table>
+        <tr>
+            <th>Nombre del titulo que tiene</th>
+            <td>@Model.Usuario.NombreTitulo?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Cedula</th>
+            <td>@Model.Usuario.Cedula?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Proceso</th>
+            <td>@Model.Usuario.NombreEstatusEstudio?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Nivel académico</th>
+            <td>@Model.Usuario.NombreNivelAcademico?.ToString()</td>
+        </tr>
+        <tr>
+            <th>Documentos:</th>
+            <td>
+                @* @foreach (var documento in Model.Usuario.Documentos)
+            {
+                <h2></h2>
+                <p>Dirección del Documento: @documento.DireccionDocumento</p>
+                <p>Tipo de Documento: @documento.NombreTipoDocumento</p>
+                <p>Descripción: @documento.DescripcionClaseDocumento</p>
+            } *@
+            </td>
+        </tr>
+
+    </table>
+
+    <h2>Más estudios previos</h2>
+    <table>
+         <tr>
+            <th>Experiencia</th>
+            <td>@Model.Usuario.ExperienciaDescripcion</td>
+        </tr>
+        <tr>
+            <th>Fecha de inicio</th>
+            <td>@Model.Usuario.ExperienciaFechaInicio</td>
+        </tr>
+         <tr>
+            <th>Fecha termino </th>
+            <td>@Model.Usuario.ExperienciaFechaTermino</td>
+        </tr>
+        <tr>
+            <th>ExperienciaNombreEmpleador</th>
+            <td>@Model.Usuario.ExperienciaNombreEmpleador</td>
+        </tr>
+        <tr>
+            <th>Cargo ocupado </th>
+            <td>@Model.Usuario.ExperienciaCargoOcupado</td>
+        </tr>
+        <tr>
+            <th>Tipo de experiencia</th>
+            <td>@Model.Usuario.NombreTipoExperiencia</td>
+        </tr>
+        @* <tr>
+            <th>Idiomas </th>
+            <td>@Model.Usuario.NombreIdioma</td>
+        </tr>
+        <tr>
+            <th>Nivel hablado</th>
+            <td>@Model.Usuario.NivelHablado</td>
+        </tr>
+        <tr>
+            <th>Nivel escrito</th>
+            <td>@Model.Usuario.NivelEscrito</td>
+        </tr> *@
+        
+    </table>
+    <h2>Datos de trabajo</h2>
+    <table>
+        <tr>
+            <th>Fecha de ingreso</th>
+            <td>@Model.Usuario.FechaIngreso</td>
+        </tr>
+        <tr>
+            <th>Fecha de inicio del contrato</th>
+            <td>@Model.Usuario.HorarioSalidaTurno</td>
+        </tr>
+        <tr>
+            <th>Fecha de termino del contrato</th>
+            <td>@Model.Usuario.FechaTerminoContrato</td>
+        </tr>
+        <tr>
+            <th>Horario de entrada</th>
+            <td>@Model.Usuario.HorarioEntradaTurno</td>
+        </tr>
+        <tr>
+            <th>Horario de salida</th>
+            <td>@Model.Usuario.HorarioSalidaTurno</td>
+        </tr>
+        <tr>
+            <th>Tipo del contrato</th>
+            <td>@Model.Usuario.NombreTipoContrato</td>
+        </tr>
+        <tr>
+            <th>Departamento</th>
+            <td>@Model.Usuario.NombreDepartamento</td>
+        </tr>
+        <tr>
+            <th>Descripcion</th>
+            <td>@Model.Usuario.DescripcionDepartamento</td>
+        </tr>
+    </table>
+}

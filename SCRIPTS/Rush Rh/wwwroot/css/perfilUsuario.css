@@ -1,0 +1,455 @@
+.hidden{
+    display: none;
+}
+
+.modal-dialog {
+    margin: 1.75rem auto;
+}
+
+.modalInfo {
+    max-width: 60%;
+    width: auto;
+    min-width: 300px;
+}
+
+.margenTitulo{ 
+    margin: 1.7% 0 !important;  
+}
+
+.button {
+    padding: calc(.3vw + .2vh) calc(.8vw + .8vh) calc(.3vw + .2vh);
+    border-radius: calc(.7vw + .7vh);
+    font-size: calc(.6vw + .7vh);
+    box-sizing: border-box;
+    align-items: flex-start;
+    background-color: #135f88;
+    color: #ffffff;
+    transition: background-color, transform .3s;
+}
+
+.button:hover {
+    background-color: rgb(14, 72, 105);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.botones_superiores{
+    display: flex;
+    flex-direction: column;
+}
+
+.botones_superiores button, .botones_superiores a{
+    display: flex;
+    text-decoration: none;
+    padding: calc(.3vw + .2vh) calc(.8vw + .8vh) calc(.3vw + .2vh);
+    border-radius: calc(.7vw + .7vh);
+    font-size: calc(.6vw + .7vh);
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: start;
+    background-color: #135f88;
+    color: #ffffff;
+    transition: background-color, transform .3s;
+    margin: 0 0 2px 0;
+}
+
+.botones_superiores button:hover {
+    background-color: rgb(14, 72, 105);
+    transform: scale(1.05);
+}
+
+.botones_superiores button span{
+    color: white;
+    font-size: calc(.6vw + .7vh);
+    margin-right: 10px;
+}
+
+.linkIncidencias{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkIncidencias a{
+    min-height: 50px;
+    
+}
+
+.info_usuario{
+    margin-bottom: 0;
+    margin-top: 0; 
+}
+
+.form-group {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #001f51;
+    box-sizing: border-box;
+}
+
+.recordatorio {
+    color: #002451;
+    text-align: left;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/*
+.divider {
+border-top: 2px solid #009de5;
+margin-top: 10px;
+width: 100%;
+}*/
+
+.titulo1 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(1.5vw + 1.5vh); /* Título más flexible */
+    padding: 10px;
+    margin-bottom: 2%;
+}
+.titulo2 {
+    margin-bottom: calc(2vw + 2vh);
+    margin-top: calc(6vw + 4vh);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(1.5vw + 1.5vh); /* Título más flexible */
+    padding: 10px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+h1 {
+    text-align: left;
+    color: #002d56;
+    font-size: calc(1.5vw + 1.5vh);
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.imagen_usuario{
+    margin: 0 25% 0 25%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen_usuario img{
+    width: 50%;
+}
+
+.input {
+    width: 90%;
+    padding: 4px;
+    border: 1px solid #d8edff;
+    border-radius: 4px;
+    background-color: #d8edff;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.final-section {
+    display: grid;
+    grid-template-columns: 58% 2% 40%;
+    gap: 10px;
+    align-items: center;
+    margin-top: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/*
+.inputs-column .form-group {
+margin-bottom: 20px;
+}*/
+
+.inputs-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-right: 20%;
+}
+
+.recordatorio-columna {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+}
+
+.recordatorio-columna button{
+    margin-top: 20%;
+    margin-right: 5%;
+    background-color: #ffffff00;
+    border: #ffffff00;
+}
+
+.titulo2 button{
+    background-color: #ffffff00;
+    border: #ffffff00;
+}
+
+.titulo2 button span{
+    font-size: calc(2.5vw + 4vh);
+}
+
+.recordatorio-columna button span{
+    font-size: calc(2.5vw + 4vh);
+}
+
+.barra-vertical {
+    width: 3px;
+    background-color: #009de5;
+    height: 100%;
+    margin: 0;
+}
+
+.barra-horizontal {
+    width: 100%;
+    background-color: #009de5;
+    height: 3px;
+    margin: 3vh 0 5vh 0; 
+}
+
+.modal_titulo{
+    width: 100%;
+    display: flex;
+    flex-direction: row; 
+}
+
+.boton_agregar{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: end;
+    align-items: end;
+}
+
+.datos_contacto{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.datos_contacto input,
+.datos_contacto select{
+    background-color: white;
+}
+
+.datos_contacto input:focus,
+.datos_contacto select:focus{
+    background-color: #b9fdff3d !important; 
+}
+
+.datos_contenedor-seccion{
+    margin: 0 2% 0 2%;
+}
+
+.datos_contenedor{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#modalCambioPassword{
+    width: 70vw;
+    margin-left: 15vw;
+}
+
+.num-correo-contacto{
+    width: 30%;
+}
+
+.datos_contenedor h4{
+    font-size: calc(.6vw + .8vh);
+    font-weight: bolder;
+}
+
+.datos_contenedor h5{
+    font-size: calc(.5vw + .7vh);
+    font-weight: bold;
+    color: #002d56;
+}
+
+.datos_contacto label{
+    font-weight: border;
+    color: #002d56;
+}
+
+.fechas-cardex{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 2%;
+}
+
+.botones-cardex{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.cardex_puesto{
+    display: flex;
+    flex-direction: column;
+}
+
+.cardex_puesto div {
+    width: 100%;
+}
+
+.botonenviar {
+    background-color: #002d56;
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    width: 300px;
+    height: 50px;
+    font-size: 1em;
+    transition: background-color 0.3s, color 0.3s, width 0.3s, height 0.3s, font-size 0.3s;
+    /* Animación suave */
+    /*border: 2px solid #009de5;*/
+    box-sizing: border-box;
+}
+
+.botonenviar:hover {
+    background-color: #d8edff;
+    color: #002d56;
+    border: 2px solid #002d56;
+    box-sizing: border-box;
+}
+
+
+input,
+select {
+    width: 95%;
+    /* Asegura que el select ocupe el mismo ancho que los inputs */
+    padding: 4px;
+    border: 1px solid #d8edff;
+    border-radius: 4px;
+    background-color: #d8edff;
+    color: #002d56;
+    height: 48px;
+    box-sizing: border-box;
+}
+
+
+input:focus,
+select:focus {
+    border-color: #009de5;
+    outline: none;
+    box-shadow: 0 0 1px #009de5;
+
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 1%;
+    box-sizing: border-box;
+    background-color: #d8edff;
+}
+
+.boton_restablecer{
+    background-color: transparent !important;
+    border: none;
+}
+
+
+/*------------------------------media queries---------------------------*/
+
+/* Tamaño de texto más pequeño en pantallas medianas */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5em;
+    }
+}
+
+/* Reduce el tamaño para pantallas pequeñas */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+    }
+}
+
+/*mediaquery para el boton*/
+
+@media (max-width: 1200px) {
+    .botonenviar {
+        width: 150px;
+        height: 40px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .botonenviar {
+        width: 85px;
+        height: 50px;
+        font-size: 1em;
+    }
+}
+
+/* Botón aún más pequeño en pantallas pequeñas */
+@media (max-width: 670px) {
+    .botonenviar {
+        width: 75px;
+        height: 50px;
+        font-size: 1em;
+    }
+}
+
+
+/*--------------------media query para el ultimo apartado de input--------------*/
+@media (max-width: 768px) {
+    .final-section {
+        grid-template-columns: 1fr;
+        /* Cambia a una sola columna */
+        grid-template-rows: auto;
+        /* Cada elemento ocupa una fila */
+        gap: 20px;
+        /* Espacio entre filas */
+    }
+
+    .inputs-column {
+        display: flex;
+        flex-direction: column;
+        /* Apila los inputs uno debajo del otro */
+        gap: 5px;
+        /* Espaciado entre los inputs */
+        width: 100%;
+        /* Los inputs ocupan todo el ancho */
+    }
+
+    .recordatorio-column p {
+        margin-bottom: 20px;
+        /* Espacio debajo del texto */
+    }
+
+    .botonenviar {
+        width: 100%;
+        /* Botón ocupa todo el ancho */
+    }
+}

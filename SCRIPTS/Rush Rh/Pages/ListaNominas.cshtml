@@ -1,0 +1,95 @@
+@page
+@model Rush_Rh.Pages.ListaNominas
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "ListaNominas";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/listaNominas.css" asp-append-version="true" />
+}
+@{
+    <div class="contenido">
+        <div class="titulo">
+            <h1>Historial de nominas asociadas:</h1>
+            <div class="boton_superior">
+                <form id="filtroAnios" method="post" asp-page-handler="BuscarNominas">
+                    <select name="Year" id="Year">
+                        @foreach(var anio in Model.anios)
+                        {
+                            <option value="@anio">@anio</option>
+                        }
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div class="titulo">
+            <h4>@Model.datosUsuario.Nombre @Model.datosUsuario.ApellidoPaterno @Model.datosUsuario.ApellidoMaterno</h4>
+            <h4>Tipo de usuario: @Model.datosUsuario.TipoUsuario</h4>
+        </div>
+            <h4>@Model.datosUsuario.EstatusUsuario</h4>
+        <div class="seccionTabla">
+            <table width="100%" align="center">
+                <thead>
+                    <tr>
+                        <th width="16%" align="center">Mes</th>
+                        <th width="16%" align="center">Año</th>
+                        <th width="14%" align="center">Estado</th>
+                        <th width="16%" align="center">Documento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var mes in Model.meses)
+                    {
+                        var encontrao = false;
+                        <tr>
+                            <td align="center">@mes.Nombre</td>
+                            @foreach(var nomina in Model.nominas)
+                            {
+                                if(mes.Id == nomina.IdMes){
+                                    encontrao = true;
+                                    <td align="center">@nomina.Año</td>
+                                    <td align="center">Registrada</td>
+                                    <td align="center"><a class="w-100" href="@nomina.URL" target = "_blank">Descargar</a></td>
+                                }
+                            }
+                            @if(encontrao == false){
+                                <td align="center">@Model.Year</td>
+                                <td align="center">Pendiente</td>
+                                <td align="center">-</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+@section Scripts{
+    <script src="~/js/listaNominas.js" asp-append-version="true"></script>
+    <script>
+        // Valor del año desde el modelo (inyectado como variable de JavaScript)
+        const year = @Html.Raw(Json.Serialize(Model.Year));
+
+        // Establecer el valor inicial del select
+        const filtroYear = document.getElementById('Year');
+        if (filtroYear) {
+            if (year && !isNaN(parseInt(year))) {
+                filtroYear.value = year; // Ajusta el valor según el modelo
+            } else {
+                console.error('El valor de "year" no es válido:', year);
+            }
+
+            // Manejar el cambio de valor
+            filtroYear.addEventListener('change', function () {
+                const formulario = document.getElementById('filtroAnios');
+                if (formulario) {
+                    formulario.submit();
+                } else {
+                    console.error('El formulario con id="filtroAnios" no existe.');
+                }
+            });
+        } else {
+            console.error('El elemento con id="Year" no existe en el DOM.');
+        }
+    </script>
+}

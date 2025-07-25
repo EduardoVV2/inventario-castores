@@ -1,0 +1,438 @@
+@page
+@model Rush_Rh.Pages.Organigrama
+@using System.Linq
+@{
+    Layout = "_LayoutUsuarioRH";
+    ViewData["Title"] = "Organigrama";
+}
+
+@section Styles{
+    <script src="~/css/Treant.css"></script>
+    <script src="~/css/organigrama.css"></script>
+}
+
+
+<div class="contenido" id="contenido"> 
+@*     
+    <div class="organigrama">
+        <div class="encabezado">
+            <h1> <span class="titulo">Organigrama</span></h1>
+        </div>
+        <!--Plantillas predefinidas -->
+        <div class="d-flex justify-content-between mb-3">
+            <div class="form-group"> 
+                <label for="template">Selecciona un template: </label>
+                <select name="template" id="template" onchange="changeTemplate(this.value)">
+                    <option value="diva">Diva</option>
+                    <option value="olivia">Olivia</option>
+                    <option value="ula">Ula</option>
+                    <option value="mila">Mila</option>
+                    <option value="polina">Polina</option>
+                    <option value="mery">Mery</option>
+                    <option value="rony">Rony</option>
+                    <option value="belinda">Belinda</option>
+                    <option value="ana">Ana</option>
+                    <option value="isla">Isla</option>
+                    <option value="luba">Luba</option>
+                </select>
+            </div>
+
+
+
+        </div>
+
+
+        <div id="tree"></div>
+
+    </div> 
+
+    <div id="tree"></div>*@
+
+    <div class="organigrama" id="organigrama">
+        <div class="encabezado">
+            <h1> <span class="titulo">Organigrama</span></h1>
+        </div>
+
+        <div class="contenedorArbol">
+            <div class="controlesOrganigrama">
+                <div class="form-groups" id="contenedorSelect">
+                    <!--Cambiar la direccion -->
+                    <select name="direccionOrganigrama" id="direccionOrganigrama" onchange="changeDirection(this.value)">
+                        <option value="NORTH">Arriba</option>
+                        <option value="SOUTH">Abajo</option>
+                        <option value="EAST">Derecha</option>
+                        <option value="WEST">Izquierda</option>
+                    </select>
+                    @if(Model.admin){
+                    <button class="btn buttonGeneral" data-bs-target="#PuestosDepartamentosModal" data-bs-toggle="modal" title="Administrar Puestos"><span class="material-symbols-outlined">apartment</span>Puestos y departamentos</button>
+                    <button class="btn buttonGeneral" data-bs-target="#exportarModal" data-bs-toggle="modal" title="Exportar" data-bs-contenedor="tree" data-bs-elementos-ocultar='[".menu-btn", ".collapse-switch"]'><span class="material-symbols-outlined">save_alt</span>Exportar</button>
+                    }
+                </div>
+                <div class="accionesOrganigrama">
+                    <button class="btn" onclick="toggleFullscreen()" title="Pantalla completa"><span class="material-symbols-outlined">fullscreen_exit</span></button>
+                    <button class="btn" onclick="fitAndCenterOrganigrama()" title="Ajustar a pantalla"><span class="material-symbols-outlined">fit_screen</span></button>
+                </div>
+            </div>
+                    
+    
+            <!-- Contenedor fijo para SweetAlert2 -->
+            <div id="swal-fixed-container"></div>
+    
+            <div id="tree"></div>  
+
+            @if(Model.admin){
+            <div class="modal fade" id="exportarModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="exampleModalToggleLabel">Exportar</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="tipoExportar">Tipo</label>
+                            <select name="tipoExportar" id="tipoExportar" onchange="changeExportType(this.value)">
+                                <option value="png">PNG</option>
+                                <option value="pdf">PDF</option>
+                                <option value="pdfConHeaderFooter">PDF con encabezado y pie de página</option>
+                                <option value="excel">Datos Excel</option>
+                            </select>
+                        </div>
+                        <div id="contenedorHeaderFooter" style="display: none; width: 100%;"> 
+                            <div class="form-group">
+                                <label for="textHeader">Header</label>
+                                <input type="text" class="form-control" id="textHeader" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="textFooter">Footer</label>
+                                <input type="text" class="form-control" id="textFooter" required>
+                            </div>
+                        </div>
+                        <input type="hidden" class="form-control" id="contenedorExportar" required >
+                        <input type="hidden" class="form-control" id="elementoOcultarAntesExportar" required >
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="button buttonGeneral" id="btnExportarModal" onclick="exportar()">                         
+                            Exportar 
+                        </button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Puestos y Departamentos -->
+            <div class="modal fade modal-GestionPuestoDepartamentos-backdrop" id="PuestosDepartamentosModal" aria-hidden="true" data-bs-backdrop="true" aria-labelledby="PuestosDepartamentosModal" tabindex="-1">
+                <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title">Puestos y departamentos</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="contenedorAgregarPuestoDepartamento">
+                                <button class="btn buttonGeneral" onclick="agregarPuesto()" data-bs-toggle="modal" data-bs-target="#agregarEditarPuestos">
+                                    <span class="material-symbols-outlined">add</span>Agregar puesto
+                                </button>
+                                <button class="btn buttonGeneral" onclick="agregarDepartamento()" data-bs-toggle="modal" data-bs-target="#agregarEditarDepartamentos">
+                                    <span class="material-symbols-outlined">add_home_work</span>Agregar departamento
+                                </button>
+                            </div>
+                            <div class="accordion" id="accordionDepartamentos">
+                                <h4>Departamentos</h4>
+                                <div id="contenedorDepartamentos">
+                                    <div class="alert alert-info text-center">Cargando departamentos...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+
+            <!--Modal Agregar o Editar Puestos -->
+            <div class="modal fade" id="agregarEditarPuestos"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarEditarPuestos" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title " id="staticBackdropLabel">Puesto</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="formPuesto" enctype="multipart/form-data">
+                            <input type="hidden" name="idPuesto" id="idPuesto" />
+                            <div class="form-group">
+                                <label for="nombrePuesto">Nombre del puesto</label>
+                                <input type="text" class="form-control" id="nombrePuesto" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="departamentoPuesto">Departamento</label>
+                                <select name="departamentoPuesto" id="departamentoPuesto" class="form-control" required>
+                                    <option value="">Selecciona un departamento</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción del puesto (opcional): </label>
+                                <textarea name="descripcionPuesto" id="descripcionPuesto" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="documento" class="form-label">Descripcion del puesto (opcional): </label>
+                                <input type="file" class="form-control" name="documento" id="documentoDescripcionPuesto" >
+                                <!-- Con este input enviare el id en negativo (lo cambio con java) en caso de que sea editado-->
+                                <input type="hidden"  id="documentoDescripcionPuesto_Id" />
+                                <div class="d-flex justify-content-between align-items-center" id="contenedorDocumentoDescripcionPuesto">
+                                        <a href="" target="_blank" id="documentoActualDescripcionPuesto">Ver documento actual</a>
+                                        <input type="hidden" name="datosPersonales.IdDocumento.Eliminado" id="documentoDescripcionPuestoEliminado" value="false" />
+                                        <button type="button" class="btn botonEliminarDocumento" title="Eliminar Documento" id="botonEliminarDocumento" onclick="cambiarEstadoEliminado(event)"><span class="material-symbols-outlined remove-span">delete</span></button>              
+                                </div>
+                            </div>
+                            <button type="submit" class="button buttonGeneral " id="btnEnviarModalPuesto"> 
+                                Guardar 
+                            </button>
+
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Modal Agregar o Editar Departamentos -->
+            <div class="modal fade" id="agregarEditarDepartamentos"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarEditarDepartamentos" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title " id="staticBackdropLabel">Departamento</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="formDepartamento">
+                            <input type="hidden" name="departamento.idDepartamento" id="idDepartamento" value="0"/>
+                            <div class="form-group">
+                                <label for="nombreDepartamento">Nombre del departamento</label>
+                                <input type="text" class="form-control" id="nombreDepartamento" required>
+                            </div>
+                            <button type="submit" class="button buttonGeneral " id="btnEnviarModalDepartamento">
+                                Guardar 
+                            </button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            }
+
+
+
+
+            <!-- Offcanvas -->
+            <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="nodeModal" aria-labelledby="nodeModalLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="nodeModalLabel">Detalles del empleado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="contenedorImg">
+                        <div class="image-wrapperOffCanvas">
+                            <img id="offcanvasImgEmpleado" src="https://via.placeholder.com/50" alt="Foto" class="img-fluid" >
+                        </div>
+                        <button class="btn" id="btnEditarFotoPerfilEmpleado" style="display: none;"  onclick="document.getElementById('documentoFotoPerfilEmpleado').click();"> <span class="material-symbols-outlined">add_a_photo</span></button>
+                    </div>
+
+                    @if(Model.admin){     
+                    <div class="contenedorBotones">                  
+                        <button type="button" class="btn buttonGeneral botonEditar" id="btnEditarEmpleadoOffCanvas" onclick="modoEditarDetallesOffCanvas('formEmpleadoOffCanvas')">Editar</button>
+                        <button class="btn buttonGeneral ocultoAlEditar" id="btnImprimir" data-bs-target="#exportarModal" data-bs-toggle="modal" data-bs-contenedor="nodeModal" data-bs-elementos-ocultar='[".contenedorBotones"]'>Exportar</button>
+                        <button class="btn buttonGeneral botonEliminar ocultoAlEditar" id="btnEliminarEmpleadoOffCanvas">Eliminar</button>    
+                        <button class="btn buttonGeneral" id="btnSubmitEmpleadoOffCanvas" type="submit" title="Guardar cambios" style="display: none;"> Guardar</button>
+                    </div>
+                    }
+                    <div class="contenedorDatos">
+                        <form asp-page-handler="EditarEmpleado" id="formEmpleadoOffCanvas" method="post">
+                                <input type="hidden" name="idOrganigrama" id="offCanvasIdOrganigramaEmpleado" value="0"/>
+                                <input type="hidden" name="idPadre" id="offCanvasIdPadre" value="0"/>
+
+                                <div class="form-group">
+                                    <label for="offcanvasNombre">Nombre</label>
+                                    <select id="offcanvasNombre" class="form-control nombreNodo" required disabled>
+                                        <option value="">-- Nuevo Usuario --</option>
+                                        <option value="vacante">-- Vacante --</option>
+                                        @foreach (var usuario in Model.usuarios)
+                                        {
+                                            <option value="@usuario.Id">@usuario.Nombre</option>
+                                        }
+                                    </select>
+                                    <input type="text" class="form-control nombreNodo" id="offcanvasNombreNuevo" placeholder="Nombre Nuevo"disabled required style="display:none; margin-top: calc(.6vh + .6vw);">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="offcanvasDepartamento">Departamento</label> 
+                                    <select type="text" id="offcanvasDepartamento" class="form-control" required disabled onchange="actualizacionPuestosSegunDepartamento(this.value)">
+                                        <option value="">Selecciona un departamento</option>
+                                        @foreach (var departamento in Model.departamentos)
+                                        {
+                                            <option value="@departamento.Id">@departamento.Nombre</option>
+                                        }
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="offcanvasPuesto">Puesto</label>
+                                    <select id="offcanvasPuesto" class="form-control" required disabled onchange="setupNuevoPuestoListener()">
+                                        <option value="">Selecciona un puesto</option>
+                                    </select>
+                                    <input type="text" class="form-control" id="offcanvasPuestoNuevo" placeholder="Puesto Nuevo" required style="display: none; margin-top: calc(.6vh + .6vw);">
+                                </div>
+
+
+                                <div class="form-group ocultoAlEditar">
+                                    <label for="offcanvasDescripcion">Descripción del puesto </label>
+                                    <textarea name="offcanvasDescripcion" id="offcanvasDescripcionPuesto" class="form-control" rows="1" disabled></textarea>
+                                </div>
+
+
+                                <div class="form-group ">
+                                    <div class="labelConIcono" id="contenedorJefeDirecto">
+                                        <label for="offcanvasJefeDirecto">Jefe Directo</label>
+                                        <button type="button" class="btn "  style="display: none;" id="btnPopoverJefeDirecto"
+                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-custom-class="custom-tooltip"
+                                            data-bs-title="En modo 'Edición', puedes asignar departamentos como Jefe Directo. Esto los colocará como su hijo en el diseño, pero en modo 'Vista', se mostrará como Jefe Directo al empleado superior más cercano, no al departamento.">
+                                            <span class="material-symbols-outlined">info</span>
+                                        </button>
+                                    </div>
+                                    <select type="text" id="offcanvasJefeDirecto" class="form-control" required disabled onchange="seleccionDepartamentoSegunJefe()">
+                                    </select>
+                                </div>
+
+                                <div class="form-group ocultoAlEditar" id="infoAdicional">
+                                    <label for="offcanvasDescripcionPuestoPDF">Informacion adicional</label>
+                                    <a href="" id="offcanvasDescripcionPuestoPDF" target="_blank">Enlace: Descripcion del puesto</a>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="file" class="form-control" name="documento" id="documentoFotoPerfilEmpleado" onchange="actualizarVistaPrevia(event, 'offcanvasImgEmpleado')" style="display: none;"  accept="image/*" onchange="actualizarVistaPrevia(event)">
+                                    <input type="hidden"  id="documentoFotoPerfilEmpleado_Id" />
+                                    @* <!-- Con este input enviare el id en negativo (lo cambio con java) en caso de que sea editado-->
+                                    <input type="hidden" name="datosPersonales.IdDocumento.Id" id="documentoFotoPerfil_Id" value="@Model.Organigrama.IdDocumento?.Id" />  <!--EL ID NO ME ESTA RETORNANDO -->
+                                    <input type="file" class="form-control" name="organigrama.IdDocumento.Archivo" id="documentoDescripcionPuesto" data-default-url="@Model.Organigrama.IdDocumento?.URL" onchange="actualizarVistaPrevia(event)">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="@Model.Organigrama.IdDocumento?.URL" target="_blank" id="documento-actual">@(Model.Organigrama.IdDocumento?.URL != null ? "Ver fotografia actual" : string.Empty) </a>
+
+                                        @if (Model.Organigrama.IdDocumento?.URL != null)
+                                        { 
+                                            <input type="hidden" name="datosPersonales.IdDocumento.Eliminado" value="false" />
+                                            <button type="button" class="btn botonEliminarDocumento" title="Eliminar Documento" id="botonEliminarDocumento" onclick="cambiarEstadoEliminado(event)"><span class="material-symbols-outlined remove-span">delete</span></button>
+                                         }
+                                    </div> *@
+                                </div>
+
+                        </form>
+                    </div>
+
+
+                    
+                </div>
+            </div>
+
+            <!--Offcanvas Departamento -->
+            <div class="offcanvas offcanvasDepartamento offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="DepartamentoModal" aria-labelledby="DepartamentoModalLabel">
+                <div class="offcanvas-header offcanvas-headerDepartamento">
+                    <h5 class="offcanvas-title" id="departamentoModalLabel">Detalles del departamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="contenedorImg">
+                        <div class="image-wrapperOffCanvas">
+                            <img id="offcanvasImgDepartamento" src="https://via.placeholder.com/50" class="img-fluid">
+                        </div>
+                        <button class="btn" id="btnEditarFotoPerfilDepartamento" style="display: none;" onclick="document.getElementById('documentoFotoPerfilDepartamento').click();"> <span class="material-symbols-outlined">add_a_photo</span></button>
+                    </div>
+                    @if(Model.admin){     
+                    <div class="contenedorBotones">
+                        <button type="button" class="btn buttonGeneral botonEditar" id="btnEditarDepartamentoOffCanvas" onclick="modoEditarDetallesOffCanvas('formDepartamentoOffCanvas')">Editar</button>
+                        <button class="btn buttonGeneral botonEliminar ocultoAlEditar" id="btnEliminarDepartamentoOffCanvas">Eliminar</button>
+                        <button class="btn buttonGeneral" id="btnSubmitDepartamentoOffCanvas" type="submit" title="Guardar cambios" style="display: none;"> Guardar</button>
+
+                    </div>
+                    }
+                    <div class="contenedorDatos">
+                        <form asp-page-handler="EditarDepartamento" id="formDepartamentoOffCanvas" method="post">
+                                 <input type="hidden" name="idOrganigrama" id="offcanvasIdOrganigramaDepartamento" value="0"/>
+
+                                <div class="form-group">
+                                    <label for="offcanvasNombreDepartamento">Nombre</label>
+                                    <select name="" id="offcanvasNombreDepartamento"  class="form-control nombreNodo" required disabled>
+                                        <option value="">-- Nuevo Departamento --</option>
+                                    </select>              
+                                    <input type="text" class="form-control nombreNodo" id="offcanvasNombreDepartamentoNuevo" placeholder="Nombre Nuevo" required style="margin-top: calc(.6vh + .6vw); display: none;">                   
+                                </div>
+                                <div class="form-group">
+                                        <input type="file" class="form-control" name="documento" id="documentoFotoPerfilDepartamento" onchange="actualizarVistaPrevia(event, 'offcanvasImgDepartamento')" style="display: none;"  accept="image/*" onchange="actualizarVistaPrevia(event)">
+                                    <input type="hidden"  id="documentoFotoPerfilDepartamento_Id" />
+
+                                    @* <!-- Con este input enviare el id en negativo (lo cambio con java) en caso de que sea editado-->
+                                    <input type="hidden" name="datosPersonales.IdDocumento.Id" id="documentoFotoPerfil_Id" value="@Model.Organigrama.IdDocumento?.Id" />  <!--EL ID NO ME ESTA RETORNANDO -->
+                                    <input type="file" class="form-control" name="organigrama.IdDocumento.Archivo" id="documentoDescripcionPuesto" data-default-url="@Model.Organigrama.IdDocumento?.URL" onchange="actualizarVistaPrevia(event)">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="@Model.Organigrama.IdDocumento?.URL" target="_blank" id="documento-actual">@(Model.Organigrama.IdDocumento?.URL != null ? "Ver fotografia actual" : string.Empty) </a>
+
+                                        @if (Model.Organigrama.IdDocumento?.URL != null)
+                                        { 
+                                            <input type="hidden" name="datosPersonales.IdDocumento.Eliminado" value="false" />
+                                            <button type="button" class="btn botonEliminarDocumento" title="Eliminar Documento" id="botonEliminarDocumento" onclick="cambiarEstadoEliminado(event)"><span class="material-symbols-outlined remove-span">delete</span></button>
+                                         }
+                                    </div> *@
+                                </div>
+                        </form>
+                     </div>
+                </div> 
+            </div>
+
+        </div>
+
+
+
+</div>
+
+@section Scripts{
+    <script src=" /js/Treant.js"></script>
+    <script src="~/js/raphael.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/organigrama.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl, {
+                    container: '#contenedorJefeDirecto' // Asegura que el tooltip se quede dentro del contenedor en pantalla completa
+                });
+            });
+        });
+
+
+        function actualizarVistaPrevia(event, idImagenCambiar ) {
+            const input = event.target;
+            const imagen = document.getElementById(idImagenCambiar);
+
+            // Verifica si se seleccionó un archivo
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    imagen.src = e.target.result; // Asigna la imagen al src
+                };
+
+                reader.readAsDataURL(input.files[0]); // Convierte el archivo a URL base64
+            }
+        }
+
+        var esAdmin = @Json.Serialize(Model.admin); // Convierte el valor de C# en una variable JS
+
+    </script>
+}

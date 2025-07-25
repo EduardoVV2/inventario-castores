@@ -10,4 +10,7 @@ public interface IProductoService {
 
     Producto buscarPorId(Integer idProducto);
     
+    Producto guardar(Producto producto);
+    
+    void eliminarPorId(Integer id);
 }

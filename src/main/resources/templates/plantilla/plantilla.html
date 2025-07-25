@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <title>Inventario Grupo Castores</title>
+</head>
+<body>
+    <nav th:fragment="nav" class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand logoCastores" href="/"><img th:src="@{/images/logoCastores.jpeg}" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                    <a class="nav-link" href="/inventarioAlmacenista">Almacenista</a>
+                    <a class="nav-link" href="/inventarioAdmin">Administrador</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <footer th:fragment="footer" class="d-flex justify-content-between align-items-center p-4 pb-0 footer">
+        <div class="d-flex footer__seccionInfoGeneral">
+            <div>
+                <h4>SERVICIOS</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">Inteligencia de negocios</a></li>
+                    <li><a href="#">Infraestructura</a></li>
+                    <li><a href="#">Logística</a></li>
+                </ul>
+            </div>
+            <div class="footer__seccionInfoGeneral__acercaNosotros">
+                <h4 class="oculto">f</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">Acerca de nosotros (as)</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                </ul>
+            </div>
+        </div>
+
+    <footer class="d-flex justify-content-between align-items-center p-4 pb-0 footer">
+        <div class="d-flex footer__seccionInfoGeneral">
+            <div>
+                <h4>SERVICIOS</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">Inteligencia de negocios</a></li>
+                    <li><a href="#">Infraestructura</a></li>
+                    <li><a href="#">Logística</a></li>
+                </ul>
+            </div>
+            <div class="footer__seccionInfoGeneral__acercaNosotros">
+                <h4 class="oculto">f</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">Acerca de nosotros (as)</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer__seccion-contactanos">
+            <h4>CONTÁCTANOS</h4>
+            <ul class="list-unstyled pl-5 pr-5 footer__seccion-contactanos__lista-direccion">
+                <li>
+                    <a href="https://www.google.com/maps/search/grupo+castores+leon/@21.0889847,-101.5964127,12z/data=!5m1!1e3?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">Blvrd Jose María Morelos 2975</a>
+                </li>
+                <li>
+                    <a href="https://www.google.com/maps/search/grupo+castores+leon/@21.0889847,-101.5964127,12z/data=!5m1!1e3?entry=ttu&g_ep=EgoyMDI1MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">Alfaro, 37233 León de los Aldama, Gto.</a>
+                </li>
+                <li><a href="mailto:contacto@grupocastores.com">contacto@grupocastores.com</a></li>
+                <li>
+                    <p>+52 1 800 227 8070</p>
+                </li>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    </footer>
+</body>
+</html>

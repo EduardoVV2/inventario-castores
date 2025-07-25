@@ -1,0 +1,409 @@
+/*------------------------------------------------CLASES PAGINA PRINCIPAL*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Para evitar scroll horizontal */
+}
+
+.contenedor-pagina_principal {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/*-------------------------------Header*/
+.cabecera {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 6%;
+  z-index: 2;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+  padding: 1.5vw;
+  box-sizing: border-box;
+}
+
+.logo-rush-derecha {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.cabecera img {
+  width: calc(1.5vw + 2vh);
+}
+
+.fondoPaginaPrincipal {
+  height: calc(100% - 6%); /* Para restar el header */
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding-top: 6vh;
+}
+
+.fondoPaginaPrincipal__figura1 {
+  background-image: url("../assets/PaginaPrincipalFondoFiguras.svg");
+}
+
+.fondoPaginaPrincipal__figura2{
+  background-image: url("../assets/PaginaPrincipalHombreSaludo.svg");
+}
+
+.fondoPaginaPrincipal__figura1,
+.fondoPaginaPrincipal__figura2 {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 50%;
+  height: 100%;
+}
+
+.fondoPaginaPrincipal__figura1__letras {
+  margin-left: 10%;
+  box-sizing: border-box;
+}
+
+.fondoPaginaPrincipal__figura1 h1 {
+  color: #09355c;
+  line-height: 1.5;
+  font-size: 4vw;
+  font-weight: bolder;
+}
+
+.fondoPaginaPrincipal__figura1 button {
+  background-color: #116794;
+  color: #ffffff;
+  border-radius: 30px;
+  padding: 1vh;
+  width: 17vw;
+  font-size: 1.3vw;
+  font-weight: bold;
+  transition: background-color, transform 0.4s;
+}
+
+.fondoPaginaPrincipal__figura1 button:hover {
+  background-color: #09355c;
+  transform: scale(1.05);
+}
+
+.fondoPaginaPrincipal__figura1 img {
+  width: 30vw;
+  min-width: 150px;
+  margin-left: 10%;
+}
+
+.footer {
+  width: 100%;
+  background-color: #012d56;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 2% 5%;
+  font-size: .9vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footer a:hover {
+  color: #9cd0ec;
+  transform: scale(1.09);
+}
+
+.footer__seccion-contactanos .footer__seccion-contactanos__lista-direccion p {
+  margin: 0px;
+}
+
+.footer__seccionInfoGeneral{
+  gap: 2vw;
+}
+
+.footer__seccionInfoGeneral__acercaNosotros .oculto{
+  visibility: hidden;
+}
+
+.footer__seccionInfoGeneral h4,
+.footer__seccion-contactanos h4 {
+  font-size: 1.1vw;
+  font-weight: bold;
+}
+
+.footer__seccionInfoGeneral,
+.footer__seccion-contactanos {
+  height: 100%;
+}
+
+/*-----------------------------------------MENU HAMBURGESA EN LOGIN*/
+.menu-cabecera-oculto {
+  display: none;
+}
+
+
+
+  /*-----------------------------------------MOdal login*/
+  
+  .modal-content{
+    width: 100%;
+    height: 100%;
+    border-radius: 55px;
+    padding: 7%;
+    box-sizing: border-box;
+  }
+  
+  .modal-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw;
+  }
+  
+  .modal-body img{
+    width: 30%;
+  } 
+  
+  .modal-body .inputUsuario, .modal-body .inputContraseña {
+    width: 100%; 
+  }
+  
+  .modal-body .inputUsuario input, .modal-body .inputContraseña input{
+    width: 100%;
+    height: 2vw;
+    border-radius: .3vw;
+    transition: all .2s;
+  }
+  
+  .modal-body .inputUsuario input:hover, .modal-body .inputContraseña input:hover{
+    border: .05px solid #116794;
+  }
+  .modal-body .inputUsuario input:-webkit-autofill, .modal-body .inputContraseña input:-webkit-autofill {
+
+    box-shadow: 0 0 0px 1000px #a2ddff inset;
+  }
+  
+
+  .modal-body .inputUsuario input:focus, .modal-body .inputContraseña input:focus{
+    outline: none;
+    border: .1px solid #116794;
+
+  }
+  
+  .modal-body label{
+    font-size: 1vw;
+    font-weight: bold;
+  }
+  
+  .modal-body h1{
+    font-size: 2vw;
+    font-weight: bold;
+  }
+  
+  .modal-body .acceder{
+    background-color: #116794;
+    color: #ffffff;
+    border-radius: 30px;
+    padding: 1vh;
+    width: 9vw;
+    font-size: .9vw;
+    font-weight: bold;
+    transition: background-color, transform .4s;
+    box-sizing: border-box;
+  } 
+  
+  .modal-body .acceder:hover{
+    background-color: #09355c;
+    transform: scale(1.05);
+  }
+  
+  
+  .modal-content .contenedor-boton{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+  
+  
+  /*Input con ojito*/
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .password-container input[type="password"],
+  .password-container input[type="text"] {
+    width: 100%;
+    padding-right: 40px; /* Espacio para el ícono */
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .password-container label {
+    position: absolute;
+    right: 2%;
+    top:25%;
+    cursor: pointer;
+    font-size: 18px;
+    color: #0000006e;
+  }
+  
+  /* Ocultamos el checkbox */
+  .password-container input[type="checkbox"] {
+    display: none;
+  }
+  
+  
+  .password-container label .no-visible{
+    display: none;
+  }
+  
+  .password-container label .activo, .password-container label .activo{
+    transition: all .3s;
+  }
+  
+  .password-container label .activo:hover, .password-container label .activo:hover{
+    color: #00000091;
+  }
+
+
+
+
+
+  @media (max-width: 480px) {
+    .fondoPaginaPrincipal{
+      flex-direction: column;
+    }
+
+    .fondoPaginaPrincipal__figura1,
+    .fondoPaginaPrincipal__figura2 {
+      width: 100%;
+    }
+
+    .fondoPaginaPrincipal__figura1{
+      background-repeat: repeat;
+
+    }
+    .fondoPaginaPrincipal__figura1 button {
+      font-size: 3vw;
+      width: 25vw;
+    }
+
+    .fondoPaginaPrincipal__figura1 h1 {
+      color: #09355c;
+      line-height: 1.5;
+      font-size: 5vw;
+      font-weight: bolder;
+    }
+
+    .footer {
+      font-size: 1.5vw;
+    }
+    
+    .footer__seccionInfoGeneral h4,
+    .footer__seccion-contactanos h4 {
+      font-size: 1.7vw;
+    }
+    .modal-body h1{
+      font-size: 5vw;
+    }
+    .modal-body label{
+      font-size: 4vw;
+    }
+    .modal-body .inputUsuario input, .modal-body .inputContraseña input{
+      height: 8vw;
+    }
+    .modal-body .acceder{
+      width: 15vw;
+      font-size: 2.6vw;
+    } 
+  }
+  
+
+
+  @media (min-width: 481px) and (max-width: 746px) {
+    .fondoPaginaPrincipal{
+      flex-direction: column;
+    }
+
+    .fondoPaginaPrincipal__figura1{
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 100%;
+    }
+
+    .fondoPaginaPrincipal__figura2{
+      width: 100%;
+      height: 100%;
+    }
+
+    .fondoPaginaPrincipal__figura1 button {
+      font-size: 2vw;
+      width: 20vw;
+    }
+
+    .footer {
+      font-size: 1.5vw;
+    }
+    
+    .footer__seccionInfoGeneral h4,
+    .footer__seccion-contactanos h4 {
+      font-size: 1.7vw;
+    }
+    .modal-body h1{
+      font-size: 4vw;
+    }
+    .modal-body label{
+      font-size: 3vw;
+    }
+    .modal-body .inputUsuario input, .modal-body .inputContraseña input{
+      height: 6vw;
+    }
+    .modal-body .acceder{
+      width: 13vw;
+      font-size: 2.1vw;
+    } 
+  }
+  
+  
+  @media (min-width: 747px) and (max-width: 1200px) {
+    .fondoPaginaPrincipal__figura1{
+      background-size:cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 50%;
+      height: 100%;
+    }
+    .modal-body h1{
+      font-size: 3vw;
+    }
+    .modal-body label{
+      font-size: 2vw;
+    }
+    .modal-body .inputUsuario input, .modal-body .inputContraseña input{
+      height: 4vw;
+    }
+    .modal-body .acceder{
+      width: 11vw;
+      font-size: 1.6vw;
+    } 
+  }
