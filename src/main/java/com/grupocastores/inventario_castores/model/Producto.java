@@ -1,6 +1,13 @@
 package com.grupocastores.inventario_castores.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "productos")
 public class Producto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProducto;
     private String nombre;
     private String descripcion;

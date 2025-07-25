@@ -16,6 +16,7 @@
                 <th>Descripción</th>
                 <th>Cantidad</th>
                 <th>Activo</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,7 @@
                 <td th:text="${producto.descripcion}"></td>
                 <td th:text="${producto.cantidad}"></td>
                 <td th:text="${producto.activo} ? 'Sí' : 'No'"></td>
+                <td><button th:value="${producto.idProducto}">Eliminar</button></td>
             </tr>
         </tbody>
     </table>

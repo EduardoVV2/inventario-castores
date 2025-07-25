@@ -44,5 +44,14 @@ public class ProductoServiceImpl implements IProductoService{
     public List<Producto> buscaProductos() {
         return productos;
     }
+
+    public Producto buscarPorId(Integer idProducto) {
+        for(Producto p : productos){
+            if (p.getIdProducto()==idProducto) {
+                return p;
+            }
+        }
+        return null;
+    }
     
 }

@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS inventario_castores;
+
+USE inventario_castores;
+
 CREATE TABLE rolesUsuarios (
     idRol INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(13) NOT NULL,
@@ -31,3 +35,5 @@ CREATE TABLE movimientos (
     FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
     FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
 );
+
+INSERT INTO rolesUsuarios (nombre) VALUES "Administrador", "Almacenista";
