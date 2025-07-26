@@ -9,7 +9,7 @@ import com.grupocastores.inventario_castores.model.Usuario;
 import com.grupocastores.inventario_castores.repository.UsuarioRepository;
 
 @Service
-public class IUsuarioServiceImpl implements IUsuarioService {
+public class UsuarioServiceImpl implements IUsuarioService {
 
     @Autowired
     private UsuarioRepository userRepo;

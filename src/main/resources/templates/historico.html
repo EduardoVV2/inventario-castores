@@ -3,23 +3,23 @@
 <head th:replace="~{plantilla/plantilla.html :: head}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario</title>
+    <title>Histórico</title>
 </head>
 <body>
     <nav th:replace="~{plantilla/plantilla.html :: nav}"></nav>
     <div class="containerPrincipal">
-        <h3>Inventario</h3>
+        <h3>Historial de movimientos</h3>
         <a href="/logout">Salir</a>
         <div class="w-50 d-flex justify-content-between my-4">    
         </div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
+                    <th>Producto</th>
+                    <th>Usuario</th>
+                    <th>Tipo</th>
                     <th>Cantidad</th>
-                    <th>Sacar</th>
-                    <th>Activo</th>
+                    <th>Fecha</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,35 +35,12 @@
         <a href="/">Volver a Inicio</a>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalRestarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="/inventarioRestar" method="post">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sacar cantidad en producto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id" id="idRestarCantProducto" required>
-                    <label for="cantidad">Cuantos deseas sacar</label>
-                    <input type="number" name="cantidad" id="" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    </div>
-
     <div id="alert-data"
         th:data-message="${message}"
         th:data-messagetype="${messageType}">
     </div>
 
-    <script th:src="@{/js/almacenista.js}"></script>
+    <script th:src="@{/js/administrador.js}"></script>
 
     <footer th:replace="~{plantilla/plantilla.html :: footer}"></footer>
 </body>

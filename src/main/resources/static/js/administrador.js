@@ -31,4 +31,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    //Alerta
+    const alertDiv = document.getElementById("alert-data");
+    const message = alertDiv.dataset.message;
+    const messageType = alertDiv.dataset.messagetype;
+
+    if (message != null) {
+        Swal.fire({
+            title: messageType === "success" ? "¡Éxito!" :
+                messageType === "error" ? "¡Error!" : "¡Aviso!",
+            text: message,
+            icon: messageType,
+            confirmButtonText: "Aceptar"
+        });
+    }
+
 });

@@ -14,7 +14,7 @@
         <h1 class="bienvenida">
             Bienvenido a Grupo castores
         </h1>
-        <h2>Hoy es: [[${fecha}]]</h2>
+        <!-- <h2>Hoy es: [[${fecha}]]</h2> -->
         <div class="login">
             <h2>Iniciar Sesión</h2>
             <form action="/login" method="post">
@@ -28,10 +28,41 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
             </form>
+            <h5>
+                //Usuarios ejemplos
+                <br>
+                Correo Administrador: juanperez@castores.com
+                <br>
+                Correo Almacenista: marianita@castores.com
+                <br>
+                Misma contraseña: grupo%Castores1
+            </h5>
         </div>
     </div>
 
+    <div id="alert-data"
+        th:data-message="${message}"
+        th:data-messagetype="${messageType}">
+    </div>
+
     <footer th:replace="~{plantilla/plantilla.html :: footer}"></footer>
+    <script>
+        //Alerta
+        const alertDiv = document.getElementById("alert-data");
+        const message = alertDiv.dataset.message;
+        const messageType = alertDiv.dataset.messagetype;
+
+        if (message != null) {
+            Swal.fire({
+                title: messageType === "success" ? "¡Éxito!" :
+                    messageType === "error" ? "¡Error!" : "¡Aviso!",
+                text: message,
+                icon: messageType,
+                confirmButtonText: "Aceptar"
+            });
+        }
+    </script>
+
 
 </body>
 </html>
