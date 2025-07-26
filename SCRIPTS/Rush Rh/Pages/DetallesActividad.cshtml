@@ -1,0 +1,270 @@
+@page
+@model Rush_Rh.Pages.DetallesActividad
+@{
+    Layout = "_LayoutUsuarioRH";
+    ViewData["Title"] = "DetallesActividad";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/css/detallesActividad.css">
+}
+
+<div class="contenido">
+    <div class="detallesActividad">
+        <!-- Encabezado -->
+        <div class="activity-header">
+            <h1>Detalles de la Actividad</h1>
+        </div>
+
+        <!-- Lista de Estudiantes -->
+        <div class="contenedorDetalles">
+            <div class="activity-info">
+                <div class="detalles__info">
+                    <p><strong>Nombre:</strong> </p>
+                    <p>@Model.actividadRecuperada.NombreActividad</p>
+                </div>
+                <div class="detalles__info">
+                    <p><strong>Fecha de inicio:</strong> </p>
+                    <p>@Model.actividadRecuperada.FechaHoraInicio.ToString("dd 'de' MMMM 'de' yyyy HH:mm")</p>
+                </div>
+                <div class="detalles__info">
+                    <p><strong>Fecha de termino:</strong> </p>
+                    <p>@Model.actividadRecuperada.FechaHoraFin.ToString("dd 'de' MMMM 'de' yyyy HH:mm")</p>
+                </div>
+                <div class="detalles__info">
+                    <p><strong>DC3:</strong> </p>
+                    <p> @(Model.actividadRecuperada.DC3? "Si" : "NO")</p>
+                </div>
+                <div class="detalles__botones">
+                    
+                    <button class="btn buttonGeneral agregarActividadButton buttonmMasgrande" type="button" data-bs-toggle="modal" data-bs-target="#modalActividad"><div class="textoButton"><span class="material-symbols-outlined">edit</span>Editar Actividad</div></button>
+                    <button class="btn buttonGeneral botonEliminarActividad buttonmMasgrande" id="buttonEliminar"><span class="material-symbols-outlined">delete</span>Eliminar Actividad</button>
+                </div>
+            </div>
+
+
+
+            <div class="student-list">
+                <div class="header-tabla">
+                    <h3>Estudiantes Participantes</h3>
+                    <button class="btn buttonGeneral agregarActividadButton buttonGrande sinHover" type="button" data-bs-toggle="modal" data-bs-target="#modalAlumno"><div class="textoButton"><span class="material-symbols-outlined">add</span>Agregar alumno</div></button>
+                </div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 33%; text-align: center;">Nombre</th>
+                            <th style="width: 33%; text-align: center;">RFC</th>
+                            <th style="width: 33%; text-align: center;">Puesto</th>
+                            <th style="width: 33%; text-align: center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.integrantesActividad.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="5"><div class="alert alert-info text-center">No hay alumnos registrados en esta actividad.</div></td>
+                            </tr>
+                        }
+
+
+                        @foreach (var integrante in Model.integrantesActividad)
+                        {
+                           <tr>
+                                <td class="text-center align-middle">@integrante.Nombre</td>
+                                <td class="text-center align-middle">@integrante.RFC</td>
+                                <td class="text-center align-middle">@(string.IsNullOrEmpty(integrante.NombrePuesto) ? "No asignado" : integrante.NombrePuesto)</td>
+                                <td class="text-center align-middle">
+                                    <div class="accionesAlumno">
+                                        <button class="btn buttonGeneral detallesButton" onclick="window.location.href='/PerfilUsuario?id=@integrante.IdUsuario'"><span class="material-symbols-outlined">person</span>Ver perfil</button>
+                                        <button class="btn buttonGeneral botonEliminarCosas"  data-id="@integrante.Id"><span class="material-symbols-outlined">delete</span>Eliminar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <button class="btn buttonGeneral botonRegresar" onclick="window.location.href='/PlaneacionActividades?idPlaneacion=@Model.actividadRecuperada.IdPlaneacion&anio=@Model.AnioActual'"><span class="material-symbols-outlined">arrow_back_ios</span>Regresar</button>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalActividad" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="planeacionActividadesModal">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="miModalLabel">Editar Actividad</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" asp-page-handler="EditarActividad">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="Nombre">Nombre Actividad:</label>
+                                <input type="text" id="nombre" name="actividades.NombreActividad" required value="@Model.actividadRecuperada.NombreActividad">
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaInicio">Fecha inicio:</label>
+                                <input type="datetime-local" id="fechaInicioActividad" name="actividades.FechaHoraInicio" value="@Model.actividadRecuperada.FechaHoraInicio.ToString("yyyy-MM-ddTHH:mm")" min="@Model.FechaMinima.ToString("yyyy-MM-ddTHH:mm")" max="@Model.FechaMaxima.ToString("yyyy-MM-ddTHH:mm")" class="fecha-inicio" required onchange="actualizarFechaMinima(this)" >
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaFin">Fecha fin:</label>
+                                <input type="datetime-local" id="fechaFinActividad" name="actividades.FechaHoraFin" max="@Model.FechaMaxima.ToString("yyyy-MM-ddTHH:mm")" value="@Model.actividadRecuperada.FechaHoraFin.ToString("yyyy-MM-ddTHH:mm")" class="fecha-termino" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dc3">¿Genera DC3?</label>
+                                <select name="actividades.DC3" id="dc3" class="form-select" required>
+                                    <option value="" selected>Seleccione una opción</option>
+                                    <option value="true" selected="@(Model.actividadRecuperada.DC3 == true)">Sí</option>
+                                    <option value="false" selected="@(Model.actividadRecuperada.DC3 == false)">No</option>
+                                </select>
+                            </div>
+                            <input type="hidden" id="IdPlaneacion" name="actividades.Id" required value="@Model.actividadRecuperada.Id">
+                            <input type="hidden" id="anioActual" name="AnioActual" required value="@Model.AnioActual">
+                            <input type="hidden" id="fechaMimina" name="FechaMinima" required value="@Model.FechaMinima.ToString("yyyy-MM-ddTHH:mm")">
+                            <input type="hidden" id="fechaMaxima" name="FechaMaxima" required value="@Model.FechaMaxima.ToString("yyyy-MM-ddTHH:mm")">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="button centrado envioSubmirButton"><span class="material-symbols-outlined">save</span>Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAlumno" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="planeacionActividadesModal">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="miModalLabel">Agregar alumnos</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" asp-page-handler="AgregarIntegrante">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="listaAlumnos">Alumnos:</label>
+                                    <select id="listaAlumnos" name="Alumnos[]" multiple >
+                                        @foreach(var usuario in Model.usuarios.Where(u => !Model.integrantesActividad.Any(i => i.IdUsuario == u.Id)))
+                                        {
+                                            <option value="@usuario.Id">@usuario.Nombre</option>
+                                        }
+                                    </select>
+                            </div>
+                            <input type="hidden" id="IdActividad" name="idActividadIntegrante" required value="@Model.actividadRecuperada.Id">
+                            <input type="hidden" id="anioActual" name="AnioActual" required value="@Model.AnioActual">
+                            <input type="hidden" id="fechaMimina" name="FechaMinima" required value="@Model.FechaMinima.ToString("yyyy-MM-ddTHH:mm")">
+                            <input type="hidden" id="fechaMaxima" name="FechaMaxima" required value="@Model.FechaMaxima.ToString("yyyy-MM-ddTHH:mm")">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="button centrado envioSubmirButton"><span class="material-symbols-outlined">save</span>Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<form method="post" asp-page-handler="EliminarActividad" class="d-none" id="formEliminarActividad">
+    <input type="hidden" name="actividades.Id" value="@Model.actividadRecuperada.Id">
+    <input type="hidden" name="actividades.IdPlaneacion" value="@Model.actividadRecuperada.IdPlaneacion">
+    <input type="hidden" name="AnioActual" value="@Model.AnioActual">
+    <button type="submit" class="button centrado envioSubmirButton"><span class="material-symbols-outlined">delete</span>Eliminar Actividad</button>
+</form>
+
+<form method="post" asp-page-handler="EliminarIntegrante" class="d-none" id="formEliminarIntegrante">
+    <input type="hidden" name="idIntegrante" id="idIntegrante">
+    <input type="hidden" name="idActividad" value="@Model.actividadRecuperada.Id">
+    <input type="hidden" name="AnioActual" value="@Model.AnioActual">
+    <input type="hidden" id="fechaMimina" name="FechaMinima" required value="@Model.FechaMinima.ToString("yyyy-MM-ddTHH:mm")">
+    <input type="hidden" id="fechaMaxima" name="FechaMaxima" required value="@Model.FechaMaxima.ToString("yyyy-MM-ddTHH:mm")">
+    <button type="submit" class="button centrado envioSubmirButton"><span class="material-symbols-outlined">delete</span>Eliminar Estudiante</button>
+</form>
+
+
+@section scripts{
+    <script src="~/js/detallesActividad.js"></script>
+    <script src="~/js/multi-select-tag.js"></script>
+
+    <script>
+
+        new MultiSelectTag('listaAlumnos') // id
+
+        // Mostrar mensaje de alerta que vienen desde controlador
+        document.addEventListener("DOMContentLoaded", function() {
+            const message = '@Html.Raw(TempData["Message"])';
+            const messageType = '@TempData["MessageType"]';
+            const messageTitle = '@Html.Raw(TempData["MessageTitle"])';
+
+            if (message) {
+                Swal.fire({
+                    title: messageTitle,
+                    text: message,
+                    icon: messageType,
+                    confirmButtonText: "Aceptar"
+                });
+            }
+        });
+
+
+        // Evento para manejar clics en el botón "Eliminar Actividad"
+        const botonEliminar = document.getElementById('buttonEliminar');
+        botonEliminar.addEventListener('click', () => {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Esta acción eliminará la actividad y a todos los estudiantes participantes.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Aquí puedes realizar la acción de eliminar la actividad
+                    document.getElementById('formEliminarActividad').submit();
+                }
+            });
+        });
+
+        // Evento para manejar clics en el botón "Eliminar Estudiante"
+        const botonesEliminarEstudiante = document.querySelectorAll('.botonEliminarCosas');
+        botonesEliminarEstudiante.forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const idEstudiante = boton.getAttribute('data-id');
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esta acción eliminará al estudiante de la actividad.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        //Poner el id del integrante en el fomrulario de eliminar integrante
+                        document.getElementById('idIntegrante').value = idEstudiante;
+
+                        // Aquí puedes realizar la acción de eliminar el estudiante
+                        document.getElementById('formEliminarIntegrante').submit();
+                    }
+                });
+            });
+        });
+
+    </script>
+}

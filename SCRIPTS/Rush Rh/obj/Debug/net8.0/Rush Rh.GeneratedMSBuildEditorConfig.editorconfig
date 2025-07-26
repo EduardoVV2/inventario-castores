@@ -1,0 +1,159 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Rush_Rh
+build_property.RootNamespace = Rush_Rh
+build_property.ProjectDir = /home/rushdev2/Documentos/devops/RushRh/Rush Rh/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/rushdev2/Documentos/devops/RushRh/Rush Rh
+build_property._RazorSourceGeneratorDebug = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Avisos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXZpc29zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/BuzonSugerencias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQnV6b25TdWdlcmVuY2lhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/CalendarioPermisos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2FsZW5kYXJpb1Blcm1pc29zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/CursosDiplomados.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3Vyc29zRGlwbG9tYWRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/DetallesActividad.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGV0YWxsZXNBY3RpdmlkYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/DetalleUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGV0YWxsZVVzdWFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/IncidentesUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5jaWRlbnRlc1VzdWFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/IncidentesUsuariosRH.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5jaWRlbnRlc1VzdWFyaW9zUkguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/InformacionComplementaria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5mb3JtYWNpb25Db21wbGVtZW50YXJpYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/ListaNominas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTGlzdGFOb21pbmFzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/ListaUsuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTGlzdGFVc3Vhcmlvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/MisAvisos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWlzQXZpc29zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Nominas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTm9taW5hcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Organigrama.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvT3JnYW5pZ3JhbWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/PausasActivas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGF1c2FzQWN0aXZhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/PdfSolicitudes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGRmU29saWNpdHVkZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/PerfilUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGVyZmlsVXN1YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/PermisoLicencias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGVybWlzb0xpY2VuY2lhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/PlaneacionActividades.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGxhbmVhY2lvbkFjdGl2aWRhZGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Principal/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpbmNpcGFsL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Registro.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0cm8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Shared/_LayoutUsuarioRH.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXRVc3VhcmlvUkguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/SolicitudLicenciasVacaciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU29saWNpdHVkTGljZW5jaWFzVmFjYWNpb25lcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/VerSolicitudPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmVyU29saWNpdHVkUGRmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-2sasazjm7g
+
+[/home/rushdev2/Documentos/devops/RushRh/Rush Rh/Pages/Shared/_LayoutSimple.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXRTaW1wbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-t22qck25fe

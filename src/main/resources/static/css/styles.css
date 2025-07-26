@@ -2,5 +2,82 @@ body{
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #ceffd2 !important;
+    overflow: hidden;
+}
+
+.container-fluid{
+    height: 10vh !important;
+    background-color: #1b3f3d;
+}
+
+.navbar-nav a{
+    color: #ceffd2;
+}
+
+.navbar{
+    padding: 0 !important;
+}
+
+.containerPrincipal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    height: 70vh;
+    background-color: #f8f9fa;
+    border: #333 solid 1px;
+    margin: auto;
+}
+
+.logoCastores img{
+    width: auto;
+    height: 8vh;
+    margin-right: 20px;
+}
+
+.footer {
+  width: 100%;
+  background-color: #1b3f3d;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 2% 5%;
+  font-size: .9vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.footer a:hover {
+  color: #9cd0ec;
+  transform: scale(1.09);
+}
+
+.footer__seccion-contactanos .footer__seccion-contactanos__lista-direccion p {
+  margin: 0px;
+}
+
+.footer__seccionInfoGeneral{
+  gap: 2vw;
+}
+
+.footer__seccionInfoGeneral__acercaNosotros .oculto{
+  visibility: hidden;
+}
+
+.footer__seccionInfoGeneral h4,
+.footer__seccion-contactanos h4 {
+  font-size: 1.1vw;
+  font-weight: bold;
+}
+
+.footer__seccionInfoGeneral,
+.footer__seccion-contactanos {
+  height: 100%;
 }

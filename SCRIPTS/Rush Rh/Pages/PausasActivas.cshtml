@@ -1,0 +1,389 @@
+@page "/pausasActivas"
+@model Rush_Rh.Pages.PausasActivas
+@{
+    var idPuesto = Model.idPuesto;
+    ViewData["Title"] = "PausasActivas";
+    if (Model.idPuesto == 3 || Model.idPuesto == 5){
+        Layout = "_LayoutUsuarioRH";
+    }
+    
+    var registros = Model.pausasActivas;
+    
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/sitePausasActivas.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+}
+
+@{
+
+    <div>
+        
+    </div>
+    <div class="contenedor">
+        
+        <div class="cabeceraPausas"> 
+            <img src="~/assets/Icon-Salud.svg" alt="Pausas Activas">
+
+            <div class="cabeceraPausas__Fecha">
+                <div class="cabeceraPausas__Fecha__contenido">
+                    <a  data-bs-toggle="collapse" href="#collapseCabecera" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <span class="material-symbols-outlined">
+                            arrow_drop_down
+                        </span>
+                    </a>
+
+                    <h1>Mes año Dinamico</h1>
+                </div>
+                    
+                <div class="collapse selectFormularioFechas" id="collapseCabecera" >
+                    <div class="card card-body">
+                        <form method="post" id="formCalendario" asp-page-handler="PausasActivasGet" enctype="multipart/form-data">
+                            @Html.AntiForgeryToken()
+                            <div class="selectorFecha">
+                                <!-- Select para el mes -->
+                                <label for="mes">Mes:</label>
+                                <select id="selectMes" name="mes" class="form-select">
+                                    <option value="0">Enero</option>
+                                    <option value="1">Febrero</option>
+                                    <option value="2">Marzo</option>
+                                    <option value="3">Abril</option>
+                                    <option value="4">Mayo</option>
+                                    <option value="5">Junio</option>
+                                    <option value="6">Julio</option>
+                                    <option value="7">Agosto</option>
+                                    <option value="8">Septiembre</option>
+                                    <option value="9">Octubre</option>
+                                    <option value="10">Noviembre</option>
+                                    <option value="11">Diciembre</option>
+                                </select>
+
+                                <!-- Select para el año -->
+                                <label for="año">Año:</label>
+                                <select id="selectAnio" name="año" class="form-select">
+                                    <!-- Opciones generadas dinámicamente -->
+                                </select>  
+                                
+                                <button class="botonBuscarFechas" type="button" id="btnBuscar" onclick="handleBuscar()">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>    
+            </div> 
+        </div>
+
+        <div class="Seccion1">
+            <table class="Seccion1__tabla">
+                <thead>
+                    <tr >
+                        <th>Domingo</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+
+            <!--Estructura de modal para asignar Usuarios a las Pausas Activas -->
+            <div class="offcanvas offcanvas-top offcanvas-pausas" tabindex="-1" id="offcanvasTop5" aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-body">
+                    <div class="contenedor-boton">
+                        <button type="button" class="btn-close botonCancelar" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <form method="post" asp-page-handler="GuardarPausaActiva" enctype="multipart/form-data">
+                        <div class="selectModal">
+                            <label for="usuario">Usuario:</label>
+                            <select id="usuario" name="info.IdUsuario" required>
+                                <option value="0" disabled selected>Seleccione una opción</option>
+                                @foreach(var usuario in Model.usuarios)
+                                {
+                                    <option value="@usuario.Id">@usuario.Nombre</option>
+                                }
+                            </select>
+                            <label for="hora">Horario:</label>
+                            <input type="time" id="horarioInput" name="info.Hora" value="00:00" required>
+                            <input type="hidden" id="fechaInput" name="info.Fecha">
+                            <input type="hidden" id="idPausaInput" name="info.Id">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary selectModal__botonenviar">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="Seccion2">
+            <a class="btn btn-primary Seccion2__boton" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Ver Usuarios
+            </a>
+            
+            <div class="collapse Seccion2__tablaUsuarios"  id="collapseExample">
+                <div class="card card-body">
+                    <table >
+                        <thead>
+                            <tr >
+                                <th> </th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach( var usuario in Model.usuarios)
+                            {
+                                <tr>
+                                    <td class="foto">
+                                        <div class="Seccion2__tablaUsuarios__celdas">
+                                            <img src="@usuario.RutaFoto" alt="@usuario.Nick">
+                                        </div> 
+                                    </td>
+                                    <td>
+                                        <div class="nombre">
+                                            @usuario.Nombre
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="Seccion3">
+            <img src="~/assets/Pausa_Activa.svg" alt="Pausas Activas">
+        </div>
+    </div>
+}
+
+@section Scripts {
+
+    <script>
+        // Verificar si hay un mensaje en TempData y mostrarlo
+        @if (TempData["AlertMessage"] != null)
+        {
+            <text>
+            Swal.fire({
+                title: '@TempData["AlertType"]' === 'success' ? 'Éxito' : 'Error',
+                text: '@TempData["AlertMessage"]',
+                icon: '@TempData["AlertType"]',
+                confirmButtonText: 'Aceptar'
+            });
+            </text>
+        }
+    </script>
+
+    <script>
+        // Inicializar los select de año y mes
+        function initSelectors() {
+            const selectMes = document.getElementById('selectMes');
+            const selectAnio = document.getElementById('selectAnio');
+            const currentYear = new Date().getFullYear();
+
+            // Rellenar los años, por ejemplo, del año actual a 10 años atrás
+            for (let year = currentYear - 10; year <= currentYear + 10; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                if (year === currentYear) option.selected = true; // Año actual seleccionado
+                selectAnio.appendChild(option);
+            }
+
+            // Establecer valores iniciales
+            selectMes.value = new Date().getMonth();
+        }
+
+        // Inicializar todo al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            initSelectors();
+
+            // Cargar el calendario para el mes y año actuales
+            const today = new Date();
+            fillCalendar(today.getFullYear(), today.getMonth(), registros);
+        });
+
+        // Diccionario de nombres de los meses
+        const monthNames = [
+            "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
+            "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"
+        ];
+
+        // Función para actualizar la cabecera
+        function updateCalendarHeader(year, month) {
+            const header = document.querySelector('.cabeceraPausas h1');
+            header.textContent = `${monthNames[month]} ${year}`;
+        }
+                
+        // Pasar los registros de C# a JavaScript como un array de objetos
+        var registros = @Html.Raw(Json.Serialize(registros));
+        // recuperp eñ valor de la variable de sesion del puesto de empleado
+        var idPuesto = @Html.Raw(Json.Serialize(idPuesto));
+
+        // Ahora puedes usar los registros en el calendario
+        function fillCalendar(year, month, registros) {
+            const tableBody = document.querySelector('.Seccion1__tabla tbody');
+            tableBody.innerHTML = ''; // Limpia el contenido previo de la tabla
+
+            // Actualizar la cabecera con el mes y año actuales
+            updateCalendarHeader(year, month);
+
+            // Número de días en el mes y primer día del mes
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDay = new Date(year, month, 1).getDay(); // 0 = Domingo, 6 = Sábado
+
+            let currentDay = 1;
+
+            for (let row = 0; row < 6; row++) { // Máximo 6 filas
+                const tr = document.createElement('tr');
+                
+                for (let col = 0; col < 7; col++) { // 7 columnas (Domingo a Sábado)
+                    const td = document.createElement('td');
+                    const cellDiv = document.createElement('div');
+                    cellDiv.className = 'Seccion1__tabla__celdas';
+
+                    // Agregar espacios en blanco antes del primer día o después del último día
+                    if ((row === 0 && col < firstDay) || currentDay > daysInMonth) {
+                        td.appendChild(cellDiv);
+                    } else {
+                        // Rellenar las celdas con el día actual
+                        const daySpan = document.createElement('span');
+                        daySpan.className = 'fecha';
+                        daySpan.textContent = currentDay;
+
+                        // Comprobar si hay registros para este día
+                        const dayDate = new Date(year, month, currentDay);  // Fecha completa para comparar
+                        const registro = registros.find(reg => new Date(reg.fecha).toDateString() === dayDate.toDateString());
+
+                        if (registro) {
+                            // Variable con el nombre de la imagen
+                            const nombreImagen = registro.rutaFoto;
+
+                            // Si hay un registro para este día, agregar la imagen con el ID del registro
+                            const userIcon = document.createElement('img');
+                            userIcon.setAttribute("src", `..${nombreImagen}`)
+                            userIcon.alt = registro.nick;
+
+                            // Mostrar "Juan" cuando se pasa el mouse
+                            userIcon.title = registro.nick; // Método sencillo para mostrar el nombre como "tooltip"
+
+                            // Opción más personalizada con evento hover
+                            userIcon.addEventListener('mouseover', () => {
+                                const tooltip = document.createElement('span');
+                                tooltip.className = 'tooltip';
+                                //tooltip.textContent = 'Juan';
+                                userIcon.parentElement.appendChild(tooltip);                                                                                                                                                                                    
+
+                                userIcon.addEventListener('mouseout', () => {
+                                    tooltip.remove();
+                                });
+                            });
+
+                            // Crear un nuevo <span> para la hora
+                            const horaSpan = document.createElement('span');
+                            horaSpan.className = 'hora';
+                            horaSpan.textContent = new Date(registro.hora).toLocaleTimeString([], { 
+                                hour: '2-digit', 
+                                minute: '2-digit', 
+                                hour12: false 
+                            }); 
+
+                            cellDiv.appendChild(daySpan);
+                            cellDiv.appendChild(userIcon);
+                            cellDiv.appendChild(horaSpan); // Hora
+                        } else {
+                            // Si no hay registro, solo mostrar el día
+                            cellDiv.appendChild(daySpan);
+                        }
+
+                        td.appendChild(cellDiv);
+
+                        //valido si es Jefe de RH o director para permiterle hacer modificaciones y registros en las pausas 
+                        if (idPuesto == 3 || idPuesto == 5)
+                        {
+                            // Agregar comportamiento dinámico (click para abrir modal)
+                            td.addEventListener('click', () => {
+                                const modal = document.getElementById('offcanvasTop5');
+                                const bootstrapModal = new bootstrap.Offcanvas(modal);
+
+                                // Recuperar el contenido del <span> (el día seleccionado)
+                                const spanContent = cellDiv.querySelector('span.fecha').innerText;
+
+                                // Construir la fecha seleccionada como string
+                                const formattedDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(spanContent).padStart(2, '0')}`;
+
+                                // Crear un objeto Date y sumar un día
+                                // Esto porque cuando comparo con la fecha del la fecha de la casilla seleccionada compara con una fecha un dia atras de la que debe de ser
+                                const selectedDate = new Date(`${formattedDate}T00:00:00Z`);
+                                selectedDate.setDate(selectedDate.getDate() + 1);
+
+                                // Buscar si hay un registro para este día
+                                const RegistroSeleccionado = registros.find(reg => {
+                                    const regDate = new Date(reg.fecha);
+
+                                    // Comparar solo año, mes y día
+                                    return (
+                                        regDate.getFullYear() === selectedDate.getFullYear() &&
+                                        regDate.getMonth() === selectedDate.getMonth() &&
+                                        regDate.getDate() === selectedDate.getDate()
+                                    );
+                                });
+
+                                // Asignar la fecha al input oculto del formulario
+                                const fechaInput = modal.querySelector('#fechaInput');
+                                if (fechaInput) {
+                                    fechaInput.value = formattedDate;
+                                }
+
+                                // Seleccionar el valor del usuario en el <select>
+                                const selectUsuario = document.getElementById('usuario');
+
+                                //Asignar valor al horaio, id 
+                                const horarioInput = modal.querySelector('#horarioInput');
+                                const idPausaInput = modal.querySelector('#idPausaInput');
+                                
+                                if (RegistroSeleccionado) {
+
+                                    const Horario = new Date(RegistroSeleccionado.hora).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+                                    const Pausa = RegistroSeleccionado.id;
+
+                                    selectUsuario.value = RegistroSeleccionado.idUsuario; // Selecciona el usuario correspondiente                                
+                                    horarioInput.value = Horario;
+                                    idPausaInput.value = Pausa;     
+                                                        
+                                } else {
+                                    selectUsuario.value = "0"; // Opción por defecto
+                                    horarioInput.value = "00:00";
+                                    idPausaInput.value = "0";
+
+                                }
+                                
+                                // Mostrar el modal
+                                bootstrapModal.show();  
+                            });
+                        }
+                        
+
+                        currentDay++;
+                    }
+
+                    tr.appendChild(td);
+                }
+
+                tableBody.appendChild(tr);
+
+                if (currentDay > daysInMonth) break; // Detén el bucle si ya no hay más días
+            }
+        }
+
+        // Llenar el calendario con el mes actual y registros
+        const today = new Date();
+        fillCalendar(today.getFullYear(), today.getMonth(), registros);
+    </script>
+}
+
+<script src="~/js/pausasActivas.js"></script>

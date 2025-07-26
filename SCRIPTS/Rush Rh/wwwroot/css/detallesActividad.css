@@ -1,0 +1,362 @@
+.detallesActividad{
+    position: relative;
+    .buttonGeneral{
+        padding: calc(.4vw + .1vh) calc(.6vw + .6vh) calc(.2vw + .1vh);
+        border-radius: calc(.7vw + .7vh);
+        font-size: calc(.6vw + .7vh);
+        box-sizing: border-box;
+        align-items: flex-start;
+        background-color: #135f88;
+        color: #ffffff;
+        width: 15%;
+        min-width: 150px;
+        transition: all .3s;
+        display: flex;
+        justify-content: center;    
+        align-items: center;
+        gap: calc(.5vw + .5vh);
+    }
+
+    .buttonGeneral span{
+        font-size: calc(.7vw + .7vh);
+        color: #ffffff;
+    }
+
+    .buttonGeneral:hover {
+        background-color: rgb(14, 72, 105);
+        transform: scale(1.009);
+    }
+
+    .buttonGeneral.sinHover:hover{
+        transform: none;
+    }
+
+    .detallesButton{
+        width: 100%;
+        background-color: #2A9D8F;
+        border-color: #2A9D8F;
+    }
+
+    .detallesButton:hover {
+        background-color: #1b7066;
+    }
+
+    .botonEliminarCosas, .botonEliminarActividad{
+        background-color: #dc3545;
+
+    }
+
+    .botonEliminarCosas:hover, .botonEliminarActividad:hover{
+        background-color: #b61b2a;
+    }
+
+    .buttonGrande{
+        width: 30%;
+    }
+
+    .buttonmMasgrande{
+        width: 50%;
+    }
+
+    .botonRegresar{
+        position:sticky;
+        z-index: 100;
+        background-color: #20786e;
+        font-size: calc(.6vw + .5vh);
+        width: 8%;
+        min-width: 50px;
+        padding: calc(.1vw + .1vh)  calc(.1vw + .1vh);
+        bottom: 0;
+        left: 0;
+        gap: calc(.2vw + .2vh);
+
+
+
+        span{
+            font-size: calc(.5vw + .5vh);
+        }
+
+    }
+
+    .botonRegresar:hover{
+        background-color: #002d56;
+        color: #ffffff;
+        span{
+            color: #ffffff;
+        };
+
+    }
+
+
+}
+
+
+.activity-header h1{
+    margin: calc(.6vw + .6vh) 0;
+    font-size: calc(2vw + 1vh);
+}
+
+
+.contenedorDetalles{
+    display: flex;
+    align-items: center;
+    gap: calc(.7vw + .7vh);
+
+    .activity-info{
+        margin-top: calc(1vw + 1vh);
+        width: 32%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: calc(.7vw + .7vh);
+        gap: calc(.5vw + .5vh);
+
+        .detalles__info p{
+            margin: calc(.2vw + .2vh) 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .detalles__botones{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: calc(.7vw + .7vh);
+            margin-top: calc(1vw + 1vh);
+            flex-wrap: wrap;
+    
+            button{
+                font-size: calc(.6vw + .7vh);
+            }
+        }
+    }
+
+    .student-list{
+        overflow: auto;
+        width: 68%;
+
+        .header-tabla{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: calc(.5vw + .5vh);
+
+            h3{
+                font-size: calc(1.2vw + 1.2vh);
+            }
+
+        }
+
+        .table{
+            td .accionesAlumno{
+                display: flex;
+                justify-content: center;
+                align-items: center;    
+                gap: calc(.5vw + .5vh);
+            }
+
+            td{
+                font-size: calc(.6vw + .6vh);
+            }
+
+            th{
+                font-size: calc(.7vw + .7vh);
+            }
+            
+        }
+    }
+
+
+}
+
+
+
+@media screen and (max-width: 860px){
+    .contenedorDetalles{
+        flex-direction: column;
+
+        .activity-info{
+            width: 100%;
+        }
+
+        .student-list{
+            width: 100%;
+        }
+
+        .detalles__botones{
+            margin-bottom: calc(2.5vw + 2.5vh);
+        }
+    }
+}
+
+
+
+/*------------------------------------------------------------------------------------Codigo slo del multiselect*/
+
+
+
+/*Codigo solo del multiselect*/
+.mult-select-tag {
+    display: flex;
+    width:100%;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --tw-shadow-color: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+    --border-color: rgb(218, 221, 224);
+    font-family: Verdana, sans-serif;
+}
+
+.mult-select-tag .wrapper {
+    width: 100%;
+}
+
+.mult-select-tag .body {
+    display: flex;
+    border: 1px solid var(--border-color);
+    background: white;
+    min-height: 2.15rem;
+    width:100%;
+    min-width: 14rem;
+
+}
+
+.mult-select-tag .input-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    padding: 0.1rem;
+    align-items: center;
+}
+
+.mult-select-tag .input-body {
+    display: flex;
+    width: 100%;
+}
+
+.mult-select-tag .input {
+    flex:1;
+    background: transparent;
+    border-radius: 0.25rem;
+    padding: 0.45rem;
+    font-size: small;
+    color: #2d3748;
+    outline: 0;
+    border: 1px solid var(--border-color);
+}
+
+.mult-select-tag .btn-container {
+    color: #e2eBf0;
+    padding: 0.5rem;
+    display: flex;
+    border-left: 1px solid var(--border-color);
+}
+
+.mult-select-tag button {
+    cursor: pointer;
+    width: 100%;
+    color: #718096;
+    outline: 0;
+    height: 100%;
+    border: none;
+    padding: 0;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    appearance: none; /* Add the standard 'appearance' property */
+    text-transform: none;
+    margin: 0;
+}
+
+.mult-select-tag button:first-child {
+    width: 1rem;
+    height: 90%;
+}
+
+
+.mult-select-tag .drawer {
+    position: absolute;
+    background: white;
+    max-height: 15rem;
+    z-index: 40;
+    top: 98%;
+    width: 100%;
+    overflow-y: scroll;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+}
+
+.mult-select-tag ul {
+    list-style-type: none;
+    padding: 0.5rem;
+    margin: 0;
+}
+
+.mult-select-tag ul li {
+    display: flex;
+    gap: 0.5rem;
+    padding: calc(0.5rem - 1px);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: small;
+    font-size: calc(.55vw + .6vh);
+}
+
+.mult-select-tag ul li input.input_checkbox{
+    margin: 0;
+}
+
+.mult-select-tag ul li:hover {
+    background: rgb(243 244 246);
+}
+
+.mult-select-tag .item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: calc(.3vh + .3vw);
+    margin: 0.2rem;
+    font-weight: 500;
+    border: 1px solid;
+    border-radius: 9999px;
+}
+
+.mult-select-tag .item-label {
+    max-width: 100%;
+    line-height: 1;
+    font-size: 0.75rem;
+    font-weight: 400;
+    flex: 0 1 auto;
+    font-size: calc(.55vw + .6vh);
+    align-self: center;
+}
+
+.mult-select-tag .item-close-container {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: row-reverse;
+}
+
+.mult-select-tag .item-close-svg {
+    width: 1rem;
+    margin-left: 0.5rem;
+    height: 1rem;
+    cursor: pointer;
+    border-radius: 9999px;
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.mult-select-tag .shadow  {
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.mult-select-tag .rounded {
+    border-radius: .375rem;
+}

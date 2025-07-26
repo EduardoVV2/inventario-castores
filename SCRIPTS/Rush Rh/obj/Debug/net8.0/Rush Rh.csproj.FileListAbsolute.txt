@@ -1,0 +1,77 @@
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/appsettings.Development.json
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/appsettings.json
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Rush Rh.staticwebassets.runtime.json
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Rush Rh
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Rush Rh.deps.json
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Rush Rh.runtimeconfig.json
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Rush Rh.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Rush Rh.pdb
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/BouncyCastle.Crypto.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/ClosedXML.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/ClosedXML.Parser.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/DocumentFormat.OpenXml.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/DocumentFormat.OpenXml.Framework.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/EPPlus.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/EPPlus.Interfaces.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/EPPlus.System.Drawing.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/ExcelNumberFormat.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.barcodes.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.bouncy-castle-connector.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.forms.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.io.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.kernel.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.layout.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.pdfa.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.pdfua.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.sign.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.styledxmlparser.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.svg.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itext.commons.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/itextsharp.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Microsoft.DotNet.PlatformAbstractions.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Microsoft.Extensions.Configuration.FileExtensions.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Json.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Microsoft.IO.RecyclableMemoryStream.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Microsoft.Win32.SystemEvents.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/Newtonsoft.Json.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/RBush.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/SixLabors.Fonts.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/System.Data.SqlClient.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/System.Drawing.Common.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/System.IO.Packaging.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/System.Security.Cryptography.Pkcs.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/runtimes/win-arm64/native/sni.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/runtimes/win-x64/native/sni.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/runtimes/win-x86/native/sni.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.csproj.AssemblyReference.cache
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.GeneratedMSBuildEditorConfig.editorconfig
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.AssemblyInfoInputs.cache
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.AssemblyInfo.cs
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.csproj.CoreCompileInputs.cache
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.MvcApplicationPartsAssemblyInfo.cache
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.RazorAssemblyInfo.cache
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.RazorAssemblyInfo.cs
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.sourcelink.json
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/staticwebassets.build.json
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/staticwebassets.development.json
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/staticwebassets/msbuild.Rush Rh.Microsoft.AspNetCore.StaticWebAssets.props
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/staticwebassets/msbuild.build.Rush Rh.props
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Rush Rh.props
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Rush Rh.props
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/staticwebassets.pack.json
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/scopedcss/Pages/Shared/_LayoutSimple.cshtml.rz.scp.css
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/scopedcss/bundle/Rush Rh.styles.css
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/scopedcss/projectbundle/Rush Rh.bundle.scp.css
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.csproj.CopyComplete
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/refint/Rush Rh.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.pdb
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/Rush Rh.genruntimeconfig.cache
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/obj/Debug/net8.0/ref/Rush Rh.dll
+/home/rushdev2/Documentos/devops/RushRh/Rush Rh/bin/Debug/net8.0/CsvHelper.dll

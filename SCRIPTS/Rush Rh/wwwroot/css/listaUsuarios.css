@@ -1,0 +1,996 @@
+.containerContenido {
+    background-color: rgba(255, 255, 255, 0.664); 
+    border: 2px solid #009de5;
+    padding: 40px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 25px 30px 30px 30px; 
+  }
+  h1 {
+    text-align: left;
+    color: #002d56;
+    font-size: calc(1.5vw + 1.5vh);
+    font-weight: bold;
+  }
+  /*************Apartado del titulo y barra de buscar********************************/
+.containerTituloYBusqueda{
+    
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 5px; 
+    
+}
+.containerTituloYBusqueda input {
+    flex: 1; 
+    border: 4px solid #002d56; 
+    border-top-right-radius: 5px; 
+    border-bottom-right-radius: 5px; 
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 1px;  
+    height: 40px; 
+    padding: 5px 10px; 
+    outline: none; 
+    font-size: 1rem; 
+    
+    
+}
+.containerTituloYBusqueda h1 {
+    margin: 0; 
+    font-size: 3.5rem;
+    flex: 0 0 65%; 
+}
+
+.search-container {
+    display: flex;
+    align-items: center; 
+    border-radius: 5px; 
+    flex-grow: 1; 
+    margin-right: 20px; 
+}
+
+.search-icon {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    background-color: #002d56; 
+    padding: 5px; 
+    border-top-left-radius: 5px; 
+    border-bottom-left-radius: 5px; 
+    height:40px; 
+    width: 40 px; 
+    
+}
+.containerTituloYBusqueda input::placeholder {
+    font-size: 1.1rem; 
+    font-weight: bold; 
+    
+}
+
+
+
+/*****************************Diseño de los botones*************************/
+  .button-container {
+    display: flex; 
+    align-items: center;
+    margin-top: 10px;
+    
+}
+
+
+.button-container button {
+    background-color: #116794; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 1px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: 40px; 
+    margin-block: 15px;
+    transition: background-color 0.3s, color 0.3s, width 0.3s, height 0.3s, font-size 0.3s; /* Animación suave */
+}
+
+.button-container button:hover {
+    background-color: #d8edff;
+    color: #116794; 
+    border: 2px solid #116794;
+    box-sizing: border-box;
+}
+
+.botonid {
+    background-color: #116794; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 1px 20px;
+    text-align: center;
+    font-size: 15px;
+    height: 40px;
+    width: 150px; 
+    margin-block: 15px;
+    transition: background-color 0.3s, color 0.3s, width 0.3s, height 0.3s, font-size 0.3s; /* Animación suave */
+    
+}
+
+.botones{
+    background-color: #002d56;
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    width: 175px; 
+    height: 50px; 
+    transition: background-color 0.3s, color 0.3s, width 0.3s, height 0.3s, font-size 0.3s; 
+    box-sizing: border-box;
+}
+.botonTodos {
+    background-color: #002d56;
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    width: 105px; 
+    height: 50px; 
+    transition: background-color 0.3s, color 0.3s, width 0.3s, height 0.3s, font-size 0.3s; 
+    box-sizing: border-box;
+}
+
+
+.contenedorBotonAsistencias{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+
+
+
+/*----------------------------------MOdal Asistencias-----------------------------------*/
+
+
+.botonVerde{
+    background-color: #2a9d8f !important;
+    transition: all 0.3s !important;
+    width: calc(10vw + 10vh) !important;
+    height: calc(3vw + 3vh)!important;
+    min-width: 50px !important;
+    min-height: 10px !important;
+    padding: calc(0.08vw + 0.08 vh) !important;
+    font-size: calc(.7vw + .7vh) !important;
+}
+
+.botonVerde:hover{
+    background-color: #1b7066 !important;
+    transform: scale(1.04) !important;
+    color: #ffffff  !important;
+}
+
+
+.label-inputDocumentoAsistenciaChecador{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: calc(.5vw + .5vh);
+}
+
+.label-inputDocumentoAsistenciaChecador button{
+    color: #ffffff;
+    width: auto;
+}
+
+.label-inputDocumentoAsistenciaChecador button:hover{
+    background-color: #1b7066 !important;
+    transform: scale(1.04) !important;
+    color: #ffffff  !important;
+}
+
+
+#modalRegistroAsistencias{
+
+    .modal-header{
+        h1 {
+            font-size: calc(1vw + 1vh) !important;
+            color: #002d56;
+            font-weight: bold;
+        }
+    }
+
+
+    .form-group{
+        width: 100%;
+
+
+        label{
+            font-size: calc(.6vw + .6vh);
+        }
+
+        input{
+            width: 100%;
+            font-size: calc(.6vw + .6vh);
+            margin: 0;
+            height: auto;
+        }
+    }
+
+
+    /* Cambiar fondo y color del botón del input file */
+    input[type="file"].disabled::file-selector-button {
+        background-color: #003078; /* azul Bootstrap */
+    }
+
+
+    .modal-footer{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+.buttonGeneral{
+    padding: auto;  
+    border-radius: calc(.7vw + .7vh);
+    font-size: calc(.6vw + .7vh);
+    box-sizing: border-box;
+    align-items: flex-start;
+    background-color: #135f88;
+    color: #ffffff;
+    width: 100%;
+    transition: all .3s;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    gap: calc(.5vw + .5vh);
+}
+
+
+.buttonGeneral span{
+    font-size: calc(.7vw + .7vh);
+    color: #ffffff;
+}
+
+.buttonGeneral:hover {
+    background-color: rgb(14, 72, 105);
+    transform: scale(1.009);
+    color: #ffffff;
+}
+
+.botonRojo{
+    background-color: #dc3545;
+    border-radius: calc(.7vw + .7vh);
+    transition: all 0.3s;
+    font-weight: normal;
+}
+
+.botonRojo:hover{
+    background-color: #b61b2a;
+    transform: scale(1.04);
+}
+
+
+.botonVerdePequeño{
+    background-color: #2a9d8f;
+    border-radius: calc(.7vw + .7vh);
+    transition: all 0.3s;
+    font-weight: normal;
+}
+
+
+
+#contenedorSpinnerAsistencias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: calc(.5vw + .5vh);
+    margin-top: calc(1vw + 1vh);
+    display: none;
+
+    .spinner-grow{
+        width: calc(1vw + 1vh);
+        height: calc(1vw + 1vh);
+    }
+
+    /*cambiar el color a cada spinner a un azul cada vez mas fuerte*/
+    .text-primary{
+        color: #1d8ac5 !important;
+    }
+    .text-secondary{
+        color: #197db3 !important;
+    }
+    .text-success{
+        color: #1670a1 !important;
+    }
+    .text-danger{
+        color: #136391 !important;
+    }
+    .text-warning{
+        color: #105681 !important;
+    }
+    .text-info{
+        color: #0d4a70 !important;
+    }
+    .text-light{
+        color: #0a3d5e !important;
+    }
+    .text-dark{
+        color: #082f4e !important;
+    }
+}
+
+
+
+.contenedorTablaAsistencias{
+    width: 100%;
+    overflow: auto;
+}
+
+
+.tituloTablaAsistencias{
+    font-size: calc(1.2vw + 1.2vh);
+    margin-bottom: calc(.7vw + .7vh);
+}
+
+.tablaAsistencias, .tablaDetalles {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3px;
+    border: none;
+    font-size: calc(.6vw + .7vh);
+    table-layout: auto;
+    word-wrap: break-word;
+}
+
+.tablaAsistencias thead tr, .tablaDetalles thead tr {
+    font-size: calc(.7vw + .7vh);
+    text-align: center;
+}
+
+
+
+.tablaAsistencias tbody td, .tablaDetalles tbody td {
+    padding: calc(.8vw + .8vh);
+    text-align: center;
+}
+
+
+@media (min-width: 576px) {
+    .listaUsuarios #modalRegistroAsistencias  .modal-dialog{
+        max-width: 80% !important; 
+    }
+    .listaUsuarios #modalRegistroAsistencias  .modal-content{
+        padding: 3% 5% 2%!important;
+    }
+    .listaUsuarios #modalRegistroAsistencias  .modal-footer{
+        padding-top: 2% !important;
+    }
+
+    .listaUsuarios #modalDetallesAsistencias  .modal-dialog, .listaUsuarios #modalHistorialAsistencias  .modal-dialog {
+        max-width: 50% !important; 
+    }
+    .listaUsuarios #modalDetallesAsistencias  .modal-content, .listaUsuarios #modalHistorialAsistencias  .modal-content {
+        padding: 3% 5% 2%!important;
+    }
+
+
+    .listaUsuarios #modalPaseLista  .modal-dialog{
+        max-width: 70% !important; 
+    }
+
+    .listaUsuarios #modalPaseLista  .modal-content{
+        padding: 3% 5% 2%!important;
+    }
+    
+}
+
+
+
+.contenedorAcciones{
+    display: flex;
+}
+
+
+.botonEliminarPaseLista{
+    color: #ffffff;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 10px;
+    font-weight: bolder;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: calc(.5vw + .5vh); 
+    transition: all .3s;
+}
+
+.botonEliminarPaseLista:hover{
+    background-color: #dd0000;
+}
+
+.botonEliminarPaseLista span{
+    font-size: calc(1vw + .8vh);
+    color: #ffffff;
+}
+
+.botonEliminarPaseLista span:hover{
+    transform: scale(1.05) !important;
+}
+
+
+
+
+
+
+/************************TABLA****************************************/
+
+
+
+
+/******* Encabezado donde estan los títulos ********/
+#usuariosTable {
+    width: 100%; 
+    border-collapse: collapse; /* esta linea elimina espacios entre bordes */
+    margin-top: 3px;
+    border: none;
+    font-size: 100px; /* Ajusta el tamaño de fuente inicial */
+    table-layout: auto; /* Permite ajuste automático de columnas */
+    word-wrap: break-word; /* Maneja contenido largo */
+
+
+}
+
+/****** esta es l fila de títulos ************/
+#usuariosTable thead tr {
+    background-color: #49b9ed; 
+    height: 60px;
+    color: white; 
+    border: 5px solid #038be8;
+    font-size: large;
+}
+
+#usuariosTable thead th {
+    padding: 10px; 
+    text-align: center; 
+    font-weight: bold; 
+    font-size:20px;
+
+    
+}
+/************Aqui se crea la vista de las lineas abajo de las filas*****************/
+#usuariosTable tbody tr {
+    position: relative; 
+}
+
+#usuariosTable tbody tr::after {
+    content: ""; /* Genera una línea */
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translateX(-50%); /* esta linea ajusta el punto de referencia al centro (centrar la linea)*/
+    width: 97%; 
+    border-bottom: 2px solid #547a8f; 
+}
+
+/* esto hace que se elimina la línea inferior de la última fila */
+#usuariosTable tbody tr:last-child::after {
+    border-bottom: none;
+}
+/*************************aqui se edita el texto y el fondo del contenido de la tabla************/
+#usuariosTable tbody td{
+    background-color: #d8edff;
+    color: #002d56;
+    font-weight: bold;
+    padding: 25px;
+    text-align: center; 
+    font-size: 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+#usuariosTable tbody button {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Maneja texto largo */
+ }
+ #usuariosTable thead th, #usuariosTable tbody td {
+    padding: 8px; /* Ajusta el espaciado interno */
+    font-size: 1.2rem; /* Ajuste inicial del tamaño de fuente */
+    text-align: center; /* Centraliza el texto */
+    word-break: break-word; /* Divide palabras largas */
+}
+
+
+/****************************RESPONSIVE***********************************************/
+
+
+
+@media (max-width: 768px) {
+    
+    .containerTituloYBusqueda {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+
+
+    .containerTituloYBusqueda h1 {
+        font-size: 1.9rem; 
+        text-align: center; 
+        margin-bottom: 10px; 
+    }
+
+    .containerTituloYBusqueda input {
+        width: 100%; 
+        margin: 0; 
+    }
+    .search-container {
+
+        width: 100%; 
+        margin-right: 0; 
+    }
+    .button-container {
+        justify-content: space-between; 
+    }
+
+    .button-container button {
+        width: 105px; 
+        height: 35px; 
+        font-size: 14px; 
+        padding: 5px 10px;
+        margin-right: 1px; 
+    }
+
+    .button-container button:last-child {
+        margin-right: 0; 
+    }
+    #usuariosTable {
+        font-size: 0.9rem; 
+    }
+
+    #usuariosTable thead th {
+        padding: 5px; 
+    }
+
+    #usuariosTable tbody td {
+        padding: 10px; 
+        font-size: 0.85rem; 
+    }
+}
+
+
+@media (max-width: 624px) {
+    .containerTituloYBusqueda h1 {
+        font-size: 2rem; 
+        text-align: center; 
+    }
+
+}
+
+@media (max-width: 534px) {
+    tton-container {
+        justify-content: space-between; 
+        padding: 0 5px; 
+    }
+
+    .button-container button {
+        width: 90px; 
+        height: 35px; 
+        font-size: 12px; 
+        padding: 5px; 
+        margin-right: 5px; 
+    }
+
+    .button-container button:last-child {
+        margin-right: 0; 
+    }
+}
+@media (max-width: 423px) {
+    .button-container button {
+        width: 80px; 
+        height: 30px; 
+        font-size: 0.6rem; 
+        padding: 5px 10px; 
+        margin-right: 10px; 
+    }
+
+    .button-container {
+        justify-content: space-around; 
+    }
+}
+@media (max-width: 388px) {
+    .button-container button {
+        width: 60px; 
+        height: 30px; 
+        font-size: 0.5rem; 
+        padding: 5px 10px; 
+        margin-right: 10px; 
+    }
+
+    .button-container {
+        justify-content: space-around; /
+    }
+}
+
+@media (max-width: 1075px) {
+    #usuariosTable {
+        font-size: 0.95rem; 
+    }
+
+    #usuariosTable thead th, #usuariosTable tbody td {
+        padding: 8px; 
+        font-size: 0.85rem; 
+    }
+
+    #usuariosTable tbody td {
+        word-wrap: break-word; 
+    }
+
+    .containerContenido {
+        padding: 20px; 
+    }
+    .button-container button {
+        width: 120px;
+        height: 40px;
+        font-size: 0.9rem;
+        padding: 5px;
+    }
+    #usuariosTable thead th, #usuariosTable tbody td {
+        font-size: 0.85rem; /* Reducir fuente */
+        padding: 6px; /* Ajustar espaciado */
+    }
+    .botonid {
+        font-size: 0.9rem;
+        height: 35px;
+        width: 105px; 
+    }
+}
+
+@media (max-width: 768x) {
+    .containerContenido {
+        margin-top: 25px; 
+        padding: 15px;
+      }
+    #usuariosTable {
+        font-size: 0.85rem; 
+    }
+    #usuariosTable thead tr {
+        
+        height: 40px;
+        
+    }
+    #usuariosTable thead th, #usuariosTable tbody td {
+        padding: 6px; 
+        font-size: 0.75rem; 
+    }
+
+    #usuariosTable tbody td {
+        word-wrap: break-word; 
+    }
+    .containerTituloYBusqueda h1 {
+        font-size: 2rem; 
+        text-align: center;
+    }
+
+
+    .button-container {
+        justify-content: space-between; 
+        padding: 0 10px; 
+    }
+    .button-container button {
+        width: 100px;
+        height: 35px;
+        font-size: 0.8rem;
+        padding: 4px;
+    }
+    
+    #usuariosTable thead th, #usuariosTable tbody td {
+        font-size: 0.8rem; /* Reducir más la fuente */
+        padding: 5px; /* Reducir espaciado */
+    }
+    .botonid {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 590px) {
+    
+    #usuariosTable {
+        font-size: 0.75rem; 
+        width: 100%; 
+        overflow-x: auto;
+    }
+
+    #usuariosTable thead th {
+        padding: 2px 4px; 
+        font-size: 0.7rem; 
+        height: 25px; 
+        
+    }
+
+    #usuariosTable tbody td {
+        padding: 4px; 
+        font-size: 0.7rem; 
+        word-wrap: break-word; 
+    }
+
+    
+    .containerContenido {
+        padding: 10px; 
+    }
+
+    
+    .containerTituloYBusqueda h1 {
+        font-size: 1.8rem; 
+        text-align: center; 
+    }
+
+    
+    .search-container {
+        display: flex; 
+        align-items: center;
+        justify-content: flex-start; 
+        gap: 0; 
+        width: 100%; 
+        flex-wrap: nowrap; 
+    }
+
+    .search-icon {
+        flex: 0 30 25px; 
+        height: 35px; 
+        background-color: #002d56; 
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    .containerTituloYBusqueda input {
+        flex: 1; 
+        height: 35px; 
+        font-size: 0.75rem; 
+        padding: 5px; 
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    /* Botones */
+    .button-container button {
+        width: 70px; 
+        height: 28px;
+        font-size: 0.6rem; 
+        padding: 3px; 
+    }
+
+    .button-container {
+        justify-content: space-between; 
+        padding: 0 5px; 
+    }
+    #usuariosTable thead th, #usuariosTable tbody td {
+        font-size: 0.75rem; /* Reducir aún más el tamaño de fuente */
+        padding: 4px;
+    }
+    .botonid {
+        font-size: 0.75rem;
+        height: 25px;
+        width: 60px; 
+    }
+}
+
+@media (max-width: 576px) {
+    .search-icon {
+        background-image: url('icono-pequeño.png'); /* Nuevo ícono */
+        height: 30px; 
+        width: 30px; 
+    }
+    .containerContenido {
+        padding: 15px; /
+    }
+
+    #usuariosTable {
+        font-size: 0.8rem; 
+    }
+
+    #usuariosTable thead th {
+        font-size: 0.9rem; 
+    }
+
+    #usuariosTable tbody td {
+        font-size: 0.8rem; 
+        padding: 8px; 
+    }
+
+    
+    #usuariosTable {
+        width: 100%; 
+        overflow-x: auto; 
+    }
+}
+
+@media (max-width: 525px) {
+    .containerTituloYBusqueda input {
+        height: 30px; 
+        border: 3px solid #002d56; 
+    }
+    .search-icon {
+        height:30px; 
+        width: 30px; 
+    }
+    
+    #usuariosTable thead tr {
+        height: 30px; 
+        border: 3px solid #038be8 
+    }
+    #usuariosTable {
+        font-size: 0.7rem;
+        overflow-x: auto;
+    }
+
+    #usuariosTable thead th, #usuariosTable tbody td {
+        padding: 3px;
+        font-size: 0.65rem;
+    }
+
+    .containerContenido {
+        padding: 8px;
+    }
+
+    .containerTituloYBusqueda h1 {
+        font-size: 1.5rem;
+    }
+
+    .containerTituloYBusqueda input {
+        font-size: 1.2rem;
+        padding: 4px 1px;
+    }
+
+    .button-container button {
+        width: 65px;
+        height: 25px;
+        font-size: 0.55rem;
+        padding: 3px;
+    }
+
+    .button-container {
+        justify-content: space-evenly;
+        padding: 0 5px;
+    }
+}
+
+@media (max-width: 420px) {
+    #usuariosTable {
+        font-size: 0.6rem;
+        overflow-x: auto;
+    }
+
+    #usuariosTable thead th, #usuariosTable tbody td {
+        padding: 2px;
+        font-size: 0.55rem;
+    }
+
+    .containerContenido {
+        padding: 5px;
+    }
+
+    .containerTituloYBusqueda h1 {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+
+    .search-icon {
+        height: 20px;
+        width: 20PX;
+    }
+
+    .containerTituloYBusqueda input {
+        height: 20px;
+    }
+
+    .button-container button {
+        width: 60px;
+        height: 20px;
+        font-size: 0.5rem;
+        padding: 2px;
+    }
+
+    .button-container {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .button-container button {
+        width: 65px;
+        height: 25px;
+        font-size: 0.6rem;
+        padding: 2px;
+    }
+    
+    #usuariosTable {
+        font-size: 0.7rem;
+    }
+    
+    #usuariosTable thead th, #usuariosTable tbody td {
+        font-size: 0.7rem; /* Ajustar tamaño de fuente */
+        padding: 3px;
+    }
+}
+
+@media (max-width: 350px) {
+    .containerTituloYBusqueda h1 {
+        font-size: 1rem;
+    }
+
+    #usuariosTable {
+        font-size: 0.55rem;
+    }
+
+    #usuariosTable thead th, #usuariosTable tbody td {
+        font-size: 0.5rem;
+        padding: 1px;
+    }
+
+    .button-container button {
+        width: 50px;
+        height: 18px;
+        font-size: 0.45rem;
+        padding: 1px;
+    }
+
+    .button-container {
+        gap: 3px;
+    }
+
+    #usuariosTable thead th, #usuariosTable tbody td {
+        font-size: 0.65rem; /* Último ajuste para pantallas muy pequeñas */
+        padding: 2px;
+    }
+    .botonid {
+        font-size: 0.6rem;
+        height: 25px;
+        width: 45px; 
+    }
+}
+
+
+@media (max-width: 310px) {
+    .containerContenido {
+        padding: 3px;
+    }
+
+    .containerTituloYBusqueda h1 {
+        font-size: 0.9rem;
+    }
+
+    #usuariosTable {
+        font-size: 0.5rem;
+    }
+
+    #usuariosTable thead th, #usuariosTable tbody td {
+        font-size: 0.45rem;
+        padding: 1px;
+    }
+
+    .button-container button {
+        width: 45px;
+        height: 15px;
+        font-size: 0.4rem;
+    }
+
+    .button-container {
+        gap: 2px;
+    }
+}

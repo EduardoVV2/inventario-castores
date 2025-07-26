@@ -1,0 +1,356 @@
+@page
+@model Rush_Rh.Pages.Avisos
+@{
+    Layout = "_LayoutUsuarioRH";
+    ViewData["Title"] = "Avisos";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/avisos.css">
+}
+
+@{
+    <div class="contenido">
+        <div class="titulo">
+            <h1>Sistema RRHH / Avisos:</h1>
+            <div class="buscadorContainer">
+                @*<button><span class="material-symbols-outlined">search</span></button>*@
+                <input type="text" class="buscador" id="filtroInput" placeholder="Buscar">
+            </div>
+        </div>
+
+        <div class="subtitulos">
+            <h4 id="claseFecha">Seleccione una opción para filtrar por fechas:</h4>
+            <button class="button" type="button" name="crear" data-bs-toggle="modal" data-bs-target="#modalCrearAviso">Crear nuevo </button>
+        </div>
+        <form method="post" asp-page-handler="AccionesAvisos">
+            <div class="seccionFiltros">
+                <div class="seccionFiltros__filtroFechas">
+                    <div class="inputDate">
+                        <label for="fechaInicio">De: </label>
+                        <input  type="date" id="fechaInicio" name="fechaInicio" value='@Model.fechaInicio?.ToString("yyyy-MM-dd")' required>
+                    </div>
+                    <div class="inputDate">
+                        <label for="fechaTermino">Hasta: </label>
+                        <input type="date" id="fechaTermino" name="fechaTermino" value='@Model.fechaTermino?.ToString("yyyy-MM-dd")' required>
+                    </div>
+                    <div class="boton_filtrar">
+                        <button type="submit" class="button" name="accion" value="filtrar">Filtrar</button>
+                    </div>
+                    <div class="inputDate">
+                        <label for="Activos">Avisos RRHH</label>
+                        <select name="Activos" id="Activos">
+                            <option selected value="todos">Mostrar todo</option>
+                            <option value="activos">Activos</option>
+                            <option value="inactivos">Inactivos</option>
+                        </select>
+                    </div>
+                    @* <div class="inputDate mostrar">
+                        <select name="Mostrar" id="Mostrar">
+                            <option selected value="Todos">Mostrar todo</option>
+                            <option value="Activos">Activos</option>
+                            <option value="Inactivos">Inactivos</option>
+                        </select>
+                    </div> *@
+                </div>
+                <div class="seccionFiltros__otrosFiltros">
+                    <div class="inputCheckbox">
+                        <label for="fechaEdicionFiltro">Por fecha de edicion: </label>
+                        <input type="radio" name="fechaFiltro" id="fechaEdicionFiltro" value="1" @(Model.fechaFiltro == 1 ? "checked" : "") required>
+                    </div>
+                    <div class="inputCheckbox">
+                        <label for="fechaEventoFiltro">Por fecha de evento: </label>
+                        <input type="radio" name="fechaFiltro" id="fechaEventoFiltro" value="2" @(Model.fechaFiltro == 2 ? "checked" : "")>
+                    </div>
+                    <div class="inputCheckbox">
+                        <label for="fechaEnvioFiltro">Por fecha de envio: </label>
+                        <input type="radio" name="fechaFiltro" id="fechaEnvioFiltro" value="3" @(Model.fechaFiltro == 3 ? "checked" : "")>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="seccionTabla">
+            @if (HttpContext.Request.Method == "GET")
+            {
+                <div>
+                    <span class="avisos_mes">
+                        Avisos modificados este mes
+                    </span>
+                </div>
+            }
+            <form method="post" asp-page-handler="AccionesAvisos">
+                <table width="100%" align="center" id="tablaAvisos">
+                    <thead>
+                        <tr>
+                            <th width="14.28%" align="center">Titulo</th>
+                            <th width="14.28%" align="center">Fecha de registro</th>
+                            <th width="14.28%" align="center">Fecha de edicion</th>
+                            <th width="14.28%" align="center">Fecha de evento</th>
+                            <th width="14.28%" align="center">Fecha de envio</th>
+                            <th width="14.28%" align="center">Archivo</th>
+                            <th width="14.28%" align="center" class="no-exportar">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var aviso in Model.avisos){
+                            @if (aviso.Activo==true){
+                                <tr class="avisos_activos">
+                                    <td>@aviso.Titulo</td>
+                                    <td align="center">@aviso.FechaRegistro.ToString("d")</td>
+                                    <td align="center">@aviso.FechaEdicion.ToString("d")</td>
+                                    <td align="center">@aviso.FechaEvento</td>
+                                    @if (aviso.FechaEnvio==DateTime.MinValue){
+                                        <td align="center">Aún no enviado</td>
+                                    }
+                                    else{
+                                        <td align="center">@aviso.FechaEnvio.ToString("d")</td>
+                                    }
+                                    <td align="center">
+                                        <div class="descargarArchivo_td">
+                                            @if(aviso.IdDocumento!=0){
+                                                foreach (var documento in Model.documentos){
+                                                    if(documento.Id==aviso.IdDocumento){
+                                                        <a href="@documento.URL" download><span class="material-symbols-outlined">download</span>Descargar</a>
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                <span class="archivo_nulo">No hay archivo</span>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td align="center">
+                                        <div class="acciones_td">
+                                            <button type="submit" name="eliminar" value="@aviso.Id" class="material-symbols-outlined" title="Borrar aviso">delete</button>
+                                            @if(@aviso.FechaEnvio==DateTime.MinValue){
+                                                <button type="button" name="editar" value="@aviso.Id" class="material-symbols-outlined" title="Editar aviso">edit</button>
+                                                <input type="checkbox" name="seleccionados" value="@aviso.Id" title="Marcar para enviar aviso">
+                                            }
+                                            else{
+                                                <span value="@aviso.Id" class="material-symbols-outlined aviso_enviado" title="Aviso ya enviado">done_all</span>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                            else{
+                                <tr class="avisos_inactivos">
+                                    <td>@aviso.Titulo</td>
+                                    <td align="center">@aviso.FechaRegistro.ToString("d")</td>
+                                    <td align="center">@aviso.FechaEdicion.ToString("d")</td>
+                                    <td align="center">@aviso.FechaEvento</td>
+                                    @if (aviso.FechaEnvio==DateTime.MinValue){
+                                        <td align="center">Aún no enviado</td>
+                                    }
+                                    else{
+                                        <td align="center">@aviso.FechaEnvio.ToString("d")</td>
+                                    }
+                                    <td align="center">
+                                        <div class="descargarArchivo_td">
+                                            @if(aviso.IdDocumento!=0){
+                                                foreach (var documento in Model.documentos){
+                                                    if(documento.Id==aviso.IdDocumento){
+                                                        <a href="@documento.URL" download><span class="material-symbols-outlined">download</span>Descargar</a>
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                <span class="archivo_nulo">No hay archivo</span>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td align="center">
+                                        <div class="acciones_td">
+                                            <button type="submit" name="restaurar" value="@aviso.Id" class="material-symbols-outlined" title="Restaurar aviso">undo</button>
+                                            <button type="button" name="editar" value="@aviso.Id" class="material-symbols-outlined" title="Editar aviso">edit</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+                <div class="enviarContainer">
+                    <button type="button" id="btnExportar" title="Exportar tabla">
+                        <div><span class="material-symbols-outlined">file_export</span> Exportar</div>
+                    </button>
+                    <button type="submit" name="accion" value="enviar" title="Enviar avisos seleccionados">
+                        <div><span class="material-symbols-outlined">send</span> Enviar</div>
+                    </button>
+                </div>
+            </form>
+            @if (TempData["Mensaje"] != null)
+            {
+                <p style="color: green;">@TempData["Mensaje"]</p>
+            }
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade centered" id="modalCrearAviso" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modalCrearAviso">
+            <div class="modal-content">
+                <div class="contenedor-boton">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" asp-page-handler="GuardarAviso" enctype="multipart/form-data">
+
+                    <input type="hidden" id="IdAviso" name="info.Id" value="" />
+
+                    <div class="modal-body">
+                        <div class="inputContainer">
+                            <label for="titulo">Titulo</label>
+                            <input type="text" id="titulo" name="info.Titulo" value="" required>
+                        </div>
+                        <div class="inputContainer">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="myTextArea" name="info.Contenido" required></textarea>
+                        </div>
+                        <div class="inputContainer enviarPor">
+                            <div id="enviarPorContainer">
+                                <label for="enviarPor">Enviar por:</label>
+                                <select name="info.MedioEnvio" id="enviarPor" placeholder="Selecciona una opcion" required>
+
+                                    @foreach(var medioEnvio in Model.mediosEnvio)
+                                    {
+                                        <option value="@medioEnvio.Id">@medioEnvio.Nombre</option>
+                                    }
+                                </select>
+                            </div>
+                            <div id="usuarioContainer">
+                                <label for="selectUsuario">Usuario:</label>
+                                <select name="info.EnvioUsuario" id="selectUsuario">
+                                    <option value="0" selected>Selecciona una opcion</option>
+                                    @foreach(var usuario in Model.usuariosGenerales)
+                                    {
+                                        <option value="@usuario.Id">@usuario.Nombre</option>
+                                    }
+                                </select>
+                            </div>
+                            <div id="puestoContainer">
+                                <label for="selectPuesto">Puesto:</label>
+                                <select name="info.EnvioPuesto" id="selectPuesto">
+                                    <option value="0" selected>Selecciona una opcion</option>
+                                    @foreach(var puesto in Model.puestos)
+                                    {
+                                        <option value="@puesto.Id">@puesto.Nombre</option>
+                                    }
+                                </select>
+                            </div>
+                            <div id="generoContainer">
+                                <label for="selectGenero">Genero:</label>
+                                <select name="info.EnvioGenero" id="selectGenero">
+                                    <option value="0" selected>Selecciona una opcion</option>
+                                    @foreach(var genero in Model.generos)
+                                    {
+                                        <option value="@genero.Id">@genero.Nombre</option>
+                                    }
+                                </select>
+                            </div>
+                            <div id="departamentoContainer">
+                                <label for="selectDepartamento">Departamento:</label>
+                                <select name="info.EnvioDepartamento" id="selectDepartamento">
+                                    <option value="0" selected>Selecciona una opcion</option>
+                                    @foreach(var departamento in Model.departamentos)
+                                    {
+                                        <option value="@departamento.Id">@departamento.Nombre</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="inputContainer">
+                            <label for="fechaEvento">Fecha de evento</label>
+                            <input type="date" id="fechaEvento" name="info.FechaEvento" required>
+                        </div>
+
+                        <!-- Mostrar el archivo asociado -->
+                        <div id="archivoActual">
+                            <label>Archivo Actual:</label>
+                            <input type="hidden" id="IdDocumentoActual" name="info.IdDocumento" value="" />
+                            <div id="archivoPreview"></div>
+                        </div>
+
+                        <div class="inputContainer">
+                            <label for="file-upload" class="custom-file-upload">
+                                <div id="drop-zone">
+                                    Arrastra o selecciona un archivo
+                                </div>
+                                <input id="file-upload" type="file" name="doc.Documento">
+                            </label>
+                        </div>
+
+
+                        <button class="button acceder" type="submit" >Guardar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    <script src="~/js/avisos.js"></script>
+    <script>
+        const avisos = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.avisos));
+        const documentos = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.documentos));
+        @* //Variables delete filtro por fechas
+        const fechaFiltro = @Html.Raw(Json.Serialize(Model.fechaFiltro));
+        const filtroFechaInicio = @Html.Raw(Json.Serialize(Model.fechaInicio));
+        const filtroFechaTermino = @Html.Raw(Json.Serialize(Model.fechaTermino));
+        document.getElementById("fechaInicio").value = filtroFechaInicio;
+        document.getElementById("fechaTermino").value = filtroFechaTermino; *@
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const message = '@Html.Raw(TempData["Message"])';
+            const messageType = '@TempData["MessageType"]';
+
+            if (message) {
+                Swal.fire({
+                    title: messageType === "success" ? "¡Éxito!" : "¡Aviso!",
+                    text: message,
+                    icon: messageType,
+                    confirmButtonText: "Aceptar"
+                });
+            }            
+        });
+
+        //Función para convertir a Excel la tabla de avisos
+        document.getElementById("btnExportar").addEventListener("click", function() {
+            // Obtén la tabla
+            const tabla = document.getElementById("tablaAvisos");
+
+            // Identifica las columnas a excluir (por ejemplo, aquellas con una clase "no-exportar")
+            const columnasNoExportar = Array.from(
+                tabla.querySelectorAll("th.no-exportar")
+            ).map(th => Array.from(th.parentNode.children).indexOf(th));
+
+            // Clonar la tabla para evitar modificar la original
+            const tablaClonada = tabla.cloneNode(true);
+
+            // Eliminar las columnas no deseadas en el clon
+            Array.from(tablaClonada.rows).forEach(row => {
+                columnasNoExportar.reverse().forEach(colIndex => {
+                    if (row.children[colIndex]) {
+                        row.children[colIndex].remove();
+                    }
+                });
+            });
+
+            // Convierte la tabla clonada a una hoja de cálculo
+            const ws = XLSX.utils.table_to_sheet(tablaClonada);
+
+            // Crea un libro de Excel
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Datos");
+
+            // Genera el archivo XLSX y descarga
+            XLSX.writeFile(wb, "Avisos.xlsx");
+        });
+    </script>
+}

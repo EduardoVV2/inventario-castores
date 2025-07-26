@@ -1,0 +1,210 @@
+@page
+@model Rush_Rh.Pages.PlaneacionActividades
+@{
+    Layout = "_LayoutUsuarioRH";
+    ViewData["Title"] = "PlaneacionActividades";
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/css/planeacionActividades.css">
+}
+
+<div class="contenido">
+    <div class="planeacionActividades">
+        <div class="encabezado">
+            <h1> <span class="titulo">Programa anual </span> <span class="año" id="anioTitulo">2025</span></h1>
+            <select class="form-select form-select" aria-label="Large select example" id="anio" name="anio" onchange="handleAnioChange()">
+            </select>
+        </div>
+        <div class="contenedorSubplanes">
+                <div class="subplanes__encabezado">
+                    <h2>Subplanes</h2>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#modalSubplane" class="btn btn-primary buttonGeneral"><div class="textoButton"><span class="material-symbols-outlined">add</span>Agregar subplane</div></button>
+                </div>
+
+                <div class="contenedorSpinner" id="contenedorSpinner"> 
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-secondary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-success" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-danger" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-light" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-dark" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                
+                <div id="sortable-rows">
+                    
+
+                    
+                </div>
+
+            </div>
+        </div>
+    </div> 
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalSubplane" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="planeacionActividadesModal">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="miModalLabelSubplane">Agregar subplane</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" asp-page-handler="GuardarPlaneacionAnual" id="formSubplane">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="Nombre">Nombre:</label>
+                                <input type="text" id="nombrePlaneacion" name="planeacionAnual.Nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaInicio">Fecha inicio:</label>
+                                <input type="datetime-local" id="fechaInicio" name="planeacionAnual.FechaHoraInicio" class="fecha-inicio" required onchange="actualizarFechaMinima(this)" >
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaFin">Fecha fin:</label>
+                                <input type="datetime-local" id="fechaFin" name="planeacionAnual.FechaHoraFin" class="fecha-termino" required>
+                            </div>
+                            <input type="hidden" id="anioInput" name="planeacionAnual.Año" required>
+                            <input type="hidden" id="IdPlaneacionAnual" name="planeacionAnual.Id" required>
+
+                            <div class="alert alert-warning" role="alert" id="alertaFechas">
+                                <div class="atencionMessage"><span class="material-symbols-outlined">warning</span> <strong>¡Atención!</strong></div>
+                                Recuerda que la fecha de inicio no puede se mayor a la de alguna actividad dentro, tampoco la fecha de fin puede ser menor a la de alguna actividad ya definida.
+                            </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="button centrado envioSubmirButton"><span class="material-symbols-outlined">save</span>Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalActividad" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="planeacionActividadesModal">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="miModalLabel">Agregar Actividad</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" asp-page-handler="GuardarActividad">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="Nombre">Nombre Actividad:</label>
+                                <input type="text" id="nombre" name="actividades.NombreActividad" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaInicio">Fecha inicio:</label>
+                                <input type="datetime-local" id="fechaInicioActividad" name="actividades.FechaHoraInicio" class="fecha-inicio" required onchange="actualizarFechaMinima(this)" >
+                            </div>
+                            <div class="form-group">
+                                <label for="fechaFin">Fecha fin:</label>
+                                <input type="datetime-local" id="fechaFinActividad" name="actividades.FechaHoraFin" class="fecha-termino" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dc3">¿Genera DC3?</label>
+                                <select name="actividades.DC3" id="dc3" class="form-select" required>
+                                    <option value="" selected>Seleccione una opción</option>
+                                    <option value="true">Sí</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            <input type="hidden" id="IdPlaneacion" name="actividades.IdPlaneacion" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="button centrado envioSubmirButton"><span class="material-symbols-outlined">save</span>Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <form method="post" asp-page-handler="EliminarPlaneacionAnual" class="d-none" id="formEliminarSubplan">
+        <input type="hidden" name="planeacionAnual.Id" id="idPlaneacion">
+        <input type="hidden" id="anioInputEliminar" name="planeacionAnual.Año" required>
+        <button type="submit" class="button centrado envioSubmirButton"><span class="material-symbols-outlined">delete</span>Eliminar Estudiante</button>
+    </form>
+
+</div>
+
+
+@section scripts{
+
+    <script src="~/js/planeacionActividades.js"></script>
+    <script>
+        // Mostrar mensaje de alerta que vienen desde controlador
+        document.addEventListener("DOMContentLoaded", function() {
+            const message = '@Html.Raw(TempData["Message"])';
+            const messageType = '@TempData["MessageType"]';
+            const messageTitle = '@Html.Raw(TempData["MessageTitle"])';
+
+            if (message) {
+                Swal.fire({
+                    title: messageTitle,
+                    text: message,
+                    icon: messageType,
+                    confirmButtonText: "Aceptar"
+                });
+            }
+
+            // Generar años dinámicamente
+            const select = document.getElementById('anio');
+            const anioInputValue = document.getElementById('anioInput').value;
+            const currentYear = new Date().getFullYear();
+            for (let year = 2024; year <= currentYear + 2; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                select.appendChild(option);
+                if (year === currentYear) {
+                    option.selected = true;
+                    option.textContent = `${year} (actual)`;
+                    anioInput.value = year;
+                }
+            }
+
+            //Ocultar la alerta del modal guardar subplan
+            let alerta = document.getElementById('alertaFechas');
+            alerta.style.display = 'none';
+
+
+            //Recibo parametros de url
+            const urlParams = new URLSearchParams(window.location.search);
+            const anio = urlParams.get('anio');
+            const idPlaneacion = urlParams.get('idPlaneacion');
+
+            handleAnioChange(anio, idPlaneacion);
+
+            console.log("LLego el año", '@TempData["Año"]');
+            console.log("LLego el id", '@TempData["IdPlaneacion"]');
+            
+        });
+
+
+    </script>
+}

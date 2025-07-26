@@ -1,0 +1,376 @@
+
+.hidden {
+  display: none;
+}
+
+/*-----------------------------------------------------------LayoutPrincipal---------------------------------------------------------*/
+  .base_LayoutPrincipal {
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  /*-----------------------------------------------------------Cabecera---------------------------------------------------------*/
+  .cabecera {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 6vh;
+    z-index: 2;
+  
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    /*padding: 1.5vw;*/
+    box-sizing: border-box;
+  }
+  
+
+
+  .logo-rush-derecha {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+  }
+   
+  
+  
+  
+  .logo_rush-cabecera img,
+  .menu-cabecera img,
+  .usuario-cabecera img  {
+    width: calc(1.5vw + 1vh);
+  }
+
+  .titulo_admin{
+    font-size: calc(1.5vw + 1vh);
+    font-weight: bolder;
+    color: #428a6c;
+  }
+
+  /*-------------------------------Header*/
+  
+  
+  
+  
+  .cabecera img {
+    width: calc(1.5vw + 1vh);
+  }
+  
+
+/*-----------------------------------Menu hamburguesa*/
+
+
+  /* Sobrescribir el ancho horizontal */
+  .offcanvas-top {
+    margin-top: 6.5vh !important; /* Sobrescribe el margen superior */
+    width: 15vw !important; /* Sobrescribe el ancho horizontal */
+    height: 32vh !important; /* Sobrescribe la altura vertical */
+    margin-left: 81vw !important; /* Sobrescribe el margen derecho */
+    border-radius: 10px !important; /* Sobrescribe el radio de borde */
+    box-shadow: 0 0 40px rgba(36, 33, 33, 0.671);
+  }
+
+  .opcionesMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    padding-top: 1.5vh;
+    overflow: hidden;
+    justify-content: center;
+  }
+
+  .opcionesMenu a {
+    color: #000;
+    text-decoration: none;
+    font-size: 1vw;
+    font-weight: 400;
+    transition: all .3s;
+    margin-left: 0.1vw;
+    margin-right: 0.1vw;
+    display: flex;
+    align-items: center;
+    gap: .8vw;
+  }
+
+  .opcionesMenu a:hover {
+    color: #4fbaed;
+    transform: scale(1.1);
+    transform-origin: left;
+  }
+
+
+  .contenedorIconoPerfilMenuHamburguesa {
+    width: 100%;
+    min-width: 125px;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    overflow: hidden;
+  }
+
+  .opcionesMenu img{
+    width: 50%;
+  }
+  
+  
+
+  
+
+
+
+  /*-----------------------------------------------------------Cuerpo de Página---------------------------------------------------------*/
+  .contenedor-cuerpo-pagina {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding-top: 6vh;
+    padding-left: 5vw;
+    background-color: #e9f4ff;
+    background-image: url("../assets/fondo-cuerpo.svg");
+    background-repeat: no-repeat;
+    background-size: contain, cover;
+    background-position: right;
+  }
+
+  main{
+    padding: 2.5vw;
+    padding-left: 4vw;
+  }
+
+  .contenido{
+    width: 100%;
+    height: 80vh !important;
+    border: calc(.16vw + .1vh) solid #4fbaed;
+    border-radius: calc(1.5vw + 1vh);
+    padding: calc(1.0vw + 1vh);
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.459));
+    overflow: auto; /* Siempre permite desplazamiento */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .contenido::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+  
+  @media (max-width: 770px) {
+    .contenedor-cuerpo-pagina {
+      padding-top: 6vh;
+      padding-left: 50px;
+    }
+  }
+  
+  
+  /*-----------------------------------------------------------Navegación Lateral---------------------------------------------------------*/
+  .barra-navegacion-lateral {
+    display: block;
+    margin-top: 10vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 5%;
+    min-width: 50px;
+    min-height: 390px;
+    height: 70%;
+    background-color: #235a7c;
+    color: #fff;
+    padding: 20px 0px;
+    overflow-y: auto;
+  }
+  
+  .barra-navegacion-lateral div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1% 3%;
+  }
+  
+  .barra-navegacion-lateral a {
+    width: 100%;
+    text-decoration: none;
+    padding: 5% 10%;
+    color: #fff;
+    text-align: center;
+  
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  .barra-navegacion-lateral a:hover {
+    background-color: #1b4a66;
+    border-radius: 5px;
+  }
+
+  .rh a:hover {
+    background-color: #3d916e !important;
+    border-radius: 5px;
+  }
+  
+  .barra-navegacion-lateral a img,
+  .barra-navegacion-lateral a span {
+    display: flex;
+    width: 100%;
+    font-size: .5vw;
+    padding: 0 10%;
+  }
+
+  .boton-flotante {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    left: 1px;
+    z-index: 1000;
+  }
+
+  .boton-flotante:hover {
+    background-color: #1b4b6627;
+    border-radius: 5px;
+  }
+
+  .boton-flotante button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+  }
+  .boton-flotante img {
+    width: 100%;
+  }
+  
+  @media(max-width: 500px) {
+  
+    .barra-navegacion-lateral a img,
+    .barra-navegacion-lateral a span {
+      display: flex;
+      width: 100%;
+      font-size: 6px;
+    }
+  }
+
+  
+  
+/*----------------------------------------------------------- Teléfonos ---------------------------------------------------------*/
+
+  @media (max-width: 480px) {
+  
+    /* Reglas para teléfonos */
+    .principal {
+      flex-direction: column;
+    }
+  
+    .homeseccion1 {
+      width: 100%;
+    }
+  
+    .homeseccion2 {
+      width: 100%;
+    }
+  
+    .homeseccion2__homeCard {
+      gap: calc(3.2vw + 1.0vh);
+    }
+  
+    .homeseccion2__contenedorArticle {
+      display: flex;
+      flex-direction: column;
+      gap: calc(2.2vw + 1.5vh);
+    }
+
+    
+    /*Nav lateral*/
+    .barra-navegacion-lateral {
+      display: none;
+    }
+
+    .boton-flotante {
+      display: flex;
+    }
+
+    .contenedor-cuerpo-pagina {
+      padding-left: 0;
+    }
+  
+    /* Sobrescribir el ancho horizontal */
+    .offcanvas-top {
+      width: 46vw !important; /* Sobrescribe el ancho horizontal */
+      height: 300px !important; /* Sobrescribe la altura vertical */
+      margin-left: 50vw !important; /* Sobrescribe el margen derecho */
+    }
+  
+    .opcionesMenu a {
+      font-size: 15px;
+    }
+  }
+  
+  @media (max-width: 300px) {
+    .homeseccion2__homeCard__textoCards button {
+      width: 60%;
+    }
+
+    
+  }
+  
+  
+  @media (min-width: 481px) and (max-width: 746px) {
+    .homeseccion2__homeCard__textoCards h4 {
+      font-size: calc(.6vw + .5vh);
+    }
+  
+    .homeseccion2__homeCard__textoCards button {
+      width: 50%;
+      font-size: calc(.3vw + .4vh);
+  
+    }
+
+  
+    /* Sobrescribir el ancho horizontal */
+    .offcanvas-top {
+      width: 46vw !important; /* Sobrescribe el ancho horizontal */
+      height: 300px !important; /* Sobrescribe la altura vertical */
+      margin-left: 50vw !important; /* Sobrescribe el margen derecho */
+    }
+  
+    .opcionesMenu a {
+      font-size: 15px;
+    }
+  }
+  
+  
+  @media (min-width: 747px) and (max-width: 1200px) {
+    .homeseccion2__homeCard__textoCards h4 {
+      font-size: calc(.6vw + .5vh);
+    }
+  
+    .homeseccion2__homeCard__textoCards button {
+      width: 40%;
+      font-size: calc(.3vw + .5vh);
+    }
+
+    /* Sobrescribir el ancho horizontal */
+    .offcanvas-top {
+      width: 26vw !important; /* Sobrescribe el ancho horizontal */
+      height: 300px !important; /* Sobrescribe la altura vertical */
+      margin-left: 70vw !important; /* Sobrescribe el margen derecho */
+    }
+  
+    .opcionesMenu a {
+      font-size: 15px;
+    }
+  }
+
+
+  .overlay-sweetalert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(52, 52, 52, 0.5); /* Fondo oscuro semi-transparente */
+    z-index: 10000; /* Asegurarnos de que esté por encima de otros elementos */
+    display: none; /* Ocultar por defecto */
+  }
+

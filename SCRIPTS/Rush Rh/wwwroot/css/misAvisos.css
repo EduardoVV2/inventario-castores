@@ -1,0 +1,161 @@
+h1 {
+    text-align: left;
+    color: #002d56;
+    font-size: calc(1.5vw + 1.5vh);
+    font-weight: bold;
+}
+
+
+.titulo1 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(1.5vw + 1.5vh); /* Título más flexible */
+    padding: 10px;
+    margin-bottom: 2%; 
+}
+
+.contenidoMisAvisos{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.tablaMisAvisos{
+    width: 95%;
+    overflow: auto;
+    scrollbar-width: none;  /* Firefox */
+    margin: 3% 0 0 0;
+    height: 50vh;
+    border-radius: 19px;
+}
+
+.tablaMisAvisos::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.tablaMisAvisos table {
+    width: 100%;
+    margin: 0 auto; /* Centra la tabla en la página */
+    font-size: calc(.6vw + .5vh);
+}
+
+.tablaMisAvisos table th, .tablaMisAvisos table td {
+    text-align: center; /* Centra horizontalmente */
+    vertical-align: middle; /* Centra verticalmente */
+    padding: 10px;
+}
+
+.tablaMisAvisos th {
+    background-color: #49b9ed;
+    font-weight: bolder;
+    color: white;
+}
+
+.tablaMisAvisos td {
+    background-color: #d8edff;
+    font-weight: bolder;
+    color: #012d56;
+    border-bottom: 2px solid #4c7388;
+}
+
+.tablaMisAvisos td a{
+    text-decoration: none;
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    padding: 5px;
+    border-radius: 15px;
+    width: 100%;
+    transition: background-color, transform .3s;
+}
+
+.tablaMisAvisos td a span{
+    color: white !important;
+}
+ 
+.tablaMisAvisos td a:hover{
+    background-color: rgb(201, 1, 1);
+    transform: scale(1.05);
+} 
+
+.archivo_nulo{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    padding: 5px;
+    border-radius: 15px;
+    width: 100%;
+    font-size: calc(.6vw + .5vh) !important;
+}
+
+.filtroFechas{
+    width: 30%;
+    margin: 0 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filtroFechas button{
+    display: flex;
+    text-decoration: none;
+    padding: calc(.3vw + .2vh) calc(.8vw + .8vh) calc(.3vw + .2vh);
+    border-radius: calc(.7vw + .7vh);
+    font-size: calc(.6vw + .7vh);
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: start;
+    background-color: #135f88;
+    color: #ffffff;
+    transition: background-color, transform .3s;
+    margin: 0 0 2px 0;
+}
+
+.filtroFechas button:hover {
+    background-color: rgb(14, 72, 105);
+    transform: scale(1.05);
+}
+
+.filtroFechas button span{
+    color: white;
+    font-size: calc(.6vw + .7vh);
+    margin-right: 10px;
+}
+
+/* ------------------------------------------------------------- Recordatorio ---------------------------------------- */
+
+.recuerda {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(1.5vw + 1.5vh); /* Título más flexible */
+    padding: 10px;
+    margin-bottom: 2%; 
+    margin-top: 15%;
+}
+
+.barra-vertical {
+    width: 5px;
+    background-color: #009de5;
+    height: 100%;
+    margin: 0 3vh 0 5vh; 
+}
+
+.recordatorio {
+    width: 100%;
+    color: #002451;
+    text-align: left;
+    font-size: .8em;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.2;
+}

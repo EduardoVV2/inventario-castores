@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/Rush Rh.props" />
+</Project>
