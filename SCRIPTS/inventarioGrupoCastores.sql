@@ -37,7 +37,7 @@ CREATE TABLE movimientos (
     idUsuario INT,
     tipo ENUM('entrada', 'salida') NOT NULL,
     cantidad INT NOT NULL,
-    fecha_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fechaHora DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
     FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
 );

@@ -32,7 +32,7 @@ public class Movimiento {
 
     private Integer cantidad;
 
-    private LocalDateTime fecha_hora;
+    private LocalDateTime fechaHora;
 
     public Integer getId(){
         return idMovimiento;
@@ -47,12 +47,18 @@ public class Movimiento {
     public void setProducto(Producto p){
         this.producto = p;
     }
+    public String getNombreProducto(){
+        return producto.getNombre();
+    }
 
     public Usuario getUsuario(){
         return usuario;
     }
     public void setUsuario(Usuario usr){
         this.usuario = usr;
+    }
+    public String getCorreoUsuario(){
+        return usuario.getCorreo();
     }
 
     public String getTipo(){
@@ -69,11 +75,11 @@ public class Movimiento {
         this.cantidad = cant;
     }
 
-    public LocalDateTime getFecha_Time(){
-        return fecha_hora;
+    public LocalDateTime getFechaHora(){
+        return fechaHora;
     }
-    public void setFecha_Time(LocalDateTime fechaHora){
-        this.fecha_hora = fechaHora;
+    public void setFechaHora(LocalDateTime fechaHora){
+        this.fechaHora = fechaHora;
     }
 
 }

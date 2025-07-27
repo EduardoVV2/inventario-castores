@@ -9,7 +9,7 @@
     <nav th:replace="~{plantilla/plantilla.html :: nav}"></nav>
     <div class="containerPrincipal">
         <h3>Historial de movimientos</h3>
-        <a href="/logout">Salir</a>
+        <a href="/logout">Cerrar Sesión</a>
         <div class="w-50 d-flex justify-content-between my-4">    
         </div>
         <table class="table table-striped">
@@ -23,16 +23,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="producto : ${productos}">
-                    <td th:text="${producto.nombre}"></td>
-                    <td th:text="${producto.descripcion}"></td>
-                    <td th:text="${producto.cantidad}"></td>
-                    <td><button th:value="${producto.idProducto}" name="editar" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalRestarProducto">^</button></td>
-                    <td th:text="${producto.activo} ? 'Sí' : 'No'"></td>
+                <tr th:each="movimiento : ${movimientos}">
+                    <td th:text="${movimiento.producto.nombre}"></td>
+                    <td th:text="${movimiento.usuario.correo}"></td>
+                    <td th:text="${movimiento.tipo}"></td>
+                    <td th:text="${movimiento.cantidad}"></td>
+                    <td th:text="${#temporals.format(movimiento.fechaHora, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 </tr>
             </tbody>
         </table>
-        <a href="/">Volver a Inicio</a>
+        <a href="/inventarioAdmin">Volver al Inventario</a>
     </div>
 
     <div id="alert-data"

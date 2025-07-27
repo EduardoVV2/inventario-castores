@@ -9,12 +9,17 @@
     <nav th:replace="~{plantilla/plantilla.html :: nav}"></nav>
     <div class="containerPrincipal">
         <h3>Inventario</h3>
-        <a href="/logout">Salir</a>
+        <a href="/logout">Cerrar Sesión</a>
         <div class="w-50 d-flex justify-content-between my-4">    
             <a href="/historico" class="btn btn-warning">Histórico</a>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarProducto">Agregar</button>
         </div>
-        <table class="table table-striped">
+        <div>
+            <button onclick="mostrarTodos()">Todos</button>
+            <button onclick="mostrarActivos()">Solo Activos</button>
+            <button onclick="mostrarInactivos()">Solo Inactivos</button>
+        </div>
+        <table id="tabla-productos" class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -35,7 +40,7 @@
                 <form id="formReactivar" action="/reactivarProducto" method="post">
                     <input type="hidden" name="idProduct" id="inputReactivar">
                 </form>
-                <tr th:each="producto : ${productos}">
+                <tr th:each="producto : ${productos}" th:classappend="${producto.activo} ? 'activo' : 'inactivo'">
                     <td th:text="${producto.nombre}"></td>
                     <td th:text="${producto.descripcion}"></td>
                     <td th:text="${producto.cantidad}"></td>
@@ -115,6 +120,26 @@
         th:data-messagetype="${messageType}">
     </div>
 
+    <script>
+        // Filtrar productos
+        function mostrarTodos() {
+            document.querySelectorAll('#tabla-productos tbody tr').forEach(tr => {
+                tr.style.display = '';
+            });
+        }
+
+        function mostrarActivos() {
+            document.querySelectorAll('#tabla-productos tbody tr').forEach(tr => {
+                tr.style.display = tr.classList.contains('activo') ? '' : 'none';
+            });
+        }
+
+        function mostrarInactivos() {
+            document.querySelectorAll('#tabla-productos tbody tr').forEach(tr => {
+                tr.style.display = tr.classList.contains('inactivo') ? '' : 'none';
+            });
+        }
+    </script>
     <script th:src="@{/js/administrador.js}"></script>
     <footer th:replace="~{plantilla/plantilla.html :: footer}"></footer>
 </body>

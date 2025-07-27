@@ -1,5 +1,7 @@
 package com.grupocastores.inventario_castores.controller;
 
+import java.time.LocalDateTime;
+
 import org.hibernate.type.TrueFalseConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.grupocastores.inventario_castores.model.Movimiento;
 import com.grupocastores.inventario_castores.model.Producto;
+import com.grupocastores.inventario_castores.service.IMovimientoService;
 import com.grupocastores.inventario_castores.service.IProductoService;
+import com.grupocastores.inventario_castores.service.IUsuarioService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -24,6 +29,10 @@ public class AdministradorController {
     
     @Autowired
     private IProductoService serviceProducto;
+    @Autowired
+    private IMovimientoService serviceMovimiento;
+    @Autowired
+    private IUsuarioService serviceUsuario;
     
     @GetMapping("/inventarioAdmin")
     public String administrar(Model model, HttpSession session, RedirectAttributes redirectAttrs) {
@@ -59,16 +68,26 @@ public class AdministradorController {
     }
     
     @PostMapping("/inventarioAdminAgregar")
-    public String inventarioAdminAgregar(RedirectAttributes redirectAttrs, @RequestParam("id") Integer id, @RequestParam("cantidad") Integer cantidad) {
+    public String inventarioAdminAgregar(HttpSession session, RedirectAttributes redirectAttrs, @RequestParam("id") Integer id, @RequestParam("cantidad") Integer cantidad) {
+        Movimiento nuevoMovimiento = new Movimiento();
+        Integer idUsuarioActual = (Integer) session.getAttribute("usuario");
         Producto editar = serviceProducto.buscarPorId(id);
         Integer cantidadFin = editar.getCantidad();
         if(cantidad<0){
-            return "error";
+            redirectAttrs.addFlashAttribute("message", "Inventario no se pudo agregar, numero invalido.");
+            redirectAttrs.addFlashAttribute("messageType", "error"); // error, info, success, etc.
+            return "redirect:/inventarioAdmin";
         }else{
             cantidadFin += cantidad;
         }
         editar.setCantidad(cantidadFin);
         serviceProducto.guardar(editar);
+        nuevoMovimiento.setProducto(editar);
+        nuevoMovimiento.setUsuario(serviceUsuario.buscarPorId(idUsuarioActual));
+        nuevoMovimiento.setTipo("entrada");
+        nuevoMovimiento.setCantidad(cantidad);
+        nuevoMovimiento.setFechaHora(LocalDateTime.now());
+        serviceMovimiento.guardar(nuevoMovimiento);
         redirectAttrs.addFlashAttribute("message", "Inventario agregado correctamente.");
         redirectAttrs.addFlashAttribute("messageType", "success"); // error, info, success, etc.
         return "redirect:/inventarioAdmin";
